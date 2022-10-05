@@ -21,4 +21,8 @@
 UPDATE userinfo SET  weight_start = #{weight_start}, weight_now = #{weight_now}, weight_target=#{weight_target} WHERE nickname = #{nickname}
 </update>
 
+<!-- 유저 nickname 변경 -->
+<update id="nickcorr" parameterType="com.fivelight.domain.User">
+UPDATE userinfo SET nickname=#{name} WHERE nickname = #{nickname}
+</update>
 </mapper>

@@ -19,4 +19,7 @@ public interface ServiceMapper {
 	public List<Feedback> feedback(User nickname);
 	
 	public int weight(User user);
+	
+	public int nickcorr(User user);
+	
 }

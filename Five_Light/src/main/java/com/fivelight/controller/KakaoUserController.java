@@ -188,8 +188,7 @@ public class KakaoUserController {
 					
 					session.setAttribute("info", user);
 					session.setAttribute("userList", userList);
-					System.out.println(userList);
-					System.out.println(user);
+	
 					
 					return "redirect:/userInfo.do";
 

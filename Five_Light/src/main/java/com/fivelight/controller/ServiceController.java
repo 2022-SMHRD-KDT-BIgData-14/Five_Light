@@ -37,7 +37,6 @@ public class ServiceController {
 
 		List<Feedback> feedbackList = mapper.feedback(nickname);
 
-		System.out.println("피드백 정보(myInfo)" + feedbackList);
 
 		session.setAttribute("feedbackList", feedbackList);
 
@@ -52,7 +51,6 @@ public class ServiceController {
 
 		User nickname = (User) session.getAttribute("info");
 
-		System.out.println("member" + nickname);
 
 		List<Feedback> feedbackList = mapper.feedback(nickname);
 
@@ -101,6 +99,12 @@ public class ServiceController {
 
 		return "FeedDetail";
 	}
+	
+	// 트레이닝 연결
+	@RequestMapping("/training.do")
+	public String training() {
+		return "Training";
+	}
 
 	// 랭킹 연결
 	@RequestMapping("/ranking.do")
@@ -108,11 +112,6 @@ public class ServiceController {
 		return "Ranking";
 	}
 
-	// 트레이닝 연결
-	@RequestMapping("/training.do")
-	public String training() {
-		return "Training";
-	}
 
 	// userInfo >> 랭킹확인
 	@RequestMapping("/rank.do")

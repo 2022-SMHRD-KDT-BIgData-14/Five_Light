@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 
 <head>
 <title>당근 P.T</title>
@@ -58,8 +58,68 @@
 			</h1>
 			<div class="userImg mb-4"
 				style="background-image: url(images/당근5.jfif);"></div>
-			<div class="userName">${info.nickname}</div>
+			
+		
+				<input class="userName" id="userName1" type="text" value="${info.nickname}" readonly='readonly'>
+				<input  type="hidden" name="name" value="${info.nickname}">
+			
+				<button class="nickBtn" id="nick1" onclick="nick_corr()"> 수정 </button>
+			
+			
+		<script type="text/javascript">
+		</script>
+					<%-- 	let num1 = 1
 
+							function correction_1() {
+								if (num1 == 1) {
+									$('#correction1').text('완료')
+									$('#correction1')
+											.attr('id', 'correction11')
+									$('.correction1').removeAttr('readonly') // input 태그 안써지는속성 제거 해서 숫자 변경 할수 있도록 함
+									num1 = 2
+									console.log(num1)
+								} else {
+									console.log(123)
+									var weight_start = document
+											.getElementById('weight_start').value;
+									var weight_now = document
+											.getElementById('weight_now').value;
+									var weight_target = document
+											.getElementById('weight_target').value;
+
+									console.log(weight_start)
+
+									// 아무 주석
+									// 숫자 하나를 data로 요청 >> controller 제곱을 해서 돌려주는 함수
+									$.ajax({
+										url : 'weight.do',
+										type : 'get',
+										data : {
+											weight_start : weight_start,
+											weight_now : weight_now,
+											weight_target : weight_target,
+											nickname : `${info.nickname}`
+										},
+										success : function(res) {
+											console.log(res)
+											$('#correction11').text('수정')
+											$('#correction11').attr('id',
+													'correction1')
+											$('.correction1').attr('readonly',
+													'readonly')
+											
+											num1 = 1
+										},
+										errer : function(e) {
+											alert(e);
+										}
+
+									});
+
+								}
+							} --%>
+		
+		
 			<!-- 좌측 목록 -->
 			<nav id="colorlib-main-menu" role="navigation" list-style=snone>
 				<ul class="main-menu">
@@ -120,7 +180,9 @@
 														<tr>
 															<td>${feedbackList.feed_date}</td>
 															<td class="d-none d-xl-table-cell">${feedbackList.ex_name}</td>
-															<td><a href="feedDetail.do?nickname=${feedbackList.nickname}"> 내용보기</a></td>
+															<td><a
+																href="feedDetail.do?nickname=${feedbackList.nickname}">
+																	내용보기</a></td>
 														</tr>
 													</c:forEach>
 												</tbody>
@@ -167,55 +229,56 @@
 
 
 						<script type="text/javascript">
-						let num1 = 1
+							let num1 = 1
 
-						function correction_1() {
-							if (num1 == 1) {
-								$('#correction1').text('완료')
-								$('#correction1')
-									.attr('id', 'correction11')
-								$('.correction1').removeAttr('readonly') // input 태그 안써지는속성 제거 해서 숫자 변경 할수 있도록 함
-								num1 = 2
-								console.log(num1)
-							} else {
-								console.log(123)
-								var weight_start = document
-									.getElementById('weight_start').value;
-								var weight_now = document
-									.getElementById('weight_now').value;
-								var weight_target = document
-									.getElementById('weight_target').value;
+							function correction_1() {
+								if (num1 == 1) {
+									$('#correction1').text('완료')
+									$('#correction1')
+											.attr('id', 'correction11')
+									$('.correction1').removeAttr('readonly') // input 태그 안써지는속성 제거 해서 숫자 변경 할수 있도록 함
+									num1 = 2
+									console.log(num1)
+								} else {
+									console.log(123)
+									var weight_start = document
+											.getElementById('weight_start').value;
+									var weight_now = document
+											.getElementById('weight_now').value;
+									var weight_target = document
+											.getElementById('weight_target').value;
 
-								console.log(weight_start)
+									console.log(weight_start)
 
-								// 아무 주석
-								// 숫자 하나를 data로 요청 >> controller 제곱을 해서 돌려주는 함수
-								$.ajax({
-									url: 'weight.do',
-									type: 'get',
-									data: {
-										weight_start: weight_start,
-										weight_now: weight_now,
-										weight_target: weight_target,
-										nickname: `${info.nickname}`
-									},
-									success: function(res) {
-										console.log(res)
-										$('#correction11').text('수정')
-										$('#correction11').attr('id',
-											'correction1')
-										$('.correction1').attr('readonly',
-											'readonly')
-										num1 = 1
-									},
-									errer: function(e) {
-										alert(e);
-									}
+									// 아무 주석
+									// 숫자 하나를 data로 요청 >> controller 제곱을 해서 돌려주는 함수
+									$.ajax({
+										url : 'weight.do',
+										type : 'get',
+										data : {
+											weight_start : weight_start,
+											weight_now : weight_now,
+											weight_target : weight_target,
+											nickname : `${info.nickname}`
+										},
+										success : function(res) {
+											console.log(res)
+											$('#correction11').text('수정')
+											$('#correction11').attr('id',
+													'correction1')
+											$('.correction1').attr('readonly',
+													'readonly')
+											
+											num1 = 1
+										},
+										errer : function(e) {
+											alert(e);
+										}
 
-								});
+									});
 
+								}
 							}
-						}
 						</script>
 
 
@@ -273,6 +336,8 @@
 				});
 	</script>
 	<!-- 라인차트 스크립트 끝 -->
+	
+	 
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
