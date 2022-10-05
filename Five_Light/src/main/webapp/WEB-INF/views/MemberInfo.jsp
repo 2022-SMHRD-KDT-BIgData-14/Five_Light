@@ -188,6 +188,7 @@
 
 								console.log(weight_start)
 
+								// 아무 주석
 								// 숫자 하나를 data로 요청 >> controller 제곱을 해서 돌려주는 함수
 								$.ajax({
 									url: 'weight.do',
