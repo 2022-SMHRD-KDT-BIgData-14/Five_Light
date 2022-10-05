@@ -5,6 +5,7 @@
 --gender VARCHAR(20)
 --);
 
+
 select * from userinfo
 select * from ranking
 select * from feedback

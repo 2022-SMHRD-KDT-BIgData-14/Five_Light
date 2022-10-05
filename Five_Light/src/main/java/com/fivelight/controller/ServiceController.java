@@ -30,18 +30,16 @@ public class ServiceController {
 	// 회원(PT수강자) 이동 ctrl
 	@RequestMapping("/myInfo.do")
 	private String myInfo(HttpServletRequest request, Model model, HttpSession session) {
-		
-		session = request.getSession();
-		
-		User nickname = (User) session.getAttribute("info");
 
+		session = request.getSession();
+
+		User nickname = (User) session.getAttribute("info");
 
 		List<Feedback> feedbackList = mapper.feedback(nickname);
 
 		System.out.println("피드백 정보(myInfo)" + feedbackList);
-		
+
 		session.setAttribute("feedbackList", feedbackList);
-		
 
 		return "MyInfo";
 	}
@@ -60,7 +58,6 @@ public class ServiceController {
 
 		System.out.println("피드백 정보(member)" + feedbackList);
 		session.setAttribute("feedbackList", feedbackList);
-		
 
 		return "MemberInfo";
 	}
@@ -78,45 +75,50 @@ public class ServiceController {
 	// PT관리자 뷰의 피드백
 	@RequestMapping("/userInfoDetail.do")
 	public String userInfoDetail(User nickname, Model model, HttpSession session) {
-		System.out.println("PT의 단일 검색"+nickname);
-		
+		System.out.println("PT의 단일 검색" + nickname);
+
 		User user = mapper.userInfoSelect(nickname);
-		System.out.println("매퍼 다음"+user);
+		System.out.println("매퍼 다음" + user);
 		List<Feedback> feedbackList = mapper.feedback(nickname);
-		System.out.println("피드백 매퍼 다음"+feedbackList);
-		
+		System.out.println("피드백 매퍼 다음" + feedbackList);
+
 		session.setAttribute("feedbackList", feedbackList);
 		session.setAttribute("userInfo", user);
-		
+
 		return "UserInfoDetail";
 
 	}
-	
+
 	// 첼린지 페이지연결
 	@RequestMapping("/challenge.do")
 	public String challenge() {
 		return "Challenge";
 	}
-	
-	
+
 	// 피드백 디테일 연결
 	@RequestMapping("/feedDetail.do")
 	public String feedDetail() {
-		
-		
+
 		return "FeedDetail";
 	}
-	
+
 	// 랭킹 연결
 	@RequestMapping("/ranking.do")
 	public String ranking() {
 		return "Ranking";
 	}
-	
+
 	// 트레이닝 연결
-		@RequestMapping("/training.do")
-		public String training() {
-			return "Training";
-		}
+	@RequestMapping("/training.do")
+	public String training() {
+		return "Training";
+	}
+
+	// userInfo >> 랭킹확인
+	@RequestMapping("/rank.do")
+	public String rank() {
+		return "Rank";
+	}
+
 
 }

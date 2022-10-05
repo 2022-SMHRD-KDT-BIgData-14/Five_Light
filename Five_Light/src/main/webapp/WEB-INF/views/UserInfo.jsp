@@ -55,7 +55,7 @@
       <nav id="colorlib-main-menu" role="navigation" list-style=snone>
 				<ul class="main-menu">
 					<li class="colorlib-active"><a href="UserInfo.jsp">User Info</a></li>
-					<li><a href="Ranking.jsp">Ranking</a></li>
+					<li><a href="rank.do">Ranking</a></li>
 				</ul>
 			</nav>
        <div class="Logout"><a href="logout.do">Logout</a></div>
