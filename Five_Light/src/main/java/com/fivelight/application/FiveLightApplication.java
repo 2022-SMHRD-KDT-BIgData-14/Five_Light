@@ -20,5 +20,4 @@ public class FiveLightApplication implements WebMvcConfigurer {
 	public static void main(String[] args) {
 		SpringApplication.run(FiveLightApplication.class, args);
 	}
-
 }

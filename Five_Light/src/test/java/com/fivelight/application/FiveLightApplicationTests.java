@@ -9,5 +9,4 @@ class FiveLightApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

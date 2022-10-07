@@ -1,6 +1,5 @@
 package com.fivelight.mapper;
 
-
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -8,9 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.fivelight.domain.User;
 
 @Mapper
-
 public interface UserMapper {
-
 	// 회원 가입
 	public int join(User kakaUser);
 	
@@ -22,6 +19,4 @@ public interface UserMapper {
 	
 	// 회원 탈퇴
 	public int delete(String email);
-	
-	
 }

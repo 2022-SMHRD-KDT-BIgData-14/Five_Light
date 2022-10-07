@@ -8,18 +8,13 @@ import com.fivelight.domain.Feedback;
 import com.fivelight.domain.User;
 
 @Mapper
-
 // user, my, member info 서비스 mapper
-
-
-public interface ServiceMapper {
-	
+public interface ServiceMapper {	
 	public User userInfoSelect(User nickname);
 	
 	public List<Feedback> feedback(User nickname);
 	
 	public int weight(User user);
 	
-	public int nickcorr(User user);
-	
+	public int nickcorr(User user);	
 }

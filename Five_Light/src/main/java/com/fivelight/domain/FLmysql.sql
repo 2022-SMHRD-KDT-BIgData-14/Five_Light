@@ -13,8 +13,6 @@ select * from exercise
 
 --select * from feedback where nickname='User000001'
 
-
-
 --UPDATE userinfo SET  weight_start = 98.0, weight_now = 85.5, weight_target=78.0 WHERE nickname = 'User000006'
 
 --select * from userinfo where access is null

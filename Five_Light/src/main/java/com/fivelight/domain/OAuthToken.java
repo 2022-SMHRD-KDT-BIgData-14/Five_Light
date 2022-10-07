@@ -5,25 +5,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 // 카카오 토큰 생성자
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class OAuthToken {
-
 	private String access_token;
+	
 	private String token_type;
+	
 	private String refresh_token;
+	
 	private int expires_in;
+	
 	private String scope;
+	
 	private int refresh_token_expires_in;
-	
-	
-//	"access_token"
-//	"token_type"
-//	"refresh_token"
-//	"expires_in"
-//	"scope":
-//	"refresh_token_expires_in"
-	
 }

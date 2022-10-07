@@ -1,6 +1,5 @@
 package com.fivelight.controller;
 
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,33 +11,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fivelight.domain.User;
 import com.fivelight.mapper.ServiceMapper;
 
-
 @Controller
-public class RestController {
-	
+public class RestController {	
 	@Autowired
-	private ServiceMapper mapper;
-	
+	private ServiceMapper mapper;	
 	 
-	@RequestMapping("/weight.do")
-	 public @ResponseBody String weight(User user) {
-
+	@RequestMapping("weight.do")
+	 public @ResponseBody String weight(User user, HttpSession session) {
 		mapper.weight(user);
+		session.setAttribute("info", user);
 		
-		//System.out.println(test);
-		
-		return "";
-		
+		return "";		
 	}
 	
 	@RequestMapping("nickcorr.do")
-	 public @ResponseBody String nick(User user) {
-		System.out.println("닉네임 변경"+user);
+	 public @ResponseBody String nick(User user, HttpSession session) {
 		mapper.nickcorr(user);
-
+		session.setAttribute("info", user);
 		 
-		return "";
-		
+		return "";		
 	}
-
 }
