@@ -27,13 +27,13 @@ public class ServiceController {
 		return "UserInfo";
 	}
 
+	
 	// 회원(PT수강자) 이동 ctrl
 	@RequestMapping("/myInfo.do")
 	private String myInfo(HttpServletRequest request, Model model, HttpSession session) {
 		session = request.getSession();
 
 		User nickname = (User)session.getAttribute("info");
-
 		List<Feedback> feedbackList = mapper.feedback(nickname);
 
 		session.setAttribute("feedbackList", feedbackList);
@@ -47,9 +47,10 @@ public class ServiceController {
 		session = request.getSession();
 
 		User nickname = (User)session.getAttribute("info");
-
 		List<Feedback> feedbackList = mapper.feedback(nickname);
-
+		
+		
+		
 		session.setAttribute("feedbackList", feedbackList);
 
 		return "MemberInfo";
@@ -67,19 +68,17 @@ public class ServiceController {
 	// PT관리자 뷰의 피드백
 	@RequestMapping("/userInfoDetail.do")
 	public String userInfoDetail(User nickname, Model model, HttpSession session) {
-		System.out.println("PT의 단일 검색" + nickname);
+		System.out.println("디데일 입장");
 		
 		User user = mapper.userInfoSelect(nickname);
-		
-		System.out.println("매퍼 다음" + user);
-				
 		List<Feedback> feedbackList = mapper.feedback(nickname);
 		
-		System.out.println("피드백 매퍼 다음" + feedbackList);
-
+	
 		session.setAttribute("feedbackList", feedbackList);
 		session.setAttribute("userInfo", user);
-
+		
+		
+		System.out.println("디데일 나가기");
 		return "UserInfoDetail";
 	}
 

@@ -18,7 +18,10 @@ public class RestController {
 	 
 	@RequestMapping("weight.do")
 	 public @ResponseBody String weight(User user, HttpSession session) {
-		mapper.weight(user);
+		
+		System.out.println(user+"111111111111111111111111111111");
+		int test=mapper.weight(user);
+		System.out.println(test+"2222222222222222222222222222222222222");
 		session.setAttribute("info", user);
 		
 		return "";		

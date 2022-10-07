@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fivelight.mapper.ServiceMapper">
+
+	<!--단일 회원 검색 -->
+	<select id="userInfoSelect" parameterType="com.fivelight.domain.User" resultType="com.fivelight.domain.User">
+		select * from userinfo where nickname = #{nickname}
+	</select>
+
+	<!-- 피드백 검색 -->
+	<select id="feedback" parameterType="com.fivelight.domain.User" resultType="com.fivelight.domain.Feedback">
+		select * from feedback where nickname = #{nickname}
+	</select>
+
+	<!-- 몸무게 변경 -->
+	<update id="weight" parameterType="com.fivelight.domain.User">
+		UPDATE userinfo SET weight_start = #{weight_start}, weight_now = #{weight_now}, weight_target = #{weight_target} WHERE nickname = #{nickname}
+	</update>
+
+	<!-- 유저 nickname 변경 -->
+	<update id="nickcorr" parameterType="com.fivelight.domain.User">
+		UPDATE userinfo SET nickname = #{nickname} WHERE name = #{name}
+	</update>
+</mapper>

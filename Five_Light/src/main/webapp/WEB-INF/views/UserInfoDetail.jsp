@@ -156,7 +156,7 @@
 								<div class="card-header">
 									<h5 class="card-title mb-0">나의 도전</h5>
 									
-									<button id="correction1" onclick="correction_1()">수정</button>
+									<button id="weight_corr">수정하기</button>
 								</div>
 								
 								<table class="table table-hover my-0">
@@ -164,7 +164,7 @@
 										<tr>
 											<th>시작 몸무게</th>
 											<td>
-												<span id="weight_start">${info.weight_start}</span>
+												<span id="weight_start">${userInfo.weight_start}</span>
 												<span>Kg</span>
 											</td>
 										</tr>
@@ -172,7 +172,7 @@
 										<tr>
 											<th>현재 몸무게</th>
 											<td>
-												<span id="weight_now">${info.weight_now}</span>
+												<span id="weight_now">${userInfo.weight_now}</span>
 												<span>Kg</span>
 											</td>
 										</tr>
@@ -180,7 +180,7 @@
 										<tr>
 											<th>목표 몸무게</th>
 											<td>
-												<span id="weight_target">${info.weight_target}</span>
+												<span id="weight_target">${userInfo.weight_target}</span>
 												<span>Kg</span>
 											</td>														
 										</tr>
@@ -240,9 +240,9 @@
 			$('#weight_corr').after('<button id="weight_corr_cancel">취소</button>')
 			$('#weight_corr').attr('id', 'weight_corr_fix')
 								
-			$('#weight_start').contents().unwrap().wrap('<span id="weight_start"><input id="weight_start_corr" class="weight_corr_input" type="text" value="${info.weight_start}" size=15 style="height: 30px !important;"/></span>')
-			$('#weight_now').contents().unwrap().wrap('<span id="weight_now"><input id="weight_now_corr" class="weight_corr_input" type="text" value="${info.weight_now}" size=15 style="height: 30px !important;"/></span>')
-			$('#weight_target').contents().unwrap().wrap('<span id="weight_target"><input id="weight_target_corr" class="weight_corr_input" type="text" value="${info.weight_target}" size=15 style="height: 30px !important;"/></span>')
+			$('#weight_start').contents().unwrap().wrap('<span id="weight_start"><input id="weight_start_corr" class="weight_corr_input" type="text" value="${userInfo.weight_start}" size=15 style="height: 30px !important;"/></span>')
+			$('#weight_now').contents().unwrap().wrap('<span id="weight_now"><input id="weight_now_corr" class="weight_corr_input" type="text" value="${userInfo.weight_now}" size=15 style="height: 30px !important;"/></span>')
+			$('#weight_target').contents().unwrap().wrap('<span id="weight_target"><input id="weight_target_corr" class="weight_corr_input" type="text" value="${userInfo.weight_target}" size=15 style="height: 30px !important;"/></span>')
 		})
 							
 		$(document).on('click', '#weight_corr_cancel', ()=> {
@@ -251,9 +251,9 @@
 			$('#weight_corr_fix').attr('id', 'weight_corr')								
 								
 			$('.weight_corr_input').remove()
-			$('#weight_start').append('<span id="weight_start">${info.weight_start}</span>')
-			$('#weight_now').append('<span id="weight_now">${info.weight_now}</span>')
-			$('#weight_target').append('<span id="weight_target">${info.weight_target}</span>')
+			$('#weight_start').append('<span id="weight_start">${userInfo.weight_start}</span>')
+			$('#weight_now').append('<span id="weight_now">${userInfo.weight_now}</span>')
+			$('#weight_target').append('<span id="weight_target">${userInfo.weight_target}</span>')
 		})
 							
 		$(document).on('click', '#weight_corr_fix', ()=> {
@@ -267,9 +267,9 @@
 					weight_start : weight_start,
 					weight_now : weight_now,
 					weight_target : weight_target,
-					nickname : `${info.nickname}`,
-					name : `${info.name}`,										
-					access : `${info.access}`
+					nickname : `${userInfo.nickname}`,
+					name : `${userInfo.name}`,										
+					access : `${userInfo.access}`
 				},
 				dataType: "text",
 									
