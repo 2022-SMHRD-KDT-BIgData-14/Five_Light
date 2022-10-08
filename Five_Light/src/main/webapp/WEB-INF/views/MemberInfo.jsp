@@ -1,3 +1,6 @@
+<%@page import="com.fivelight.domain.Ranking"%>
+<%@page import="com.fivelight.domain.Exercise"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -85,12 +88,24 @@
 							<div class="col-md-12">
 								<div class="row">
 									<canvas id="myChart"></canvas>
+									<% List<Ranking> rankgraph = (List<Ranking>)session.getAttribute("rankgraph"); %>
+									<% System.out.println(rankgraph); %>
+									<!-- 운동 셀렉트 -->
+									<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
 									
-									<div class="card card-body text-center bg-primary">
-										<h3>Challenge 진행률?</h3>
-									</div>
+									<div class="col-md-2">
+										<% for(int i = 0; i < exerciseList.size(); i++) { %>
+										<!-- 원본 : <button class="photography-entry img d-flex justify-content-center align-items-center"> -->
+										<button id="rankgraph<%= i %>" class="">
+											<div class="text-center move" value="<%= exerciseList.get(i).getEx_name() %>">
+												<p><%= exerciseList.get(i).getEx_name() %></p>
+											</div>
+										</button>
+										<% } %>
+									</div>									
+									<!-- 운동 셀렉트 끝 -->									
 								</div>
-								<!-- 라인 그래프 끝-->
+								<!-- 라인 그래프 끝-->								
 
 								<!-- 피드백 -->
 								<div class="row">
@@ -270,6 +285,23 @@
 									}
 								})
 							})							
+							
+							$('.text-center.move').click(function() {
+								var ex_name = $(this).attr('value')
+								
+								$.ajax({
+									url: 'memberInfo2.do',
+									data: {
+										ex_name : ex_name,
+										nickname : nickname
+									},
+									dataType: "json",
+									
+									success: function(res) {
+										
+									}
+								})
+							})
 						</script>
 					</div>
 				</section>
@@ -292,26 +324,65 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
 	<!-- 차트 -->
-	<script>
-		var ctx = document.getElementById('myChart').getContext('2d');
-		var chart = new Chart(ctx, {
-			// 챠트 종류를 선택
-			type: 'line',
-
-			// 챠트에 그릴 데이터
-			data: {
-				labels: ['날짜', '날짜', '날짜', '날짜', '날짜', '날짜', '날짜', '날짜', '날짜' ],
-				datasets: [{
-					label: '날짜별 Challenge 점수',
-					backgroundColor: 'transparent',
-					borderColor: 'red',
-					data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-				}]
-			},
-			
-			// 옵션
-			options : {}
-		});
+	<script>	
+		var ctx = document.getElementById('myChart').getContext('2d')
+		
+		new Chart(chart, {
+		    type: 'bar', // 막대, line : 꺾은선 그래프
+		    data: {
+		        labels: ['x축 배열'],
+		        datasets: [
+		            {
+		                label: '라벨1',
+		                data: ['y축 배열'],
+		                backgroundColor: Color
+		            },
+		            {
+		                label: '라벨2',
+		                type: 'line', // default : 상단 type에 설정한 'bar'
+		                data: ['y축 배열'],
+		                backgroundColor: 'transparent', // 투명한
+		                borderColor: 'Color',
+		                /* borderDash: [0 ,6],
+		                borderCapStyle: 'round', // 점선 그래프, 점의 모양 */
+		                lineTension: 0, // line 볼록정도
+		                pointRadius: 5, // 포인트 크기
+		                pointStyle: 'rect', // 직사각형, triangle : 삼각형, default : circle (원형)
+		                pointBackgroundColor: 'Color', // default : 'transparent'
+		            }
+		        ]
+		    },
+		    options: {
+		        title: {
+		            display: true,
+		            text: '제목',
+		            fontSize: 10
+		        },
+		        scales: {
+		            xAxes: [{
+		                gridLines: {
+		                    drawOnChartArea: false
+		                }
+		            }],
+		            yAxes: [{
+		                ticks: {
+		                    display: true,
+		                    min: 0,   //y축 최솟값
+		                    max: 999, //y축 최댓값
+		                    stepSize: 1
+		                }
+		            }]
+		        },
+		        legend: { // 범례
+		            position: 'bottom',
+		            labels: {
+		                usePointStyle: true, // 지정된 포인트 모양에 따라 범례 아이콘 생성
+		                boxWidth: 10,
+		                padding: 10
+		            }
+		        }
+		    }   
+		})
 	</script>
 	<!-- 라인차트 스크립트 끝 -->	 
 

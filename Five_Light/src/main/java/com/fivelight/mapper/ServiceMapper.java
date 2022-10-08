@@ -23,4 +23,6 @@ public interface ServiceMapper {
 	public List<Exercise> exercise();
 	
 	public List<Ranking> ranking(String ex_name);
+	
+	public List<Ranking> rankgraph(Ranking ranking);
 }

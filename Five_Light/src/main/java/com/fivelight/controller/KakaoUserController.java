@@ -129,8 +129,8 @@ public class KakaoUserController {
 			e.printStackTrace();
 		} 
 		catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.out.println("제발/...");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}						
 				
@@ -159,8 +159,7 @@ public class KakaoUserController {
 		if (user.getAccess() == null) {					
 			session.setAttribute("info", user);	
 			
-			return "redirect:/myInfo.do";
-					
+			return "redirect:/myInfo.do";					
 		}
 		
 		else if (user.getAccess().equals("V")) {
@@ -172,6 +171,7 @@ public class KakaoUserController {
 			
 			return "redirect:/userInfo.do";
 		}
+		
 		else {
 			session.setAttribute("info", user);
 			

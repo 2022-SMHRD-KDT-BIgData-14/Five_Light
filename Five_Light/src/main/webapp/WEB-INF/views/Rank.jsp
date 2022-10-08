@@ -62,7 +62,9 @@
 			<!-- 좌측 로고 밑 사진 -->
 			<div class="userImg mb-4" style="background-image: url(images/당근5.jfif);"></div>
 			
-			<div class="userName">당근</div>
+			<div id="nickname_1" class="nickBtn" value="${info.nickname}">
+				<h2 id="user_nickname">${info.name}</h2>
+			</div>	
 
 			<!-- 좌측 목록 -->
 			<nav id="colorlib-main-menu" role="navigation" list-style=snone>

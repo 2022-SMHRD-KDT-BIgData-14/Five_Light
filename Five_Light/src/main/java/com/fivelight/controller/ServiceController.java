@@ -8,7 +8,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fivelight.domain.Exercise;
 import com.fivelight.domain.Feedback;
@@ -48,10 +50,13 @@ public class ServiceController {
 		User nickname = (User)session.getAttribute("info");
 		List<Feedback> feedbackList = mapper.feedback(nickname);
 		
+		List<Exercise> exerciseList = mapper.exercise();
+		session.setAttribute("exerciseList", exerciseList);
+		
 		session.setAttribute("feedbackList", feedbackList);
 
 		return "MemberInfo";
-	}
+	}	
 
 	// logout ctrl
 	@RequestMapping("/logout.do")
@@ -98,12 +103,11 @@ public class ServiceController {
 
 	// 랭킹 연결
 	@RequestMapping("/ranking.do")
-	public String ranking(String ex_name, Model model, HttpSession session) {
+	public String ranking(Ranking ranking, String ex_name, Model model, HttpSession session) {
 		List<Exercise> exerciseList = mapper.exercise();
 		session.setAttribute("exerciseList", exerciseList);
 		
-		for(int i = 0; i < exerciseList.size(); i++) {
-			
+		for(int i = 0; i < exerciseList.size(); i++) {			
 			List<Ranking> rank = mapper.ranking(exerciseList.get(i).getEx_name());
 			
 			session.setAttribute("ranking" + i + "List", rank);			
@@ -114,7 +118,16 @@ public class ServiceController {
 
 	// userInfo >> 랭킹확인
 	@RequestMapping("/rank.do")
-	public String rank() {
+	public String rank(String ex_name, Model model, HttpSession session) {
+		List<Exercise> exerciseList = mapper.exercise();
+		session.setAttribute("exerciseList", exerciseList);
+		
+		for(int i = 0; i < exerciseList.size(); i++) {			
+			List<Ranking> rank = mapper.ranking(exerciseList.get(i).getEx_name());
+			
+			session.setAttribute("ranking" + i + "List", rank);			
+		}
+		
 		return "Rank";
 	}
 }

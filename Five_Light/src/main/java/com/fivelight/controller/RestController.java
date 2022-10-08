@@ -1,5 +1,7 @@
 package com.fivelight.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fivelight.domain.Ranking;
 import com.fivelight.domain.User;
 import com.fivelight.mapper.ServiceMapper;
 
@@ -32,5 +35,12 @@ public class RestController {
 		session.setAttribute("info", user);
 		 
 		return "";		
+	}	
+
+	@RequestMapping("/memberInfo2.do")
+	private @ResponseBody List<Ranking> memberInfo2(Ranking ranking) {
+		List<Ranking> rankgraph = mapper.rankgraph(ranking);		
+
+		return rankgraph;
 	}
 }
