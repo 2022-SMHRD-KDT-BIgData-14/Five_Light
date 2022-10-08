@@ -1,3 +1,6 @@
+<%@page import="com.fivelight.domain.Exercise"%>
+<%@page import="java.util.List"%>
+<%@page import="com.fivelight.domain.Ranking"%>
 <%@ page import="com.fivelight.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -151,51 +154,58 @@
 								</a>
 							</div>
 							<!-- 운동 셀렉트 끝 -->
+							
 							<!-- 랭킹리스트 -->
-							<div class="col-md-12 rank">
-								<div class="rankingList">
-									<table border="solid black">
-										<thead>
-											<tr>
-												<th colspan="1">운동여기다가</th>
-											</tr>
-											<tr>
-												<th>순위</th>
-												<th>닉네임</th>
-												<th>정확도</th>
-											</tr>
-										</thead>
-										
-										<tbody>
-											<tr>
-												<th>1</th>
-												<th>락</th>
-												<th>100</th>
-											</tr>
-											<tr>
-												<th>2</th>
-												<th>연</th>
-												<th>90</th>
-											</tr>
-											<tr>
-												<th>3</th>
-												<th>성</th>
-												<th>80</th>
-											</tr>
-											<tr>
-												<th>4</th>
-												<th>준</th>
-												<th>70</th>
-											</tr>
-											<tr>
-												<th>5</th>
-												<th>훈</th>
-												<th>60</th>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
+							<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
+							
+							<% for(int i = 0; i < exerciseList.size(); i++) { %>
+							<% List<Ranking> rankingList = (List<Ranking>)session.getAttribute("ranking" + i + "List"); %>
+				          	<div class="col-md-12 rank">
+				            	<div class="rankingList">
+				              		<div>
+				                		<p><%= exerciseList.get(i).getEx_name() %></p>
+				              		</div>
+				              		
+				              		<div class="tranScoll">
+				                		<ul>
+				                			<% if(rankingList.size() > 10) { %>
+				                			<% for(int j = 0; j < 10; j++) { %>
+				                  			<li class="listItem">
+				                    			<div class="rankScore">
+				                      				<table class="rankTable">
+				                        				<tr>
+				                          					<th class=""><%= j + 1 %></th>
+				                          					<td class=""><%= rankingList.get(j).getNickname() %></td>
+				                        				</tr>
+				                        				<tr>
+				                          					<td colspan="2"><%= rankingList.get(j).getRank_acc() %></td>
+				                        				</tr>
+				                      				</table>
+						                    	</div>
+						                  	</li>
+						                  	<% } %>
+						                  	<% } else { %>						                  	
+						                  	<% for(int j = 1; j <= rankingList.size(); j++) { %>
+				                  			<li class="listItem">
+				                    			<div class="rankScore">
+				                      				<table class="rankTable">
+				                        				<tr>
+				                          					<th class=""><%= j %></th>
+				                          					<td class=""><%= rankingList.get(j).getNickname() %></td>
+				                        				</tr>
+				                        				<tr>
+				                          					<td colspan="2"><%= rankingList.get(j).getRank_acc() %></td>
+				                        				</tr>
+				                      				</table>
+						                    	</div>
+						                  	</li>
+						                  	<% } %>
+						                  	<% } %>						                  	
+						              	</ul>
+						            </div>
+						        </div>
+						    </div>
+						    <% } %>					    
 							<!-- 랭킹리스트 끝 -->
 						</div>
 					</div>

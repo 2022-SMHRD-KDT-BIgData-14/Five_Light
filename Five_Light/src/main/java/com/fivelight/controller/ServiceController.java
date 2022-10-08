@@ -10,23 +10,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fivelight.domain.Exercise;
 import com.fivelight.domain.Feedback;
+import com.fivelight.domain.Ranking;
 import com.fivelight.domain.User;
 import com.fivelight.mapper.ServiceMapper;
 
 @Controller
 public class ServiceController {
-
 	@Autowired
 	private ServiceMapper mapper;
 
 	// 회원관리 이동 ctrl
 	@RequestMapping("/userInfo.do")
 	private String userInfo() {
-
 		return "UserInfo";
 	}
-
 	
 	// 회원(PT수강자) 이동 ctrl
 	@RequestMapping("/myInfo.do")
@@ -49,8 +48,6 @@ public class ServiceController {
 		User nickname = (User)session.getAttribute("info");
 		List<Feedback> feedbackList = mapper.feedback(nickname);
 		
-		
-		
 		session.setAttribute("feedbackList", feedbackList);
 
 		return "MemberInfo";
@@ -71,17 +68,16 @@ public class ServiceController {
 		System.out.println("디데일 입장");
 		
 		User user = mapper.userInfoSelect(nickname);
-		List<Feedback> feedbackList = mapper.feedback(nickname);
-		
+		List<Feedback> feedbackList = mapper.feedback(nickname);		
 	
 		session.setAttribute("feedbackList", feedbackList);
-		session.setAttribute("userInfo", user);
-		
+		session.setAttribute("userInfo", user);		
 		
 		System.out.println("디데일 나가기");
+		
 		return "UserInfoDetail";
 	}
-
+		
 	// 첼린지 페이지연결
 	@RequestMapping("/challenge.do")
 	public String challenge() {
@@ -102,7 +98,17 @@ public class ServiceController {
 
 	// 랭킹 연결
 	@RequestMapping("/ranking.do")
-	public String ranking() {
+	public String ranking(String ex_name, Model model, HttpSession session) {
+		List<Exercise> exerciseList = mapper.exercise();
+		session.setAttribute("exerciseList", exerciseList);
+		
+		for(int i = 0; i < exerciseList.size(); i++) {
+			
+			List<Ranking> rank = mapper.ranking(exerciseList.get(i).getEx_name());
+			
+			session.setAttribute("ranking" + i + "List", rank);			
+		}
+		
 		return "Ranking";
 	}
 

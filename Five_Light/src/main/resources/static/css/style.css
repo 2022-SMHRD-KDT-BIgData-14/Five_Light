@@ -8613,10 +8613,35 @@ textarea.form-control {
   background: linear-gradient(126.12deg, rgb(255, 167, 167) 0%, rgb(255, 36, 36) 100%);
   z-index: -1;
   margin-top: 10%;
-  margin: 0px auto;
-  
+  margin: 0px auto;  
 }
-
 .kakaoLogin{
   margin-top: 10%;
+}
+.tranScoll{
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: block;
+}
+.tranScoll > ul{
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+.listItem{
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  border: solid 1px;
+}
+.rankScore td{
+  border: solid 1px;
+}
+.rankTable{
+  width: 140px;
 }

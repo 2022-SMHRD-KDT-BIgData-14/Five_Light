@@ -132,9 +132,7 @@ public class KakaoUserController {
 			// TODO Auto-generated catch block
 			System.out.println("제발/...");
 			e.printStackTrace();
-		}
-		
-				
+		}						
 				
 		//User 오브젝트
 		System.out.println("카카오 아이디(번호) : " + kakaoProfile.getId());

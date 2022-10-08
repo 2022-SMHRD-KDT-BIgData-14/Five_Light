@@ -5,15 +5,12 @@
 --gender VARCHAR(20)
 --);
 
-
 select * from userinfo
 select * from ranking
 select * from feedback
 select * from exercise
 
-
 select * from feedback where nickname='admin'
-
 
 --INSERT INTO feedback (nickname, ex_name, accuracy, Feed_con) VALUE ('test', 'test', 00.00, 'test')
 --

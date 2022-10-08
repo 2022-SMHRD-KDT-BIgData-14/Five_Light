@@ -235,51 +235,59 @@
 		var weight_now = $('#weight_now').text()
 		var weight_target = $('#weight_target').text()
 		
-		$(document).on('click', '#weight_corr', ()=> {								
+		$(document).on('click', '#weight_corr', ()=> {
+			var weight_start = $('#weight_start').text()
+			var weight_now = $('#weight_now').text()
+			var weight_target = $('#weight_target').text()
+			
 			$('#weight_corr').text('수정완료')
 			$('#weight_corr').after('<button id="weight_corr_cancel">취소</button>')
 			$('#weight_corr').attr('id', 'weight_corr_fix')
-								
-			$('#weight_start').contents().unwrap().wrap('<span id="weight_start"><input id="weight_start_corr" class="weight_corr_input" type="text" value="${userInfo.weight_start}" size=15 style="height: 30px !important;"/></span>')
-			$('#weight_now').contents().unwrap().wrap('<span id="weight_now"><input id="weight_now_corr" class="weight_corr_input" type="text" value="${userInfo.weight_now}" size=15 style="height: 30px !important;"/></span>')
-			$('#weight_target').contents().unwrap().wrap('<span id="weight_target"><input id="weight_target_corr" class="weight_corr_input" type="text" value="${userInfo.weight_target}" size=15 style="height: 30px !important;"/></span>')
+			
+			$('#weight_start').contents().unwrap().wrap('<span id="weight_start"><input id="weight_start_corr" class="weight_corr_input" type="text" value="' + weight_start + '" size=15 style="height: 30px !important;"/></span>')
+			$('#weight_now').contents().unwrap().wrap('<span id="weight_now"><input id="weight_now_corr" class="weight_corr_input" type="text" value="' + weight_now + '" size=15 style="height: 30px !important;"/></span>')
+			$('#weight_target').contents().unwrap().wrap('<span id="weight_target"><input id="weight_target_corr" class="weight_corr_input" type="text" value="' + weight_target + '" size=15 style="height: 30px !important;"/></span>')
 		})
-							
+		
 		$(document).on('click', '#weight_corr_cancel', ()=> {
+			var weight_start = $('#weight_start').text()
+			var weight_now = $('#weight_now').text()
+			var weight_target = $('#weight_target').text()
+			
 			$('#weight_corr_cancel').remove()
 			$('#weight_corr_fix').text('수정하기')
 			$('#weight_corr_fix').attr('id', 'weight_corr')								
-								
+			
 			$('.weight_corr_input').remove()
-			$('#weight_start').append('<span id="weight_start">${userInfo.weight_start}</span>')
-			$('#weight_now').append('<span id="weight_now">${userInfo.weight_now}</span>')
-			$('#weight_target').append('<span id="weight_target">${userInfo.weight_target}</span>')
+			$('#weight_start').append('<span id="weight_start">' + weight_start + '</span>')
+			$('#weight_now').append('<span id="weight_now">' + weight_now + '</span>')
+			$('#weight_target').append('<span id="weight_target">' + weight_target + '</span>')
 		})
-							
+		
 		$(document).on('click', '#weight_corr_fix', ()=> {
 			var weight_start = $('#weight_start_corr').val()
 			var weight_now = $('#weight_now_corr').val()
 			var weight_target = $('#weight_target_corr').val()
-								
+			
 			$.ajax({
 				url: 'weight.do',
 				data: {
 					weight_start : weight_start,
 					weight_now : weight_now,
 					weight_target : weight_target,
-					nickname : `${userInfo.nickname}`,
-					name : `${userInfo.name}`,										
-					access : `${userInfo.access}`
+					nickname : `${infoList.access}`,
+					name : `${infoList.access}`,										
+					access : `${infoList.access}`
 				},
 				dataType: "text",
-									
-				success : function(res) {
+				
+				success: function(res) {
 					$('#weight_corr_fix').text('수정하기')
 					$('#weight_corr_fix').attr('id', 'weight_corr')
-										
+					
 					$('#weight_corr_cancel').remove()
 					$('.weight_corr_input').remove()
-										
+					
 					$('#weight_start').append('<span id="weight_start">' + weight_start + '</span>')
 					$('#weight_now').append('<span id="weight_now">' + weight_now + '</span>')
 					$('#weight_target').append('<span id="weight_target">' + weight_target + '</span>')

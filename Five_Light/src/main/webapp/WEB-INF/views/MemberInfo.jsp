@@ -47,7 +47,7 @@
 			
 			<div class="userImg mb-4" style="background-image: url(images/당근5.jfif);"></div>	
 						
-			<div id="nickname_1" class="nickBtn" value="${info.name}">
+			<div id="nickname_1" class="nickBtn" value="${info.nickname}">
 				<h2 id="user_nickname" style="cursor:pointer">${info.nickname}</h2>
 			</div>		
 		
@@ -166,7 +166,7 @@
 						<script type="text/javascript">
 							// 몸무게, 닉네임 스크립트
 							var nickname = $('#user_nickname').text()
-							var username = $('#nickname_1').attr('value')
+							var name = `${info.name}`
 							var weight_start = $('#weight_start').text()
 							var weight_now = $('#weight_now').text()
 							var weight_target = $('#weight_target').text()
@@ -178,10 +178,12 @@
 							})
 							
 							$(document).on('click', '#nick_correct_cancel', ()=> {
+								var nickname = $('#nickname_1').attr('value')
+								
 								$('#user_nick_corr').remove()
 								$('#nick_correct').remove()
 								$('#nick_correct_cancel').remove()								
-								$('#nickname_1').append('<h2 id="user_nickname" style="cursor:pointer">${info.nickname}</h2>')
+								$('#nickname_1').append('<h2 id="user_nickname" style="cursor:pointer">' + nickname + '</h2>')
 							})
 							
 							$(document).on('click', '#nick_correct', ()=> {
@@ -191,42 +193,51 @@
 									url: "nickcorr.do",
 									data: {
 										nickname : nickname,
-										name : username,
+										name : name,
 										access : `${info.access}`,
-										weight_start : `${info.weight_start}`,
-										weight_now : `${info.weight_now}`,
-										weight_target : `${info.weight_target}`
+										weight_start : weight_start,
+										weight_now : weight_now,
+										weight_target : weight_target
 									},
 									dataType: "text",
 									
-									success : function(res) {
+									success: function(res) {
 										$('#user_nick_corr').remove()
 										$('#nick_correct').remove()
 										$('#nick_correct_cancel').remove()
-										$('#nickname_1').append('<h2 id="user_nickname" style="cursor:pointer">' + nickname + '</h2>')
-									}																	
+										$('#nickname_1').append('<h2 id="user_nickname" style="cursor:pointer">' + nickname + '</span>')
+										$('#nickname_1').attr('value', nickname)
+									}
 								})
 							})
 							
-							$(document).on('click', '#weight_corr', ()=> {								
+							$(document).on('click', '#weight_corr', ()=> {
+								var weight_start = $('#weight_start').text()
+								var weight_now = $('#weight_now').text()
+								var weight_target = $('#weight_target').text()
+								
 								$('#weight_corr').text('수정완료')
 								$('#weight_corr').after('<button id="weight_corr_cancel">취소</button>')
 								$('#weight_corr').attr('id', 'weight_corr_fix')
 								
-								$('#weight_start').contents().unwrap().wrap('<span id="weight_start"><input id="weight_start_corr" class="weight_corr_input" type="text" value="${info.weight_start}" size=15 style="height: 30px !important;"/></span>')
-								$('#weight_now').contents().unwrap().wrap('<span id="weight_now"><input id="weight_now_corr" class="weight_corr_input" type="text" value="${info.weight_now}" size=15 style="height: 30px !important;"/></span>')
-								$('#weight_target').contents().unwrap().wrap('<span id="weight_target"><input id="weight_target_corr" class="weight_corr_input" type="text" value="${info.weight_target}" size=15 style="height: 30px !important;"/></span>')
+								$('#weight_start').contents().unwrap().wrap('<span id="weight_start"><input id="weight_start_corr" class="weight_corr_input" type="text" value="' + weight_start + '" size=15 style="height: 30px !important;"/></span>')
+								$('#weight_now').contents().unwrap().wrap('<span id="weight_now"><input id="weight_now_corr" class="weight_corr_input" type="text" value="' + weight_now + '" size=15 style="height: 30px !important;"/></span>')
+								$('#weight_target').contents().unwrap().wrap('<span id="weight_target"><input id="weight_target_corr" class="weight_corr_input" type="text" value="' + weight_target + '" size=15 style="height: 30px !important;"/></span>')
 							})
 							
 							$(document).on('click', '#weight_corr_cancel', ()=> {
+								var weight_start = $('#weight_start').text()
+								var weight_now = $('#weight_now').text()
+								var weight_target = $('#weight_target').text()
+								
 								$('#weight_corr_cancel').remove()
 								$('#weight_corr_fix').text('수정하기')
 								$('#weight_corr_fix').attr('id', 'weight_corr')								
 								
 								$('.weight_corr_input').remove()
-								$('#weight_start').append('<span id="weight_start">${info.weight_start}</span>')
-								$('#weight_now').append('<span id="weight_now">${info.weight_now}</span>')
-								$('#weight_target').append('<span id="weight_target">${info.weight_target}</span>')
+								$('#weight_start').append('<span id="weight_start">' + weight_start + '</span>')
+								$('#weight_now').append('<span id="weight_now">' + weight_now + '</span>')
+								$('#weight_target').append('<span id="weight_target">' + weight_target + '</span>')
 							})
 							
 							$(document).on('click', '#weight_corr_fix', ()=> {
@@ -240,13 +251,13 @@
 										weight_start : weight_start,
 										weight_now : weight_now,
 										weight_target : weight_target,
-										nickname : `${info.nickname}`,
-										name : `${info.name}`,										
+										nickname : nickname,
+										name : name,										
 										access : `${info.access}`
 									},
 									dataType: "text",
 									
-									success : function(res) {
+									success: function(res) {
 										$('#weight_corr_fix').text('수정하기')
 										$('#weight_corr_fix').attr('id', 'weight_corr')
 										
