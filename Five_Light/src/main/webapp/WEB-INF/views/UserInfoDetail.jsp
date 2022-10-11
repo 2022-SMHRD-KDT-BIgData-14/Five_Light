@@ -291,7 +291,7 @@
 		var ctx2 = document.getElementById("myChart2")
 		
 		var myDoughnutChart = new Chart(ctx2, {
-			type: 'doughnut',
+			type: 'pie',
 			data: data,
 			options: {}
 		})
