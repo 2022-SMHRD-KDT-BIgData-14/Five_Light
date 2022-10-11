@@ -18,6 +18,8 @@ public interface ServiceMapper {
 	
 	public int weight(User user);
 	
+	public int c_weight(User user);
+	
 	public int nickcorr(User user);
 	
 	public List<Exercise> exercise();

@@ -1,6 +1,6 @@
-<%@page import="com.fivelight.domain.Ranking"%>
-<%@page import="com.fivelight.domain.Exercise"%>
-<%@page import="java.util.List"%>
+<%@ page import="com.fivelight.domain.Ranking" %>
+<%@ page import="com.fivelight.domain.Exercise" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -24,7 +24,6 @@
 	<link rel="stylesheet" href="css/ionicons.min.css">
 	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
 	<link rel="stylesheet" href="css/jquery.timepicker.css">
-	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/font.css">
@@ -280,7 +279,7 @@
 								var weight_target = $('#weight_target_corr').val()
 								
 								$.ajax({
-									url: 'weight.do',
+									url: 'c_weight.do',
 									data: {
 										weight_start : weight_start,
 										weight_now : weight_now,
@@ -309,7 +308,8 @@
 								var ex_name = $(this).attr('value')
 								
 								$('#myChart').remove()
-								$('#ex_select').before('<canvas id="myChart"><canvas>')	
+								$('.chartjs-hidden-iframe').remove()
+								$('#ex_select').before('<canvas id="myChart"></canvas>')	
 								
 								ctx = document.getElementById('myChart').getContext('2d')								
 								
@@ -322,7 +322,6 @@
 									dataType: "json",
 									
 									success: function(res) {
-										console.log(res)
 										var getRank_date = function() {
 						                	var labels = []
 						                	
@@ -351,20 +350,22 @@
 										        datasets: [
 										            {
 										            	label: '기록(%)',
-										            	data: getRank_acc(),
 										                backgroundColor: 'transparent',
-										                borderColor: '#FA9200',										                
+										                borderColor: '#FA9200',
+										            	data: getRank_acc(),
 										                lineTension: 0,
 										                pointRadius: 5,
-										                pointBackgroundColor: '#FA9200'
+										                pointBackgroundColor: '#FA9200',
+										                pointBorderColor: 'rgb(0, 0, 0)'
 										            }
 										        ]
 										    },
 										    
-										    options: {										        
+										    options: {										    	
 										        title: {
 										            display: true,
 										            text: ex_name,
+										            fontFamily: 'the',
 										            fontColor: 'black',
 										            fontSize: 30
 										        },
@@ -373,8 +374,9 @@
 										            xAxes: [{
 										            	ticks: {
 										            		display: true,
+										            		fontFamily: 'the',
 										            		fontColor: 'black',
-										            		fontSize: 14
+										            		fontSize: 13
 										            	}
 										            }],
 										            
@@ -384,6 +386,7 @@
 										                    min: 0,   //y축 최솟값
 										                    max: 100, //y축 최댓값
 										                    stepSize: 10,
+										                    fontFamily: 'the',
 										                    fontColor: 'black',
 										                    fontSize: 13
 										                }
@@ -391,11 +394,13 @@
 										        },
 										        
 										        legend: { // 범례
-										            position: 'bottom',
+										        	position: 'bottom',
 										            labels: {
-										                usePointStyle: true, // 지정된 포인트 모양에 따라 범례 아이콘 생성
-										                boxWidth: 10,
-										                padding: 10
+										            	boxWidth: 3,
+										            	fontSize: 15,
+										            	fontFamily: 'the',							            	
+										            	fontColor: 'black',
+										            	usePointStyle: false					                
 										            }
 										        }
 										    }  
@@ -412,15 +417,16 @@
 							        datasets: [
 							            {
 							            	label: '기록(%)',
-							                data: [null, null, null, null, null, null, null],
-							                backgroundColor: 'transparent', // 투명한
+							                backgroundColor: 'transparent', //'transparent' // 투명한
 							                borderColor: '#FA9200',
+							                data: [null, null, null, null, null, null, null],
 							                /* borderDash: [0 ,6],
 							                borderCapStyle: 'round', // 점선 그래프, 점의 모양 */
 							                lineTension: 0, // line 볼록정도
 							                pointRadius: 5, // 포인트 크기
-							                //pointStyle: 'circle', // 직사각형, triangle : 삼각형, default : circle (원형)
-							                pointBackgroundColor: '#FA9200' // default : 'transparent'
+							                // pointStyle: 'circle', // 직사각형, triangle : 삼각형, default : circle (원형)
+							                pointBackgroundColor: '#FA9200', // default : 'transparent'
+							                pointBorderColor: 'rgb(0, 0, 0)'
 							            }
 							        ]
 							    },
@@ -428,6 +434,7 @@
 							    options: {
 							    	title: {
 							            display: true,
+							            fontFamily: 'the',
 							            text: 'Challenge Data',
 							            fontColor: 'black',
 							            fontSize: 30
@@ -437,6 +444,7 @@
 							        	xAxes: [{
 							            	ticks: {
 							            		display: true,
+							            		fontFamily: 'the',
 							            		fontColor: 'black',
 							            		fontSize: 14
 							            	}
@@ -448,6 +456,7 @@
 							                    min: 0,   //y축 최솟값
 							                    max: 100, //y축 최댓값
 							                    stepSize: 10,
+							                    fontFamily: 'the',
 							                    fontColor: 'black',
 							                    fontSize: 13
 							                }
@@ -455,12 +464,13 @@
 							        },
 							        
 							        legend: { // 범례
-							        	display: true,
-							            position: 'bottom',
+							        	position: 'bottom',
 							            labels: {
-							                usePointStyle: 'circle', // 지정된 포인트 모양에 따라 범례 아이콘 생성
-							                boxWidth: 10,
-							                padding: 10
+							            	boxWidth: 3,
+							            	fontSize: 15,
+							            	fontFamily: 'the',							            	
+							            	fontColor: 'black',
+							                usePointStyle: false // 지정된 포인트 모양에 따라 범례 아이콘 생성							                
 							            }
 							        }
 							    }
@@ -499,9 +509,7 @@
 	<script src="js/jquery.animateNumber.min.js"></script>
 	<script src="js/bootstrap-datepicker.js"></script>
 	<script src="js/jquery.timepicker.min.js"></script>
-	<script src="js/scrollax.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script src="js/google-map.js"></script>
+	<script src="js/scrollax.min.js"></script>	
 	<script src="js/main.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 </body>

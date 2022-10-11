@@ -20,7 +20,16 @@ public class RestController {
 	private ServiceMapper mapper;	
 	 
 	@RequestMapping("weight.do")
-	 public @ResponseBody String weight(User user, HttpSession session) {
+	public @ResponseBody String weight(User user, HttpSession session) {
+		mapper.weight(user);
+		System.out.println("가져오는 값 : " + user);
+		session.setAttribute("userInfo", user);
+		
+		return "";		
+	}
+	
+	@RequestMapping("c_weight.do")
+	public @ResponseBody String c_weight(User user, HttpSession session) {
 		mapper.weight(user);
 		System.out.println("가져오는 값 : " + user);
 		session.setAttribute("info", user);
@@ -32,7 +41,7 @@ public class RestController {
 	 public @ResponseBody String nick(User user, HttpSession session) {
 		mapper.nickcorr(user);
 		System.out.println("가져오는 값 : " + user);
-		session.setAttribute("info", user);
+		session.setAttribute("info", user);		
 		 
 		return "";		
 	}	

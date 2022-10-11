@@ -1,3 +1,4 @@
+<%@page import="com.fivelight.domain.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -51,9 +52,10 @@
 						</div>
 						
 						<!-- 좌측 로고 밑 닉네임 -->
+						<% User info = (User)session.getAttribute("info"); %>
             			<div class="row col-12 nickCategory">
-            				<div id="nickname_1" class="col-8 userName" value="${info.nickname}">
-                				<p id="user_nickname">${info.name}</p>
+            				<div id="nickname_1" class="col-8 userName" value="<%= info.getNickname() %>">
+                				<p id="user_nickname"><%= info.getName() %></p>
                 			</div>
                 			
                 			<div class="col-4 nickCorr">
@@ -67,7 +69,7 @@
 							<div class="main-menu">							
 								<nav id="colorlib-main-menu" role="navigation" list-style=snone>
 									<ul class="main-menu">
-										<li class="colorlib-active"><a href="UserInfo.jsp">UserInfo</a></li>
+										<li class="colorlib-active"><a href="userInfo.do">UserInfo</a></li>
 										<li><a href="rank.do">Ranking</a></li>
 									</ul>
 								</nav>

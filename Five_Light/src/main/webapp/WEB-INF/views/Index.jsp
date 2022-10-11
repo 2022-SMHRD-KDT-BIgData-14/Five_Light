@@ -19,20 +19,17 @@
 	<link rel="stylesheet" href="css/ionicons.min.css">
 	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
 	<link rel="stylesheet" href="css/jquery.timepicker.css">
-	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/font.css">
 </head>
 
 <body>
-	<!-- 인덱스 페이지  -->	
-	
-		
+	<!-- 인덱스 페이지  -->
 	<div class="js-fullheight d-flex justify-content-center align-items-center">
 		<div class="col-md-8 text text-center">
 			<span class="desc">Challenge,</span><br> 
-			<span class="desc">VersusMe,</span><br>
+			<span class="desc">Versus Me,</span><br>
 			<span class="desc">Training!</span>
 			<div class="kakaoLogin">	
 				<p>
@@ -43,7 +40,6 @@
 			</div>
 		</div>	
 	</div>
-
 
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">

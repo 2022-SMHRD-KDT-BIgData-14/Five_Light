@@ -9,13 +9,19 @@
 
 	<!-- 피드백 검색 -->
 	<select id="feedback" parameterType="com.fivelight.domain.User" resultType="com.fivelight.domain.Feedback">
-		select * from feedback where nickname = #{nickname}
+		select * from feedback where nickname = #{nickname} order by feed_date desc
 	</select>
 
 	<!-- 몸무게 변경 -->
 	<update id="weight" parameterType="com.fivelight.domain.User">
 		UPDATE userinfo SET weight_start = #{weight_start}, weight_now = #{weight_now}, weight_target = #{weight_target} WHERE nickname = #{nickname}
 	</update>
+	
+	<!-- c_몸무게 변경 -->
+	<update id="c_weight" parameterType="com.fivelight.domain.User">
+		UPDATE userinfo SET weight_start = #{weight_start}, weight_now = #{weight_now}, weight_target = #{weight_target} WHERE nickname = #{nickname}
+	</update>
+	
 
 	<!-- 유저 nickname 변경 -->
 	<update id="nickcorr" parameterType="com.fivelight.domain.User">

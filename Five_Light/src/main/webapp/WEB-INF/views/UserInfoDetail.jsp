@@ -1,3 +1,4 @@
+<%@page import="com.fivelight.domain.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -48,10 +49,11 @@
 			</h1>
 		
 			<!-- 좌측 로고 밑 사진 -->
+			<% User info = (User)session.getAttribute("info"); %>
 			<div class="userImg mb-4" style="background-image: url(images/당근5.jfif);"></div>
 			
-			<div id="nickname_1" class="nickBtn" value="${info.nickname}">
-				<h2 id="user_nickname">${info.name}</h2>
+			<div id="nickname_1" class="nickBtn" value="<%= info.getNickname() %>">
+				<h2 id="user_nickname"><%= info.getName() %></h2>
 			</div>
 
 			<!-- 좌측 목록 -->
@@ -156,7 +158,7 @@
 						<div class="col-md-4">
 							<div class="card flex-fill">
 								<div class="card-header">
-									<h5 class="card-title mb-0">나의 도전</h5>
+									<h5 class="card-title mb-0">${userInfo.name} 님의 도전</h5>
 									
 									<button id="weight_corr">수정하기</button>
 								</div>
@@ -256,9 +258,9 @@
 					weight_start : weight_start,
 					weight_now : weight_now,
 					weight_target : weight_target,
-					nickname : `${infoList.access}`,
-					name : `${infoList.access}`,										
-					access : `${infoList.access}`
+					nickname : `${userInfo.nickname}`,
+					name : `${userInfo.name}`,										
+					access : `${userInfo.access}`
 				},
 				dataType: "text",
 				
