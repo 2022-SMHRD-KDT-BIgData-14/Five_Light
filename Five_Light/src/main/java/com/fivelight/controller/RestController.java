@@ -37,10 +37,15 @@ public class RestController {
 		return "";		
 	}	
 
-	@RequestMapping("/memberInfo2.do")
-	private @ResponseBody List<Ranking> memberInfo2(Ranking ranking) {
+	@RequestMapping("/rankgraph.do")
+	public @ResponseBody List<Ranking> rankgraph(Ranking ranking) {
 		List<Ranking> rankgraph = mapper.rankgraph(ranking);		
-
+		
 		return rankgraph;
+	}
+	
+	@RequestMapping("/UserInfoDetail.do")
+	public @ResponseBody void userdelete(User nickname) {
+		mapper.userdelete(nickname);
 	}
 }

@@ -24,6 +24,7 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/font.css">
 
 	<!-- 차트 링크 아래 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -49,7 +50,9 @@
 			<!-- 좌측 로고 밑 사진 -->
 			<div class="userImg mb-4" style="background-image: url(images/당근5.jfif);"></div>
 			
-			<div class="userName">${info.name}</div>
+			<div id="nickname_1" class="nickBtn" value="${info.nickname}">
+				<h2 id="user_nickname">${info.name}</h2>
+			</div>
 
 			<!-- 좌측 목록 -->
 			<nav id="colorlib-main-menu" role="navigation" list-style=snone>
@@ -60,7 +63,7 @@
 			</nav>
 		
 			<div class="Logout">
-				<a href="logout.do">Logout</a>
+				<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
 			</div>
 			<!--좌측 목록 끝  -->
 		</aside>		
@@ -96,12 +99,11 @@
 									
 									<tbody>
 										<c:forEach var="userList" items="${userList}">
-											<c:set var="i" value="${i+1}" />
+											<c:set var="i" value="${i + 1}" />
 											<tr>
 												<td>${i}</td>
-												<td class="d-none d-xl-table-cell"><a
-													href="/userInfoDetail.do?nickname=${userList.nickname}">${userList.name}</a></td>
-												<td><button class="badge bg-success">삭제</button></td>
+												<td class="d-none d-xl-table-cell"><a href="/userInfoDetail.do?nickname=${userList.nickname}">${userList.name}</a></td>
+												<td><button class="badge bg-success" onclick="return confirm('정말 삭제하시겠습니까??');">삭제</button></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -141,7 +143,7 @@
 											<tr>
 												<td>${feedbackList.feed_date}</td>
 												<td class="d-none d-xl-table-cell">${feedbackList.ex_name}</td>
-												<td><a href="feedDetail.do?nickname=${feedbackList.nickname}"> 내용보기</a></td>
+												<td><a href="feedDetail.do?nickname=${feedbackList.nickname}">내용보기</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -203,34 +205,13 @@
       		<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
     	</svg>
 	</div>
-
-	<!-- 도넛 차트 스크립트 시작 -->
-	<script>
-		data = {
-			datasets: [{
-				backgroundColor : ['red', 'yellow', 'blue', 'green', 'pupple', 'black'],
-				data: [1, 2, 3, 4, 2, 2]
-			}],
-			// 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
-			labels: ['red', 'yellow', 'blue']
-		}
-
-		// 도넛형 차트
-		var ctx2 = document.getElementById("myChart2");
-		var myDoughnutChart = new Chart(ctx2, {
-			type: 'doughnut',
-			data: data,
-			options: {}
-		})
-	</script>
 	
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<!-- 도넛 차트 스크립트 끝 -->
-	
-	<!-- 몸무게 스크립 시작 -->
+			
 	<script type="text/javascript">
+		<!-- 몸무게 스크립 시작 -->
 		var weight_start = $('#weight_start').text()
 		var weight_now = $('#weight_now').text()
 		var weight_target = $('#weight_target').text()
@@ -294,8 +275,28 @@
 				}
 			})
 		})
+		<!-- 몸무게 스크립 끝 -->
+		
+		<!-- 도넛 차트 스크립트 시작 -->
+		data = {
+			datasets: [{
+				backgroundColor : ['red', 'yellow', 'blue', 'green', 'pupple', 'black'],
+				data: [1, 2, 3, 4, 2, 2]
+			}],
+			// 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
+			labels: ['red', 'yellow', 'blue']
+		}
+	
+		// 도넛형 차트
+		var ctx2 = document.getElementById("myChart2")
+		
+		var myDoughnutChart = new Chart(ctx2, {
+			type: 'doughnut',
+			data: data,
+			options: {}
+		})
+		<!-- 도넛 차트 스크립트 끝 -->
 	</script>	
-	<!-- 몸무게 스크립 끝 -->
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>

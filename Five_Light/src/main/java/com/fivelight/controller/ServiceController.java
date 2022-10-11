@@ -36,6 +36,9 @@ public class ServiceController {
 
 		User nickname = (User)session.getAttribute("info");
 		List<Feedback> feedbackList = mapper.feedback(nickname);
+		
+		List<Exercise> exerciseList = mapper.exercise();
+		session.setAttribute("exerciseList", exerciseList);
 
 		session.setAttribute("feedbackList", feedbackList);
 
@@ -70,34 +73,36 @@ public class ServiceController {
 	// PT관리자 뷰의 피드백
 	@RequestMapping("/userInfoDetail.do")
 	public String userInfoDetail(User nickname, Model model, HttpSession session) {
-		System.out.println("디데일 입장");
-		
 		User user = mapper.userInfoSelect(nickname);
 		List<Feedback> feedbackList = mapper.feedback(nickname);		
 	
 		session.setAttribute("feedbackList", feedbackList);
-		session.setAttribute("userInfo", user);		
-		
-		System.out.println("디데일 나가기");
+		session.setAttribute("userInfo", user);				
 		
 		return "UserInfoDetail";
 	}
 		
-	// 첼린지 페이지연결
+	// 챌린지 페이지연결
 	@RequestMapping("/challenge.do")
-	public String challenge() {
+	public String challenge(HttpSession session) {
+		List<Exercise> exerciseList = mapper.exercise();
+		session.setAttribute("exerciseList", exerciseList);
+		
 		return "Challenge";
 	}
 
 	// 피드백 디테일 연결
 	@RequestMapping("/feedDetail.do")
-	public String feedDetail() {
+	public String feedDetail(HttpSession session) {
 		return "FeedDetail";
 	}
 	
 	// 트레이닝 연결
 	@RequestMapping("/training.do")
-	public String training() {
+	public String training(HttpSession session) {
+		List<Exercise> exerciseList = mapper.exercise();
+		session.setAttribute("exerciseList", exerciseList);
+		
 		return "Training";
 	}
 

@@ -24,6 +24,7 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/font.css">
 	
 	<!-- 차트 링크 아래 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -38,88 +39,103 @@
 
 	<!-- 좌측 카테고리 -->
 	<div id="colorlib-page">
-		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"></a>
 		
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<!-- 좌측 목록 페이지 로고 -->
-			<h1 id="colorlib-logo">
-				<a href="index.jsp">당.근 P.T</a>
-			</h1>
-			
-			<!-- 좌측 로고 밑 사진 -->
-			<div class="userImg mb-4" style="background-image: url(images/당근5.jfif);"></div>
-				
-			<div class="userName">${info.name}</div>
-
-			<!-- 좌측 목록 -->
-			<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-				<ul class="main-menu">
-					<li class="colorlib-active"><a href="UserInfo.jsp">UserInfo</a></li>
-					<li><a href="rank.do">Ranking</a></li>
-				</ul>
-			</nav>
-			
-			<div class="Logout">
-				<a href="logout.do">Logout</a>
-			</div>
-			<!--좌측 목록 끝  -->
-		</aside>
-		<!-- 좌측 카테고리 끝 -->
-
-		<!-- 로그인 상태 라인  -->
-		<div id="colorlib-main">
-			<div class="hero-wrap " style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
-				<!--herp-wrap에서 이거 뺌 js-fullheight -->
-				<div class="overlay"></div>
-				
-				<section class="ftco-section">
-					<div class="container">
-						<div class="row">
-							<!-- 회원목록 -->
-							<div class="col-md-3">
-								<div class="card flex-fill">
-									<div class="card-header">
-										<h5 class="card-title mb-0">회원수 ${userList.size()}</h5>
-									</div>
-									
-									<table class="table table-hover my-0">
-										<thead>
-											<tr>
-												<th>번호</th>
-												<th class="d-none d-xl-table-cell">이름</th>
-												<th>삭제</th>
-											</tr>
-										</thead>
-										
-										<tbody>
-											<c:forEach var="userList" items="${userList}">
-												<c:set var="i" value="${i+1 }" />
-												<tr>
-													<td>${i}</td>
-													<td class="d-none d-xl-table-cell"><a
-														href="/userInfoDetail.do?nickname=${userList.nickname}">${userList.name}</a></td>
-													<td><button class="badge bg-success">삭제</button></td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<!-- 회원목록 끝 -->
-
-							<!-- 관리자 페이지 입니다. -->
-							<div class="col-md-9">
-								<div class="  ">
-									<h1>관리자페이지입니다.</h1>
-								</div>
-							</div>
-							<!-- 관리자 페이지 입니다 끝-->
+			<div class="cotainer">
+				<!-- 좌측 목록 페이지 로고 -->
+				<div class="row">
+					<div class="col-12">
+						<div class="col-12 logo">
+							<a href="UserInfo.html"><img src="images/당근로고1.png"></a>
 						</div>
-					</div>
-				</section>
+						
+						<!-- 좌측 로고 밑 닉네임 -->
+            			<div class="row col-12 nickCategory">
+            				<div id="nickname_1" class="col-8 userName" value="${info.nickname}">
+                				<p id="user_nickname">${info.name}</p>
+                			</div>
+                			
+                			<div class="col-4 nickCorr">
+					        	<img type="button" class="nickCorrBtn" src="images/nickCorr1.png">
+					        </div>
+              			</div>
+						<!-- 좌측 로고 밑 닉네임 끝 -->
+
+						<!-- 좌측 목록 -->
+						<div class="col-12">
+							<div class="main-menu">							
+								<nav id="colorlib-main-menu" role="navigation" list-style=snone>
+									<ul class="main-menu">
+										<li class="colorlib-active"><a href="UserInfo.jsp">UserInfo</a></li>
+										<li><a href="rank.do">Ranking</a></li>
+									</ul>
+								</nav>
+							</div>
+			
+							<div class="infoLogout">
+								<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
+							</div>
+							
+							<div class="fiveLight">
+				                <div>
+				                	<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+				                </div>
+				                
+				                <footer></footer>
+				            </div>
+			            </div>
+		        	</div>
+	        	</div>
+	        	<!--좌측 목록 끝  -->
+			</div>			
+		</aside>
+	</div>
+	<!-- 좌측 카테고리 끝 -->	
+		
+	<!-- 우측 뷰  -->
+	<div id="colorlib-main">
+		<div class="container userTable">
+			<div class="col-md-12">
+				<!-- 회원목록 -->
+        		<div class="userTotal">
+        			<p>회원수</p>
+        		</div>
+        		
+        		<div class="userTranScoll">
+        			<ul>
+	        			<c:forEach var="userList" items="${userList}">
+						<c:set var="i" value="${i + 1}" />
+							<li class="userlistItem">
+								<div class="userTableDiv">
+									<table class="userTableDetail">
+										<tr>
+						                  	<td class="userTableNo">${i}.</td>
+						                  	<td class="userTableName"><a href="/userInfoDetail.do?nickname=${userList.nickname}">${userList.name}</a></td>
+						                  	<td class="userTableDel"><button class="delLogo" onclick="return confirm('정말 삭제하시겠습니까??');"><img src="\images\userDel1.png" alt=""></button></td>
+						                </tr>
+					            	</table>                
+				                </div>
+			                </li>
+			            </c:forEach>
+	                </ul>
+	            </div>
+            </div>
+		                
+			<!-- 인덱스 페이지 -->
+			<div class="js-fullheight d-flex justify-content-center align-items-center">
+				<div class="col-11 text text-center">
+					<span class="desc">Challenge,</span><br>	
+					<span class="desc">Versus Me,</span><br>
+					<span class="desc">Training!</span>
+					
+					<div class="kakaoLogin">
+			        	<img src="\images\당근로고1.png" href="#" style="max-width: 100%">
+			        </div>
+		    	</div>							
 			</div>
-		</div>
-		<!-- END COLORLIB-PAGE -->
+			<!-- 인덱스 페이지 끝 -->
+		</div>		
 	</div>
 	
 	<!-- loader -->
@@ -129,33 +145,6 @@
       		<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
     	</svg>
 	</div>
-
-	<!-- 도넛 차트 스크립트 시작 -->
-	<script>
-		data = {
-			datasets: [{
-				backgroundColor : ['red', 'yellow', 'blue', 'green', 'pupple'],
-				data: [10, 20, 30, 40, 20]
-			}],
-			
-			// 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
-			labels: ['red', 'yellow', 'blue']
-		}
-
-		// 도넛형 차트
-		var ctx2 = document.getElementById("myChart2")
-		
-		var myDoughnutChart = new Chart(ctx2, {
-			type: 'doughnut',
-			data: data,
-			options: {}
-		})
-	</script>
-	
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<!-- 도넛 차트 스크립트 끝 -->
 	
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>

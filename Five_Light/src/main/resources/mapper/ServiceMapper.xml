@@ -22,16 +22,22 @@
 		UPDATE userinfo SET nickname = #{nickname} WHERE name = #{name}
 	</update>
 	
-	<!-- 랭킹 리스트 -->	
+	<!-- 운동 리스트 -->	
 	<select id="exercise" resultType="com.fivelight.domain.Exercise">
 		select * from exercise
 	</select>
 	
+	<!-- 운동별 운동 랭킹 리스트-->
 	<select id="ranking" resultType="com.fivelight.domain.Ranking">
 		select nickname, ex_name, round(sum(rank_acc) / 7, 2) as rank_acc from ranking where ex_name = #{ex_name} group by nickname order by rank_acc desc;
 	</select>
 	
+	<!-- 개인 챌린지 그래프 -->
 	<select id="rankgraph" parameterType="com.fivelight.domain.Ranking" resultType="com.fivelight.domain.Ranking">
 		select * from ranking where ex_name = #{ex_name} and nickname = #{nickname} order by rank_date asc
 	</select>
+	
+	<delete id="userdelete" parameterType="com.fivelight.domain.User">
+		delete from userinfo where nickname = #{nickname}
+	</delete>
 </mapper>

@@ -27,6 +27,7 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/font.css">
 	
 	<!-- 차트 링크 아래 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -80,15 +81,7 @@
 					<li><a href="ranking.do">Ranking</a></li>
 					<li><a href="training.do">Training</a></li>
 				</ul>
-			</nav>
-			
-			<div class="infoLogout">
-				<a href="infoLogout.do">LOGOUT</a>
-			</div>
-			
-			<div class="infoDelete">
-				<a href="infoDelete.do">회원 탈퇴</a>
-			</div>
+			</nav>			
 			<!--좌측 목록 끝  -->
 		</aside>
 		<!-- 좌측 카테고리 끝 -->
@@ -106,59 +99,21 @@
 								<h1>랭킹</h1>
 							</div>
 							
-							<!-- 운동 셀렉트 -->
+							<!-- 운동 셀렉트 -->	
+							<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
+													
+							<% for(int i = 0; i < exerciseList.size(); i++) { %>
 							<div class="col-md-2">
 								<a href="#" class="photography-entry img d-flex justify-content-center align-items-center">
 									<div class="text-center move">
-										<p>바벨 스쿼트</p>
+										<p><%= exerciseList.get(i).getEx_name() %></p>
 									</div>
 								</a>
 							</div>
-
-							<div class="col-md-2">
-								<a href="#" class="photography-entry img d-flex justify-content-center align-items-center">
-									<div class="text-center move">
-										<p>바벨 데드리프트</p>
-									</div>
-								</a>
-							</div>
-
-							<div class="col-md-2">
-								<a href="#" class="photography-entry img d-flex justify-content-center align-items-center">
-									<div class="text-center move">
-										<p>랫풀 다운</p>
-									</div>
-								</a>
-							</div>
-
-							<div class="col-md-2">
-								<a href="#" class="photography-entry img d-flex justify-content-center align-items-center">
-									<div class="text-center move">
-										<p>바벨 컬</p>
-									</div>
-								</a>
-							</div>
-
-							<div class="col-md-2">
-								<a href="#" class="photography-entry img d-flex justify-content-center align-items-center">
-									<div class="text-center move">
-										<p>바벨 로우</p>
-									</div>
-								</a>
-							</div>
-
-							<div class="col-md-2">
-								<a href="#" class="photography-entry img d-flex justify-content-center align-items-center">
-									<div class=" text-center move">
-										<p>바벨 런지</p>
-									</div>
-								</a>
-							</div>
+							<% } %>							
 							<!-- 운동 셀렉트 끝 -->
 							
 							<!-- 랭킹리스트 -->
-							<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
-							
 							<% for(int i = 0; i < exerciseList.size(); i++) { %>
 							<% List<Ranking> rankingList = (List<Ranking>)session.getAttribute("ranking" + i + "List"); %>
 				          	<div class="col-md-12 rank">
