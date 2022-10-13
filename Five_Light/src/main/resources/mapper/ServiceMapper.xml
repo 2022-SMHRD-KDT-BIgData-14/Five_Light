@@ -9,7 +9,7 @@
 
 	<!-- 피드백 검색 -->
 	<select id="feedback" parameterType="com.fivelight.domain.User" resultType="com.fivelight.domain.Feedback">
-		select * from feedback where nickname = #{nickname} order by feed_date desc
+		select * from feedback where nickname = #{nickname} order by feed_num desc
 	</select>
 
 	<!-- 몸무게 변경 -->
@@ -20,8 +20,7 @@
 	<!-- c_몸무게 변경 -->
 	<update id="c_weight" parameterType="com.fivelight.domain.User">
 		UPDATE userinfo SET weight_start = #{weight_start}, weight_now = #{weight_now}, weight_target = #{weight_target} WHERE nickname = #{nickname}
-	</update>
-	
+	</update>	
 
 	<!-- 유저 nickname 변경 -->
 	<update id="nickcorr" parameterType="com.fivelight.domain.User">
@@ -43,7 +42,13 @@
 		select * from ranking where ex_name = #{ex_name} and nickname = #{nickname} order by rank_date asc
 	</select>
 	
+	<!-- 유저 삭제 -->
 	<delete id="userdelete" parameterType="com.fivelight.domain.User">
 		delete from userinfo where nickname = #{nickname}
 	</delete>
+	
+	<!-- 피드백 파이 차트 -->
+	<select id="feedchart" parameterType="String" resultType="int">
+		select round(count(*) / 5) as feed_num from feedback where nickname = #{nickname} and ex_name = #{ex_name}
+	</select>	
 </mapper>

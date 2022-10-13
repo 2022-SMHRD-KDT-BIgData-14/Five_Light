@@ -12,6 +12,8 @@ select * from exercise
 
 select * from feedback where nickname='admin'
 
+select * from feedback where nickname = 'KAS' order by feed_date desc
+
 select rank_num, nickname, ex_name, rank_acc, DATE_FORMAT(rank_date, '%y.%m.%d') as rank_date from ranking where ex_name = '랫 풀 다운' and nickname = 'Crack' order by rank_date asc
 
 --INSERT INTO feedback (nickname, ex_name, accuracy, Feed_con) VALUE ('test', 'test', 00.00, 'test')

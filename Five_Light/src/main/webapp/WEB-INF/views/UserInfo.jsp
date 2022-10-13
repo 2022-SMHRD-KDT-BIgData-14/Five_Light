@@ -1,4 +1,4 @@
-<%@page import="com.fivelight.domain.User"%>
+<%@ page import="com.fivelight.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -42,55 +42,51 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"></a>
 		
-		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+		<aside id="colorlib-aside" role="complementary" class="boxShadow js-fullheight text-center">
 			<div class="cotainer">
 				<!-- 좌측 목록 페이지 로고 -->
 				<div class="row">
-					<div class="col-12">
-						<div class="col-12 logo">
-							<a href="UserInfo.html"><img src="images/당근로고1.png"></a>
-						</div>
+					<div class="col-12 logo">
+						<a href="UserInfo.jso"><img src="images/logo.png"></a>
+					</div>
 						
-						<!-- 좌측 로고 밑 닉네임 -->
-						<% User info = (User)session.getAttribute("info"); %>
-            			<div class="row col-12 nickCategory">
-            				<div id="nickname_1" class="col-8 userName" value="<%= info.getNickname() %>">
-                				<p id="user_nickname"><%= info.getName() %></p>
-                			</div>
+					<!-- 좌측 로고 밑 닉네임 -->
+					<% User info = (User)session.getAttribute("info"); %>
+            		<div class="row col-12 nickCategory">
+            			<div id="nickname_1" class="col-8 userName" value="<%= info.getNickname() %>">
+                			<p id="user_nickname"><%= info.getName() %></p>
+                		</div>
                 			
-                			<div class="col-4 nickCorr">
-					        	<img type="button" class="nickCorrBtn" src="images/nickCorr1.png">
-					        </div>
-              			</div>
-						<!-- 좌측 로고 밑 닉네임 끝 -->
+                		<div class="col-4 nickCorr">
+					        <img type="button" class="nickCorrBtn" src="images/nickCorr1.png">
+					    </div>
+              		</div>
+					<!-- 좌측 로고 밑 닉네임 끝 -->
 
-						<!-- 좌측 목록 -->
-						<div class="col-12">
-							<div class="main-menu">							
-								<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-									<ul class="main-menu">
-										<li class="colorlib-active"><a href="userInfo.do">UserInfo</a></li>
-										<li><a href="rank.do">Ranking</a></li>
-									</ul>
-								</nav>
-							</div>
+					<!-- 좌측 목록 -->
+					<div class="col-12">
+						<div class="main-menu">							
+							<nav id="colorlib-main-menu" role="navigation" list-style=snone>
+								<ul class="main-menu">
+									<li><a href="userInfo.do">UserInfo</a></li>
+									<li><a href="rank.do">Ranking</a></li>
+								</ul>
+							</nav>
+						</div>
 			
-							<div class="infoLogout">
-								<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
-							</div>
+						<div class="infoLogout">
+							<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
+						</div>
 							
-							<div class="fiveLight">
-				                <div>
-				                	<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
-				                </div>
-				                
-				                <footer></footer>
+						<div class="fiveLight">
+				        	<div>
+				                <p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
 				            </div>
-			            </div>
-		        	</div>
-	        	</div>
-	        	<!--좌측 목록 끝  -->
-			</div>			
+				        </div>
+			        </div>
+		        </div>
+	        </div>
+	        <!--좌측 목록 끝  -->		
 		</aside>
 	</div>
 	<!-- 좌측 카테고리 끝 -->	
@@ -98,13 +94,13 @@
 	<!-- 우측 뷰  -->
 	<div id="colorlib-main">
 		<div class="container userTable">
-			<div class="col-md-12">
+			<div class="col-12">
 				<!-- 회원목록 -->
         		<div class="userTotal">
-        			<p>회원수</p>
+        			<p>회원수 : ${userList.size()}명</p>
         		</div>
         		
-        		<div class="userTranScoll">
+        		<div class="userTranScoll type1">
         			<ul>
 	        			<c:forEach var="userList" items="${userList}">
 						<c:set var="i" value="${i + 1}" />
@@ -113,8 +109,8 @@
 									<table class="userTableDetail">
 										<tr>
 						                  	<td class="userTableNo">${i}.</td>
-						                  	<td class="userTableName"><a href="/userInfoDetail.do?nickname=${userList.nickname}">${userList.name}</a></td>
-						                  	<td class="userTableDel"><button class="delLogo" onclick="return confirm('정말 삭제하시겠습니까??');"><img src="\images\userDel1.png" alt=""></button></td>
+						                  	<td class="userTableName"><a class="userTableNameA" href="/userInfoDetail.do?nickname=${userList.nickname}&nick=${userList.nickname}">${userList.name}</a></td>
+						                  	<td class="userTableDel"><button class="delLogo" onclick="return confirm('정말 삭제하시겠습니까??');"><img src="\images\userDel.png" alt=""></button></td>
 						                </tr>
 					            	</table>                
 				                </div>
@@ -132,7 +128,7 @@
 					<span class="desc">Training!</span>
 					
 					<div class="kakaoLogin">
-			        	<img src="\images\당근로고1.png" href="#" style="max-width: 100%">
+			        	<img src="\images\logo.png" href="#" style="max-width: 100%">
 			        </div>
 		    	</div>							
 			</div>

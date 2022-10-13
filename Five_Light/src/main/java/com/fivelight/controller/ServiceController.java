@@ -72,9 +72,19 @@ public class ServiceController {
 
 	// PT관리자 뷰의 피드백
 	@RequestMapping("/userInfoDetail.do")
-	public String userInfoDetail(User nickname, Model model, HttpSession session) {
+	public String userInfoDetail(User nickname, Model model, HttpSession session, String nick, String ex_name) {
 		User user = mapper.userInfoSelect(nickname);
-		List<Feedback> feedbackList = mapper.feedback(nickname);		
+		List<Feedback> feedbackList = mapper.feedback(nickname);
+		
+		List<Exercise> exerciseList = mapper.exercise();
+		session.setAttribute("exerciseList", exerciseList);
+		
+		for(int i = 0; i < exerciseList.size(); i++) { 
+			int feedchart = mapper.feedchart(nick, exerciseList.get(i).getEx_name());
+			
+			session.setAttribute("feedchart" + i, feedchart);
+		}
+		 
 	
 		session.setAttribute("feedbackList", feedbackList);
 		session.setAttribute("userInfo", user);				

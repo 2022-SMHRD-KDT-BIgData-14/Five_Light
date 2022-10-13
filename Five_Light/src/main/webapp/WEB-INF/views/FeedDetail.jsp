@@ -57,107 +57,101 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 
-		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+		<aside id="colorlib-aside" role="complementary" class="boxShadow js-fullheight text-center">
+			<div class="cotainer">
 			<!-- 좌측 목록 페이지 로고 -->
-			<h1 id="colorlib-logo">
-				<a href="index.html">당.근 P.T</a>
-			</h1>
-
-			<!-- 좌측 로고 밑 사진 -->
-			<div class="userImg mb-4" style="background-image: url(images/당근5.jfif);"></div>
-
-			<div class="userName">당근</div>
-
-			<!-- 좌측 목록 -->
-			<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-				<ul class="main-menu">
-					<% User info = (User)session.getAttribute("info"); %>
-					<% if (info.getAccess() == null) { %>
-						<li class="colorlib-active"><a href="myInfo.do">My Info</a></li>
-					<% } 
-					   else { %>
-						<li class="colorlib-active"><a href="memberInfo.do">My Info</a></li>
-					<% } %>
-					<li><a href="challenge.do">Challenge</a></li>
-					<li><a href="ranking.do">Ranking</a></li>
-					<li><a href="training.do">Training</a></li>
-				</ul>
-			</nav>
-
-			<div class="infoLogout">
-				<a href="infoLogout.do">LOGOUT</a>
-			</div>
-
-			<div class="infoDelete">
-				<a href="infoDelete.do">회원 탈퇴</a>
-			</div>
-			<!--좌측 목록 끝  -->
-		</aside>
-		<!-- 좌측 카테고리 끝 -->
-
-		<!-- 로그인 상태 라인  -->
-		<div id="colorlib-main">
-			<div class="hero-wrap " style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
-				<!--herp-wrap에서 이거 뺌 js-fullheight -->
-				<div class="overlay"></div>
-
-				<section class="ftco-section">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12">
-								<h1>FeedBack 내용</h1>
-							</div>
-
-							<!-- 피드백 리스트 -->
-							<div class="col-md-12">
-								<div class="feedDetail">
-									<table class="feedTable">
-										<tbody>
-											<tr>
-												<th>날짜</th>
-												<td>날짜보여줘</td>
-											</tr>
-											<tr>
-												<th>운동종류</th>
-												<td>운동종류 보여줘</td>
-											</tr>
-											<tr>
-												<th colspan="2">피드백 내용</th>
-											</tr>
-											<tr>
-												<td colspan="2" class="">여기에 피드백 내용 보여줫</td>
-											</tr>
-											<tr>
-												<td colspan="2">
-												<% if (info.getAccess() == null) { %> 
-													<a href="myInfo.do?nickname=${info.nickname}"><button>뒤로가기</button></a>
-												<% }
-												   else if (info.getAccess().equals("C")) { %>
-												    <a href="memberInfo.do?nickname=${info.nickname}"><button>뒤로가기</button></a>
-												<% } 
-												   else { %>
-												   <a href="userInfoDetail.do?nickname=${userInfo.nickname}"><button>뒤로가기</button></a>
-												<% } %>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-						<!-- 랭킹리스트 끝 -->
+				<div class="row">
+					<div class="col-12 logo">
+						<a href="MyInfo.jsp"><img src="images/logo.png"></a>
 					</div>
-				</section>
-			</div>
-		</div>
+					
+					<!-- 로고 밑 닉네임 -->
+					<div id="nickname_1" class="col-8 userName"	value="${info.nickname}">
+						<p id="user_nickname">${info.nickname}</p>
+					</div>
+					<!-- 로고 밑 닉네임 끝 -->
+				</div>
 
-		<!-- loader -->
-		<div id="ftco-loader" class="show fullscreen">
-			<svg class="circular" width="48px" height="48px">
-			    <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-			    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
-	  		</svg>
-		</div>
+				<!-- 좌측 목록 -->
+				<% User info = (User)session.getAttribute("info"); %>
+				<div class="col-12">
+					<div class="main-menu">
+						<nav id="colorlib-main-menu" role="navigation" list-style=snone>
+							<ul class="main-menu">					
+								<% if (info.getAccess() == null) { %>
+								<li><a href="myInfo.do">My Info</a></li>
+								<% } else { %>
+								<li><a href="memberInfo.do">My Info</a></li>
+								<% } %>
+								<li><a href="challenge.do">Challenge</a></li>
+								<li><a href="ranking.do">Ranking</a></li>
+								<li><a href="training.do">Training</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+				<!--좌측 목록 끝  -->
+			</div>
+		</aside>
+	</div>
+	<!-- 좌측 카테고리 끝 -->
+
+	<!-- 로그인 상태 라인 -->
+	<div id="colorlib-main">
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<h1>FeedBack 내용</h1>
+					</div>
+
+					<!-- 피드백 리스트 -->
+					<div class="col-12">
+						<div class="feedDetail">
+							<table class="feedTable">
+								<tbody>
+									<tr>
+										<th>날짜</th>
+										<td>날짜보여줘</td>
+									</tr>
+									<tr>
+										<th>운동종류</th>
+										<td>운동종류 보여줘</td>
+									</tr>
+									<tr>
+										<th colspan="2">피드백 내용</th>
+									</tr>
+									<tr>
+										<td colspan="2" class="">여기에 피드백 내용 보여줫</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<% if (info.getAccess() == null) { %> 
+											<a href="myInfo.do?nickname=${info.nickname}"><button>뒤로가기</button></a>
+											<% } else if (info.getAccess().equals("C")) { %>
+											<a href="memberInfo.do?nickname=${info.nickname}"><button>뒤로가기</button></a>
+											<% } else { %>
+											<a href="userInfoDetail.do?nickname=${userInfo.nickname}"><button>뒤로가기</button></a>
+											<% } %>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- 피드백 리스트 끝 -->
+				</div>						
+			</div>
+		</section>			
+	</div>
+	<!-- 로그인 상태 라인 -->
+	
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px">
+		    <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+		    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+  		</svg>
 	</div>
 	
 	<script src="js/jquery.min.js"></script>

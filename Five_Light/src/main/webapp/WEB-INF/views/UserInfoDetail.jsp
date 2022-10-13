@@ -1,4 +1,9 @@
-<%@page import="com.fivelight.domain.User"%>
+<%@ page import="javax.sound.midi.SysexMessage" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.fivelight.domain.Exercise" %>
+<%@ page import="com.fivelight.domain.Feedback" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.fivelight.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -43,161 +48,160 @@
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<!-- 좌측 목록 페이지 로고 -->
-			<h1 id="colorlib-logo">
-				<a href="index.jsp">당.근 P.T</a>
-			</h1>
+			<div class="cotainer">
+				<!-- 좌측 목록 페이지 로고 -->
+				<div class="row">
+					<div class="col-12">
+						<div class="col-12 logo">
+							<a href="UserInfo.jsp"><img src="images/logo.png"></a>
+						</div>
 		
-			<!-- 좌측 로고 밑 사진 -->
-			<% User info = (User)session.getAttribute("info"); %>
-			<div class="userImg mb-4" style="background-image: url(images/당근5.jfif);"></div>
-			
-			<div id="nickname_1" class="nickBtn" value="<%= info.getNickname() %>">
-				<h2 id="user_nickname"><%= info.getName() %></h2>
-			</div>
+						<!-- 좌측 로고 밑 닉네임 -->
+						<% User info = (User)session.getAttribute("info"); %>
+						<div class="row col-12 nickCategory">
+							<div id="nickname_1" class="col-8 userName" value="<%=info.getNickname()%>">
+								<p id="user_nickname"><%=info.getName()%></p>
+							</div>
 
-			<!-- 좌측 목록 -->
-			<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-				<ul class="main-menu">
-					<li class="colorlib-active"><a href="userInfo.do">User Info</a></li>
-					<li><a href="rank.do">Ranking</a></li>
-				</ul>
-			</nav>
-		
-			<div class="Logout">
-				<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
-			</div>
-			<!--좌측 목록 끝  -->
-		</aside>		
-		<!-- 좌측 카테고리 끝 -->
-
-		<!-- 로그인 상태 라인  -->
-		<div id="colorlib-main">
-			<div class="hero-wrap" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
-				<!--herp-wrap에서 이거 뺌 js-fullheight -->
-				<div class="overlay"></div>
-				
-				<section class="ftco-section">
-					<div class="container"></div>
-					
-					<div class="row">
-						<!-- 회원목록 -->
-						<div class="col-md-12">${userInfo.name}정보</div>
-						
-						<div class="col-md-3">
-							<div class="card flex-fill">
-								<div class="card-header">
-									<h5 class="card-title mb-0">회원수 ${userList.size()}</h5>
-								</div>
-								
-								<table class="table table-hover my-0">
-									<thead>
-										<tr>
-											<th>번호</th>
-											<th class="d-none d-xl-table-cell">이름</th>
-											<th>삭제</th>
-										</tr>
-									</thead>
-									
-									<tbody>
-										<c:forEach var="userList" items="${userList}">
-											<c:set var="i" value="${i + 1}" />
-											<tr>
-												<td>${i}</td>
-												<td class="d-none d-xl-table-cell"><a href="/userInfoDetail.do?nickname=${userList.nickname}">${userList.name}</a></td>
-												<td><button class="badge bg-success" onclick="return confirm('정말 삭제하시겠습니까??');">삭제</button></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
+							<div class="col-4 nickCorr">
+								<img type="button" class="nickCorrBtn" src="images/nickCorr.png">
 							</div>
 						</div>
-						<!-- 회원목록 끝 -->
+						<!-- 좌측 로고 밑 닉네임 끝 -->
 
-						<!-- 도넛 그래프 -->
-						<div class="col-md-9">
-							<canvas id="myChart2"></canvas>
+						<!-- 좌측 목록 -->
+						<div class="col-12">
+							<div class="main-menu">
+								<nav id="colorlib-main-menu" role="navigation" list-style=snone>
+									<ul class="main-menu">
+										<li class="colorlib-active"><a href="userInfo.do">Userinfo</a></li>
+										<li><a href="rank.do">Ranking</a></li>
+									</ul>
+								</nav>
+							</div>
+		
+							<div class="infoLogout">
+								<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
+							</div>
 							
-							<div class="card card-body text-center bg-primary">
-								<h3>선호 운동</h3>
-							</div>
-						</div>
-						<!-- 도넛 그래프 끝-->
-
-						<!-- 피드백 -->
-						<div class="col-md-8">
-							<div class="card flex-fill">
-								<div class="card-header">
-									<h5 class="card-title mb-0">피드백</h5>
+							<div class="fiveLight">
+								<div>
+									<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
 								</div>
-								
-								<table class="table table-hover my-0">
-									<thead>
-										<tr>
-											<th>날짜</th>
-											<th class="d-none d-xl-table-cell">P.T</th>
-											<th>내용</th>
-										</tr>
-									</thead>
-									
-									<tbody>
-										<c:forEach var="feedbackList" items="${feedbackList}">
-											<tr>
-												<td>${feedbackList.feed_date}</td>
-												<td class="d-none d-xl-table-cell">${feedbackList.ex_name}</td>
-												<td><a href="feedDetail.do?nickname=${feedbackList.nickname}">내용보기</a></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
+							</div>							
 						</div>
-						<!-- 피드백 끝 -->
-						
-						<!-- 몸무게 -->
-						<div class="col-md-4">
-							<div class="card flex-fill">
-								<div class="card-header">
-									<h5 class="card-title mb-0">${userInfo.name} 님의 도전</h5>
-									
-									<button id="weight_corr">수정하기</button>
-								</div>
-								
-								<table class="table table-hover my-0">
-									<tbody>
-										<tr>
-											<th>시작 몸무게</th>
-											<td>
-												<span id="weight_start">${userInfo.weight_start}</span>
-												<span>Kg</span>
-											</td>
-										</tr>
-										
-										<tr>
-											<th>현재 몸무게</th>
-											<td>
-												<span id="weight_now">${userInfo.weight_now}</span>
-												<span>Kg</span>
-											</td>
-										</tr>
-										
-										<tr>
-											<th>목표 몸무게</th>
-											<td>
-												<span id="weight_target">${userInfo.weight_target}</span>
-												<span>Kg</span>
-											</td>														
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<!-- 몸무게 끝 -->
+						<!--좌측 목록 끝  -->
 					</div>
-				</section>
+				</div>
+			</div>
+		</aside>
+	</div>		
+	<!-- 좌측 카테고리 끝 -->
+
+	<!-- 로그인 상태 라인  -->
+	<div id="colorlib-main">
+		<div class="container userTable">
+			<div class="col-12">
+				<!-- 회원목록 -->
+				<div class="userTotal">
+					<span>회원수: ${userList.size()}</span>
+				</div>
+				
+				<div class="userTranScoll type1">
+					<ul>
+						<c:forEach var="userList" items="${userList}">
+							<c:set var="i" value="${i + 1}" />
+							<li class="userlistItem">
+								<div class="userTableDiv">
+									<table class="userTableDetail">
+										<tr>
+											<td class="userTableNo">${i}.</td>
+											<td class="userTableName">
+												<a class="userTableNameA" href="/userInfoDetail.do?nickname=${userList.nickname}">${userList.name}</a>
+											</td>
+											<td class="userTableDel">
+												<button class="delLogo"	onclick="return confirm('정말 삭제하시겠습니까??');">
+													<img src="\images\userDel.png" alt="">
+												</button>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</div>
+
+			<div class="row">
+				<!-- 파이차트 -->
+				<div class="col-8">
+					<canvas id="myChart2"></canvas>
+					<div class="card card-body text-center bg-primary">
+						<h3>${userInfo.name}님의선호운동</h3>
+					</div>
+				</div>
+				<!-- 파이차트 끝-->	
+						
+				<!-- 몸무게 -->
+				<div class="col-4">
+					<div class="col-12">
+						<div class="card flex-fill">
+							<div class="card-header">
+								<h5 class="card-title mb-0">${userInfo.name}님의 도전<button id="weight_corr">수정</button>	</h5>
+							</div>
+
+							<table class="table table-hover my-0">
+								<tbody>
+									<tr>
+										<th>시작 몸무게</th>
+										<td><span id="weight_start">${userInfo.weight_start} Kg</span></td>
+									</tr>
+									<tr>
+										<th>현재 몸무게</th>
+										<td><span id="weight_now">${userInfo.weight_now} Kg</span></td>
+									</tr>
+									<tr>
+										<th>목표 몸무게</th>
+										<td><span id="weight_target">${userInfo.weight_target} Kg</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- 몸무게 끝 -->
+					
+					<!-- 피드백 -->
+					<div class="col-12">
+						<div class="card flex-fill">
+							<div class="card-header">
+								<h5 class="card-title mb-0">피드백</h5>
+							</div>
+
+							<table class="table table-hover my-0">
+								<thead>
+									<tr>
+										<th>날짜</th>
+										<th class="d-none d-xl-table-cell">FeedBack</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<c:forEach var="feedbackList" items="${feedbackList}">
+										<tr>
+											<td>${feedbackList.feed_date}</td>
+											<td class="d-none d-xl-table-cell">
+												<a href="feedDetail.do?nickname=${feedbackList.nickname}">	${feedbackList.ex_name}</a>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<!-- END COLORLIB-PAGE -->
 	</div>
 	
 	<!-- loader -->
@@ -280,21 +284,61 @@
 		<!-- 몸무게 스크립 끝 -->
 		
 		<!-- 도넛 차트 스크립트 시작 -->
-		data = {
-			datasets: [{
-				backgroundColor : ['red', 'yellow', 'blue', 'green', 'pupple', 'black'],
-				data: [1, 2, 3, 4, 2, 2]
-			}],
-			// 라벨의 이름이 툴팁처럼 마우스가 근처에 오면 나타남
-			labels: ['red', 'yellow', 'blue']
-		}
-	
-		// 도넛형 차트
-		var ctx2 = document.getElementById("myChart2")
+		<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
+		<% 
+		   List<Integer> feedCntList = new ArrayList<>();
 		
-		var myDoughnutChart = new Chart(ctx2, {
+		   for(int i = 0; i < exerciseList.size(); i++){
+		   	   int feedCount = (int)session.getAttribute("feedchart" + i);
+		   	   
+		   	   feedCntList.add(feedCount);
+		   }
+		   
+		   System.out.println(feedCntList);
+		   System.out.println(exerciseList.size());		   
+		%>
+		
+		// 도넛형 차트
+		var exerciseList = '<%= exerciseList %>'		
+		
+		var exName_Split = exerciseList.split(', ')
+		
+		var exName_List = function() {
+			var ex_List = []
+        	
+        	for(let i = 0; i < exName_Split.length; i++) {
+        		if(i == 0) {
+        			var exerciseName = exName_Split[i].substring(18, exName_Split[i].length - 1)
+        			ex_List.push(exerciseName)
+        		}
+        		else if(i == exName_Split.length - 1) {
+        			var exerciseName = exName_Split[i].substring(17, exName_Split[i].length - 2)
+        			ex_List.push(exerciseName)
+        		}
+        		else {
+        			var exerciseName = exName_Split[i].substring(17, exName_Split[i].length - 1)
+        			ex_List.push(exerciseName)
+        		}        		
+        	}
+        	
+          	return ex_List
+       	}
+		
+		var ctx2 = document.getElementById('myChart2')
+		
+		var myPieChart = new Chart(ctx2, {
 			type: 'pie',
-			data: data,
+			data: {
+				labels: exName_List(),
+				datasets: [
+					{
+						label: exName_List(),
+						backgroundColor: ['red', 'yellow', 'blue', 'green', 'pupple', 'black'],
+						data: <%= feedCntList %>
+					}
+				],
+			},
+			
 			options: {}
 		})
 		<!-- 도넛 차트 스크립트 끝 -->

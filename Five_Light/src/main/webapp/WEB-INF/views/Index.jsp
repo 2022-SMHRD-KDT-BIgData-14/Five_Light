@@ -27,7 +27,7 @@
 <body>
 	<!-- 인덱스 페이지  -->
 	<div class="js-fullheight d-flex justify-content-center align-items-center">
-		<div class="col-md-8 text text-center">
+		<div class="col-8 text text-center">
 			<span class="desc">Challenge,</span><br> 
 			<span class="desc">Versus Me,</span><br>
 			<span class="desc">Training!</span>

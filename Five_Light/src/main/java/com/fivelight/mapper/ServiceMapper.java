@@ -29,4 +29,6 @@ public interface ServiceMapper {
 	public List<Ranking> rankgraph(Ranking ranking);
 	
 	public int userdelete(User nickname);
+	
+	public int feedchart(String nickname, String ex_name);
 }

@@ -1,6 +1,6 @@
-<%@page import="com.fivelight.domain.Ranking"%>
-<%@page import="com.fivelight.domain.Exercise"%>
-<%@page import="java.util.List"%>
+<%@ page import="com.fivelight.domain.Ranking" %>
+<%@ page import="com.fivelight.domain.Exercise" %>
+<%@ page import="java.util.List" %>
 <%@ page import="com.fivelight.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -33,20 +33,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<!-- 차트 링크 끝 -->
-	
-	<style>
-		.rankingList th {
-			width: 200px;
-			height: 40px;
-			text-align: center;
-			align-items: center;
-		}
-		
-		.move {
-			border: solid 1px;
-		}
-	</style>
+	<!-- 차트 링크 끝 -->	
 </head>
 
 <body>
@@ -54,116 +41,136 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		
-		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<!-- 좌측 목록 페이지 로고 -->
-			<h1 id="colorlib-logo">
-				<a href="index.html">당.근 P.T</a>
-			</h1>
+		<aside id="colorlib-aside" role="complementary" class="boxShadow js-fullheight text-center">
+			<div class="cotainer">
+				<!-- 좌측 목록 페이지 로고 -->
+				<div class="row">
+					<div class="col-12">
+						<div class="col-12 logo">
+							<a href="UserInfo.jso"><img src="images/logo.png"></a>
+						</div>
 			
-			<!-- 좌측 로고 밑 사진 -->
-			<div class="userImg mb-4" style="background-image: url(images/당근5.jfif);"></div>
-			
-			<div id="nickname_1" class="nickBtn" value="${info.nickname}">
-				<h2 id="user_nickname">${info.name}</h2>
-			</div>	
+						<!-- 좌측 로고 밑 닉네임 -->
+						<% User info = (User) session.getAttribute("info"); %>
+						<div class="row col-12 nickCategory">
+							<div id="nickname_1" class="col-8 userName" value="<%=info.getNickname()%>">
+								<p id="user_nickname"><%=info.getName()%></p>
+							</div>
+							
+							<div class="col-4 nickCorr">
+								<img type="button" class="nickCorrBtn" src="images/nickCorr.png">
+							</div>
+						</div>
+						<!-- 좌측 로고 밑 닉네임 끝 -->
 
-			<!-- 좌측 목록 -->
-			<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-				<ul class="main-menu">
-					<li class="colorlib-active"><a href="userInfo.do">UserInfo</a></li>
-					<li><a href="rank.do">Ranking</a></li>
-				</ul>
-			</nav>
-			
-			<div class="Logout">
-				<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
-			</div>					
-			<!--좌측 목록 끝  -->
-		</aside>
-		<!-- 좌측 카테고리 끝 -->
-
-		<!-- 로그인 상태 라인  -->
-		<div id="colorlib-main">
-			<div class="hero-wrap" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
-				<!--herp-wrap에서 이거 뺌 js-fullheight -->
-				<div class="overlay"></div>
+						<!-- 좌측 목록 -->
+						<div class="col-12">
+							<div class="main-menu">
+								<nav id="colorlib-main-menu" role="navigation" list-style=snone>
+									<ul class="main-menu">
+										<li><a href="userInfo.do">UserInfo</a></li>
+										<li><a href="rank.do">Ranking</a></li>
+									</ul>
+								</nav>
+							</div>
 				
-				<section class="ftco-section">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12">
-								<h1>랭킹</h1>
+							<div class="infoLogout">
+								<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
 							</div>
 							
-							<!-- 운동 셀렉트 -->	
-							<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
-													
-							<% for(int i = 0; i < exerciseList.size(); i++) { %>
-							<div class="col-md-2">
-								<a href="#" class="photography-entry img d-flex justify-content-center align-items-center">
-									<div class="text-center move">
-										<p><%= exerciseList.get(i).getEx_name() %></p>
-									</div>
-								</a>
+							<div class="fiveLight">
+								<div>
+									<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+								</div>
 							</div>
-							<% } %>							
-							<!-- 운동 셀렉트 끝 -->
-							
-							<!-- 랭킹리스트 -->							
-							<% for(int i = 0; i < exerciseList.size(); i++) { %>
-							<% List<Ranking> rankingList = (List<Ranking>)session.getAttribute("ranking" + i + "List"); %>
-				          	<div class="col-md-12 rank">
-				            	<div class="rankingList">
-				              		<div>
-				                		<p><%= exerciseList.get(i).getEx_name() %></p>
-				              		</div>
-				              		
-				              		<div class="tranScoll">
-				                		<ul>
-				                			<% if(rankingList.size() > 10) { %>
-				                			<% for(int j = 0; j < 10; j++) { %>
-				                  			<li class="listItem">
-				                    			<div class="rankScore">
-				                      				<table class="rankTable">
-				                        				<tr>
-				                          					<th class=""><%= j + 1 %></th>
-				                          					<td class=""><%= rankingList.get(j).getNickname() %></td>
-				                        				</tr>
-				                        				<tr>
-				                          					<td colspan="2"><%= rankingList.get(j).getRank_acc() %></td>
-				                        				</tr>
-				                      				</table>
-						                    	</div>
-						                  	</li>
-						                  	<% } %>
-						                  	<% } else { %>						                  	
-						                  	<% for(int j = 1; j <= rankingList.size(); j++) { %>
-				                  			<li class="listItem">
-				                    			<div class="rankScore">
-				                      				<table class="rankTable">
-				                        				<tr>
-				                          					<th class=""><%= j %></th>
-				                          					<td class=""><%= rankingList.get(j).getNickname() %></td>
-				                        				</tr>
-				                        				<tr>
-				                          					<td colspan="2"><%= rankingList.get(j).getRank_acc() %></td>
-				                        				</tr>
-				                      				</table>
-						                    	</div>
-						                  	</li>
-						                  	<% } %>
-						                  	<% } %>						                  	
-						              	</ul>
-						            </div>
-						        </div>
-						    </div>
-						    <% } %>					    
-							<!-- 랭킹리스트 끝 -->
+						</div>				
+						<!--좌측 목록 끝  -->
+					</div>
+				</div>
+			</div>
+		</aside>
+	</div>
+	<!-- 좌측 카테고리 끝 -->
+
+	<!-- 로그인 상태 라인  -->
+	<div id="colorlib-main">
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row rankTitleBtn">
+					<div class="col-12">
+						<div class="cateTitle">
+							<h1>Ranking</h1>
 						</div>
 					</div>
-				</section>
+					
+					<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
+					<div class="col-12 moveList">
+						<!-- 운동 셀렉트 -->
+						<% for(int i = 0; i < exerciseList.size(); i++) { %>
+						<div class="col-2">
+							<a href="#exerciseName<%= i %>" class="justify-content-center align-items-center">
+								<div class="text-center move">
+									<p><%= exerciseList.get(i).getEx_name() %></p>
+								</div>
+							</a>
+						</div>
+						<% } %>							
+						<!-- 운동 셀렉트 끝 -->
+							
+						<!-- 랭킹리스트 -->													
+						<% for(int i = 0; i < exerciseList.size(); i++) { %>
+						<% List<Ranking> rankingList = (List<Ranking>)session.getAttribute("ranking" + i + "List"); %>
+				        <div class="col-12 rank">
+				            <div class="rankingList">
+				              	<div class="rankListTitle">
+									<p><%= exerciseList.get(i).getEx_name() %></p>
+								</div>
+				              		
+				              	<div class="tranScoll type1">
+				                	<ul>
+				                		<% if(rankingList.size() > 10) { %>
+				                		<% for(int j = 0; j < 10; j++) { %>
+				                  		<li class="listItem">
+				                    		<div class="rankScore">
+				                      			<table class="rankTable">
+			                        				<tr class="rankTableListName">
+			                          					<th class="rankTableNo"><%= j + 1 %></th>
+			                          					<td class="rankTableName"><%= rankingList.get(j).getNickname() %></td>
+			                        				</tr>
+			                        				<tr>
+			                          					<td class="scoreSize" colspan="2"><%= rankingList.get(j).getRank_acc() %></td>
+			                        				</tr>
+				                      			</table>
+						                 	</div>
+						                 </li>
+						                 <% } %>
+						                 <% } else { %>						                  	
+						                 <% for(int j = 0; j < rankingList.size(); j++) { %>
+				                  	  	 <li class="listItem">
+				                    		<div class="rankScore">
+				                      			<table class="rankTable">
+			                        				<tr class="rankTableListName">
+			                          					<th class="rankTableNo"><%= j + 1 %></th>
+			                          					<td class="rankTableName"><%= rankingList.get(j).getNickname() %></td>
+			                        				</tr>
+			                        				<tr>
+			                          					<td class="scoreSize" colspan="2"><%= rankingList.get(j).getRank_acc() %></td>
+			                        				</tr>
+			                      				</table>
+					                    	</div>
+					                     </li>
+						                 <% } %>
+						                 <% } %>						                  	
+					              	 </ul>
+					            </div>
+					        </div>
+					    </div>
+					    <% } %>					    
+						<!-- 랭킹리스트 끝 -->
+					</div>
+				</div>
 			</div>
-		</div>
+		</section>
 	</div>
 	
 	<!-- loader -->
