@@ -103,8 +103,25 @@ public class ServiceController {
 
 	// 피드백 디테일 연결
 	@RequestMapping("/feedDetail.do")
-	public String feedDetail(HttpSession session) {
+	public String feedDetail(HttpServletRequest request, HttpSession session) {
+	
+		int feed_num=Integer.parseInt(request.getParameter("feed_number"));
+		 
+		List<Feedback> feedbackList= mapper.FeedbackDetail(feed_num);
+		session.setAttribute("feedbackList", feedbackList);
+		
 		return "FeedDetail";
+	}
+	// 관리자가 보는 디테일 연결
+	@RequestMapping("/adminDetail.do")
+	public String adminFeedDetail(HttpServletRequest request, HttpSession session) {
+		System.out.println("들어왔따"); 
+		int feed_num=Integer.parseInt(request.getParameter("feed_number"));
+		 
+		List<Feedback> feedbackList= mapper.FeedbackDetail(feed_num);
+		session.setAttribute("feedbackList", feedbackList);
+		
+		return "AdminDetail";
 	}
 	
 	// 트레이닝 연결

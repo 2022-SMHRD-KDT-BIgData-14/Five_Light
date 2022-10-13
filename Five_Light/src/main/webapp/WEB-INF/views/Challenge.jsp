@@ -97,22 +97,75 @@
 							<h1>이건 나와의 약속이자 싸움이야!</h1>
 						</div>
 						<!-- versus me  문구 끝-->
-							
-						<!-- 운동 사진 -->							
-						<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
-													
-						<% for(int i = 0; i < exerciseList.size(); i++) { %>
-						<div class="col-md-4">
-							<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/image_<%= i + 1 %>.jpg);">
-								<div class="overlay"></div>
-									
-								<div class="text text-center">
-									<h3><%= exerciseList.get(i).getEx_name() %></h3>
-								</div>
-							</a>
-						</div>
-						<% } %>							
-						<!-- 운동 사진 끝 -->
+							 <!-- 운동 사진 -->
+	          <!-- 랫풀 다운-->
+	          <div class="col-md-4">
+	            <a href="http://127.0.0.1:5002/lat_CH?nickname=${info.nickname}" class="photography-entry img d-flex justify-content-center align-items-center"
+	              style="background-image: url(images/latpull.jpg);">
+	              <div class="overlay"></div>
+	              <div class="text text-center">
+	                <h3>랫풀 다운</h3>
+	              </div>
+	            </a>
+	          </div>
+	          <!-- 랫풀 다운 끝 -->
+	           <!-- 바벨 데드리프트 -->
+	          <div class="col-md-4">
+	            <a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center"
+	              style="background-image: url(images/deadlift.png);">
+	              <div class="overlay"></div>
+	              <div class="text text-center">
+	                <h3>바벨 데드리프트</h3>
+	              </div>
+	            </a>
+	          </div>
+	          <!-- 바벨 데드리프트 끝-->
+	              <!-- 바벨 런지 -->
+	          <div class="col-md-4">
+	            <a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center"
+	              style="background-image: url(images/lunge.jpg);">
+	              <div class="overlay"></div>
+	              <div class="text text-center">
+	                <h3>바벨 런지</h3>
+	              </div>
+	            </a>
+	          </div>
+	          <!-- 바벨 런지 끝-->
+	           <!-- 바벨 로우 -->
+	          <div class="col-md-4">
+	            <a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center"
+	              style="background-image: url(images/babellow.png);">
+	              <div class="overlay"></div>
+	              <div class="text text-center">
+	                <h3>바벨 로우</h3>
+	              </div>
+	            </a>
+	          </div>
+	          <!-- 바벨 로우 끝 -->
+	          <!-- 바벨 스쿼트 -->
+	          <div class="col-md-4">
+	            <a href="http://127.0.0.1:5002/squat_CH?nickname=${info.nickname}" class="photography-entry img d-flex justify-content-center align-items-center"
+	              style="background-image: url(images/squat.jpg);">
+	              <div class="overlay"></div>
+	              <div class="text text-center">
+	                <h3>바벨 스쿼트</h3>
+	              </div>
+	            </a>
+	          </div>
+	          <!-- 바벨 스쿼트  끝-->
+	          <!-- 바벨 컬-->
+	          <div class="col-md-4">
+	            <a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center"
+	              style="background-image: url(images/babelcurl.jpg);">
+	              <div class="overlay"></div>
+	              <div class="text text-center">
+	                <h3>바벨 컬</h3>
+	              </div>
+	            </a>
+	          </div>
+	          <!-- 바벨 컬 끝 -->
+	          <!-- 운동 사진 끝 -->
+				
 					</div>
 				</div>
 			</section>

@@ -1,3 +1,4 @@
+<%@page import="com.fivelight.domain.Feedback"%>
 <%@ page import="com.fivelight.domain.Exercise" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -137,16 +138,17 @@
 												<th class="d-none d-xl-table-cell">P.T</th>
 												<th>내용</th>
 											</tr>
-										</thead>
-										
+									</thead>
+									<% List<Feedback>feedbackList=(List<Feedback>)session.getAttribute("feedbackList"); %>
 										<tbody>
-											<c:forEach var="feedbackList" items="${feedbackList}">
+											<%for(int i = 0; i<feedbackList.size(); i+=5){ %>
 												<tr>
-													<td>${feedbackList.feed_date}</td>
-													<td class="d-none d-xl-table-cell">${feedbackList.ex_name}</td>
-													<td><a href="feedDetail.do?nickname=${feedbackList.nickname}">내용보기</a></td>
+													<td><%=feedbackList.get(i).getFeed_date()%></td>
+													<td><a href="feedDetail.do?feed_number=<%=feedbackList.get(i).getFeed_num()%>"><%=feedbackList.get(i).getEx_name()%></a></td>
+											         <%System.out.println(i); %>
+											         <%System.out.println(feedbackList.get(i).getFeed_num()); %>
 												</tr>
-											</c:forEach>
+											<%} %>
 										</tbody>
 									</table>
 								</div>
