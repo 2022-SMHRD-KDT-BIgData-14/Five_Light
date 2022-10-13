@@ -39,7 +39,7 @@
 <body>
 	<!-- 좌측 카테고리 -->
 	<div id="colorlib-page">
-		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"></a>
 		
 		<aside id="colorlib-aside" role="complementary" class="boxShadow js-fullheight text-center">
 			<div class="cotainer">
@@ -54,7 +54,7 @@
 						<% User info = (User) session.getAttribute("info"); %>
 						<div class="row col-12 nickCategory">
 							<div id="nickname_1" class="col-8 userName" value="<%=info.getNickname()%>">
-								<p id="user_nickname"><%=info.getName()%></p>
+								<h2 id="user_nickname"><%=info.getName()%></h2>
 							</div>
 							
 							<div class="col-4 nickCorr">
@@ -103,9 +103,9 @@
 						</div>
 					</div>
 					
+					<!-- 운동 셀렉트 -->
 					<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
 					<div class="col-12 moveList">
-						<!-- 운동 셀렉트 -->
 						<% for(int i = 0; i < exerciseList.size(); i++) { %>
 						<div class="col-2">
 							<a href="#exerciseName<%= i %>" class="justify-content-center align-items-center">
@@ -115,6 +115,7 @@
 							</a>
 						</div>
 						<% } %>							
+					</div>
 						<!-- 운동 셀렉트 끝 -->
 							
 						<!-- 랭킹리스트 -->													
@@ -169,7 +170,6 @@
 						<!-- 랭킹리스트 끝 -->
 					</div>
 				</div>
-			</div>
 		</section>
 	</div>
 	

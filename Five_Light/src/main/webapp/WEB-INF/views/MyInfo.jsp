@@ -52,7 +52,7 @@
 					
 					<!-- 로고 밑 닉네임 -->
 					<div id="nickname_1" class="col-8 userName" value="${info.nickname}">
-						<p id="user_nickname">${info.nickname}</p>
+						<h2 id="user_nickname">${info.nickname}</h2>
 					</div>
 					
 					<div class="col-4 nickCorr">

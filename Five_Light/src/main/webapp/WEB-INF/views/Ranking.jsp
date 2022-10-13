@@ -97,26 +97,27 @@
 					<!-- 운동 셀렉트 -->	
 					<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
 													
-					<% for(int i = 0; i < exerciseList.size(); i++) { %>
 					<div class="col-12 moveList">
-						<a href="#exerciseName<%= i %>" class="exercise_List">
-							<div class="text-center move">
-								<p><%= exerciseList.get(i).getEx_name() %></p>
-							</div>
-						</a>
+					<% for(int i = 0; i < exerciseList.size(); i++) { %>
+						<div class="col-2">
+							<a href="#exerciseName<%= i %>" class="exercise_List">
+								<div class="text-center move">
+									<p><%= exerciseList.get(i).getEx_name() %></p>
+								</div>
+							</a>
+						</div>
+					<% } %>
 					</div>
-					<% } %>							
 					<!-- 운동 셀렉트 끝 -->
 							
 					<!-- 랭킹리스트 -->
 					<% for(int i = 0; i < exerciseList.size(); i++) { %>
 					<% List<Ranking> rankingList = (List<Ranking>)session.getAttribute("ranking" + i + "List"); %>
-				    <div class="col-md-12 rank">
+				    <div class="col-12 rank">
 				    	<div class="rankingList">
-				    		<div class="rankListTitle">
-				            	<div id="exerciseName<%= i %>">
-				                	<p><%= exerciseList.get(i).getEx_name() %></p>
-				              	</div>
+				    		<div id="exerciseName<%= i %>" class="rankListTitle">
+				                <p><%= exerciseList.get(i).getEx_name() %></p>
+							</div>
 				              		
 				              	<div class="tranScoll type1">
 				                	<ul>

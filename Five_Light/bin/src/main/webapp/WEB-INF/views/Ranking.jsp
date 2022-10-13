@@ -1,3 +1,6 @@
+<%@ page import="com.fivelight.domain.Exercise" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.fivelight.domain.Ranking" %>
 <%@ page import="com.fivelight.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -24,25 +27,13 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/font.css">
 	
 	<!-- 차트 링크 아래 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<!-- 차트 링크 끝 -->
-	
-	<style>
-		.rankingList th {
-			width: 200px;
-			height: 40px;
-			text-align: center;
-			align-items: center;
-		}
-	
-		.move {
-			border: solid 1px;
-		}
-	</style>
+	<!-- 차트 링크 끝 -->	
 </head>
 
 <body>
@@ -50,158 +41,128 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		
-		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<!-- 좌측 목록 페이지 로고 -->
-			<h1 id="colorlib-logo">
-				<a href="index.html">당.근 P.T</a>
-			</h1>
-			
-			<!-- 좌측 로고 밑 사진 -->
-			<div class="userImg mb-4" style="background-image: url(images/당근5.jfif);"></div>
-			
-			<div class="userName">당근</div>
-
-			<!-- 좌측 목록 -->
-			<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-				<ul class="main-menu">
-					<% User info = (User)session.getAttribute("info"); %>
-					<% if (info.getAccess() == null) { %>
-						<li class="colorlib-active"><a href="myInfo.do">My Info</a></li>
-					<% } 
-					   else { %>
-						<li class="colorlib-active"><a href="memberInfo.do">My Info</a></li>
-					<% } %>
-					<li><a href="challenge.do">Challenge</a></li>
-					<li><a href="ranking.do">Ranking</a></li>
-					<li><a href="training.do">Training</a></li>
-				</ul>
-			</nav>
-			
-			<div class="infoLogout">
-				<a href="infoLogout.do">LOGOUT</a>
-			</div>
-			
-			<div class="infoDelete">
-				<a href="infoDelete.do">회원 탈퇴</a>
-			</div>
-			<!--좌측 목록 끝  -->
-		</aside>
-		<!-- 좌측 카테고리 끝 -->
-
-		<!-- 로그인 상태 라인  -->
-		<div id="colorlib-main">
-			<div class="hero-wrap " style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
-				<!--herp-wrap에서 이거 뺌 js-fullheight -->
-				<div class="overlay"></div>
+		<aside id="colorlib-aside" role="complementary" class="boxShadow js-fullheight text-center">
+			<div class="cotainer">
+				<div class="row">
+					<div class="col-12 logo">
+						<a href="MyInfo.jsp"><img src="images/logo.png"></a>
+					</div>			
+					
+					<!-- 로고 밑 닉네임 -->
+					<div id="nickname_1" class="col-8 userName" value="${info.nickname}">
+						<h2 id="user_nickname">${info.nickname}</h2>
+					</div>
+					<!-- 로고 밑 닉네임 끝 -->
+				</div>
 				
-				<section class="ftco-section">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-12">
-								<h1>랭킹</h1>
-							</div>
-							
-							<!-- 운동 셀렉트 -->
-							<div class="col-md-2">
-								<a href="#" class="photography-entry img d-flex justify-content-center align-items-center">
-									<div class="text-center move">
-										<p>바벨 스쿼트</p>
-									</div>
-								</a>
-							</div>
+				<!-- 좌측 목록 -->
+				<% User info = (User)session.getAttribute("info"); %>
+				<div class="col-12">
+					<div class="main-menu">
+						<nav id="colorlib-main-menu" role="navigation" list-style=snone>
+							<ul class="main-menu">								
+								<% if (info.getAccess() == null) { %>
+								<li><a href="myInfo.do">My Info</a></li>
+								<% } else { %>
+								<li><a href="memberInfo.do">My Info</a></li>
+								<% } %>
+								<li><a href="challenge.do">Challenge</a></li>
+								<li><a href="ranking.do">Ranking</a></li>
+								<li><a href="training.do">Training</a></li>
+							</ul>
+						</nav>	
+					</div>
+					
+					<div class="fiveLight">
+						<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+					</div>
+				</div>		
+				<!--좌측 목록 끝  -->
+			</div>
+		</aside>
+	</div>
+	<!-- 좌측 카테고리 끝 -->
 
-							<div class="col-md-2">
-								<a href="#" class="photography-entry img d-flex justify-content-center align-items-center">
-									<div class="text-center move">
-										<p>바벨 데드리프트</p>
-									</div>
-								</a>
-							</div>
-
-							<div class="col-md-2">
-								<a href="#" class="photography-entry img d-flex justify-content-center align-items-center">
-									<div class="text-center move">
-										<p>랫풀 다운</p>
-									</div>
-								</a>
-							</div>
-
-							<div class="col-md-2">
-								<a href="#" class="photography-entry img d-flex justify-content-center align-items-center">
-									<div class="text-center move">
-										<p>바벨 컬</p>
-									</div>
-								</a>
-							</div>
-
-							<div class="col-md-2">
-								<a href="#" class="photography-entry img d-flex justify-content-center align-items-center">
-									<div class="text-center move">
-										<p>바벨 로우</p>
-									</div>
-								</a>
-							</div>
-
-							<div class="col-md-2">
-								<a href="#"
-									class="photography-entry img d-flex justify-content-center align-items-center">
-									<div class=" text-center move">
-										<p>바벨 런지</p>
-									</div>
-								</a>
-							</div>
-							<!-- 운동 셀렉트 끝 -->
-							<!-- 랭킹리스트 -->
-							<div class="col-md-12 rank">
-								<div class="rankingList">
-									<table border="solid black">
-										<thead>
-											<tr>
-												<th colspan="1">운동여기다가</th>
-											</tr>
-											<tr>
-												<th>순위</th>
-												<th>닉네임</th>
-												<th>정확도</th>
-											</tr>
-										</thead>
-										
-										<tbody>
-											<tr>
-												<th>1</th>
-												<th>락</th>
-												<th>100</th>
-											</tr>
-											<tr>
-												<th>2</th>
-												<th>연</th>
-												<th>90</th>
-											</tr>
-											<tr>
-												<th>3</th>
-												<th>성</th>
-												<th>80</th>
-											</tr>
-											<tr>
-												<th>4</th>
-												<th>준</th>
-												<th>70</th>
-											</tr>
-											<tr>
-												<th>5</th>
-												<th>훈</th>
-												<th>60</th>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<!-- 랭킹리스트 끝 -->
+	<!-- 로그인 상태 라인  -->
+	<div id="colorlib-main">
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row rankTitleBtn">
+					<div class="col-12">
+						<div class="cateTitle">
+							<h1>Ranking</h1>
 						</div>
 					</div>
-				</section>
+							
+					<!-- 운동 셀렉트 -->	
+					<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
+													
+					<% for(int i = 0; i < exerciseList.size(); i++) { %>
+					<div class="col-12 moveList">
+						<a href="#exerciseName<%= i %>" class="exercise_List">
+							<div class="text-center move">
+								<p><%= exerciseList.get(i).getEx_name() %></p>
+							</div>
+						</a>
+					</div>
+					<% } %>							
+					<!-- 운동 셀렉트 끝 -->
+							
+					<!-- 랭킹리스트 -->
+					<% for(int i = 0; i < exerciseList.size(); i++) { %>
+					<% List<Ranking> rankingList = (List<Ranking>)session.getAttribute("ranking" + i + "List"); %>
+				    <div class="col-md-12 rank">
+				    	<div class="rankingList">
+				    		<div class="rankListTitle">
+				            	<div id="exerciseName<%= i %>">
+				                	<p><%= exerciseList.get(i).getEx_name() %></p>
+				              	</div>
+				              		
+				              	<div class="tranScoll type1">
+				                	<ul>
+				                		<% if(rankingList.size() > 10) { %>
+				                		<% for(int j = 0; j < 10; j++) { %>
+				                  		<li class="listItem">
+				                    		<div class="rankScore">
+				                      			<table class="rankTable">
+				                        			<tr class="rankTableListName">
+				                          				<th class="rankTableNo"><%= j + 1 %></th>
+				                          				<td class="rankTableName"><%= rankingList.get(j).getNickname() %></td>
+				                        			</tr>
+				                        			<tr>
+				                          				<td class="scoreSize" colspan="2"><%= rankingList.get(j).getRank_acc() %></td>
+				                        			</tr>
+				                      			</table>
+						                    </div>
+					                	</li>
+						                <% } %>
+						                <% } else { %>						                  	
+						                <% for(int j = 0; j < rankingList.size(); j++) { %>
+				                  		<li class="listItem">
+				                    		<div class="rankScore">
+				                      			<table class="rankTable">
+				                        			<tr class="rankTableListName">
+				                          				<th class="rankTableNo"><%= j + 1 %></th>
+				                          				<td class="rankTableName"><%= rankingList.get(j).getNickname() %></td>
+				                        			</tr>
+				                        			<tr>
+				                          				<td class="scoreSize" colspan="2"><%= rankingList.get(j).getRank_acc() %></td>
+				                        			</tr>
+				                      			</table>
+						                    </div>
+					                	</li>
+						                <% } %>
+						                <% } %>						                  	
+				             		</ul>
+					            </div>
+					        </div>
+					    </div>
+					    <% } %>					    
+						<!-- 랭킹리스트 끝 -->
+					</div>
+				</div>
 			</div>
-		</div>
+		</section>
 	</div>
 	
 	<!-- loader -->

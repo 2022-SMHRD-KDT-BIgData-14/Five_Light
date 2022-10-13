@@ -1,3 +1,5 @@
+<%@ page import="com.fivelight.domain.Exercise" %>
+<%@ page import="java.util.List" %>
 <%@ page import="com.fivelight.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -25,6 +27,8 @@
 	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/font.css">
+	
 	<!-- 차트 링크 아래 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -39,37 +43,50 @@
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<!-- 좌측 목록 페이지 로고 -->
-			<h1 id="colorlib-logo">
-				<a href="index.html">당.근 P.T</a>
-			</h1>
-			
-			<!-- 좌측 로고 밑 사진 -->
-			<div class="userImg mb-4" style="background-image: url(images/당근5.jfif);"></div>
-			
-			<div class="userName">당근</div>
+			<div class="cotainer">
+				<!-- 좌측 목록 페이지 로고 -->
+				<div class="row">
+					<div class="col-12 logo">
+						<a href="MyInfo.jsp"><img src="images/logo.png"></a>
+					</div>
+					
+					<!-- 로고 밑 닉네임 -->
+					<div id="nickname_1" class="col-8 userName" value="${info.nickname}">
+						<h2 id="user_nickname">${info.nickname}</h2>
+					</div>
+					<!-- 로고 밑 닉네임 끝 -->
+				</div>
 
-			<!-- 좌측 목록 -->
-			<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-				<ul class="main-menu">
-					<% User info = (User)session.getAttribute("info"); %>
-					<% if (info.getAccess() == null) { %>
-						<li class="colorlib-active"><a href="myInfo.do">My Info</a></li>
-					<% } 
-					   else { %>
-						<li class="colorlib-active"><a href="memberInfo.do">My Info</a></li>
-					<% } %>
-					<li><a href="challenge.do">Challenge</a></li>
-					<li><a href="ranking.do">Ranking</a></li>
-					<li><a href="training.do">Training</a></li>
-				</ul>
-			</nav>
+				<!-- 좌측 목록 -->
+				<% User info = (User)session.getAttribute("info"); %>
+				<div class="col-12">
+					<div class="main-menu">
+						<nav id="colorlib-main-menu" role="navigation" list-style=snone>
+							<ul class="main-menu">
+								<% if (info.getAccess() == null) { %>
+								<li><a href="myInfo.do">My Info</a></li>
+								<% } else { %>
+								<li><a href="memberInfo.do">My Info</a></li>
+								<% } %>
+								<li><a href="challenge.do">Challenge</a></li>
+								<li><a href="ranking.do">Ranking</a></li>
+								<li><a href="training.do">Training</a></li>
+							</ul>
+						</nav>
+					</div>
+					
+					<div class="fiveLight">
+						<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+					</div>
+				</div>
 			<!--좌측 목록 끝  -->
+			</div>
 		</aside>
-		<!-- 좌측 카테고리 끝 -->
+	</div>	
+	<!-- 좌측 카테고리 끝 -->
 
-		<!-- 로그인 상태 라인  -->
-		<div id="colorlib-main">
+	<!-- 로그인 상태 라인  -->
+	<div id="colorlib-main">
 			<div class="hero-wrap" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
 				<!--herp-wrap에서 이거 뺌 js-fullheight -->
 				<div class="overlay"></div>
@@ -77,83 +94,25 @@
 					<div class="container">
 						<div class="row">
 							<!-- versus me  문구 -->
-							<div class="col-md-12">
+							<div class="col-12">
 								<h1>이건 나와의 약속이자 싸움이야!</h1>
 							</div>							
 							<!-- versus me  문구 끝-->
 							
-							<!-- 운동 사진 -->
-							<!-- 바벨 스쿼트 -->
-							<div class="col-md-4">
-								<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/image_1.jpg);">
+							<!-- 운동 사진 -->							
+							<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
+													
+							<% for(int i = 0; i < exerciseList.size(); i++) { %>
+							<div class="col-4">
+								<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/image_<%= i + 1 %>.jpg);">
 									<div class="overlay"></div>
 									
 									<div class="text text-center">
-										<h3>바벨 스쿼트</h3>
+										<h3><%= exerciseList.get(i).getEx_name() %></h3>
 									</div>
 								</a>
 							</div>
-							<!-- 바벨 스쿼트  끝-->
-							
-							<!-- 바벨 데드리프트 -->
-							<div class="col-md-4">
-								<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/image_3.jpg);">
-									<div class="overlay"></div>
-									
-									<div class="text text-center">
-										<h3>바벨 데드리프트</h3>
-									</div>
-								</a>
-							</div>
-							<!-- 바벨 데드리프트 끝-->
-							
-							<!-- 랫풀 다운-->
-							<div class="col-md-4">
-								<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/image_4.jpg);">
-									<div class="overlay"></div>
-									
-									<div class="text text-center">
-										<h3>랫풀 다운</h3>
-									</div>
-								</a>
-							</div>
-							<!-- 랫풀 다운 끝 -->
-							
-							<!-- 바벨 컬-->
-							<div class="col-md-4">
-								<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/image_5.jpg);">
-									<div class="overlay"></div>
-									
-									<div class="text text-center">
-										<h3>바벨 컬</h3>
-									</div>
-								</a>
-							</div>
-							<!-- 바벨 컬 끝 -->
-							
-							<!-- 바벨 로우 -->
-							<div class="col-md-4">
-								<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/image_6.jpg);">
-									<div class="overlay"></div>
-									
-									<div class="text text-center">
-										<h3>바벨 로우</h3>
-									</div>
-								</a>
-							</div>
-							<!-- 바벨 로우 끝 -->
-							
-							<!-- 바벨 런지 -->
-							<div class="col-md-4">
-								<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/image_7.jpg);">
-									<div class="overlay"></div>
-									
-									<div class="text text-center">
-										<h3>바벨 런지</h3>
-									</div>
-								</a>
-							</div>
-							<!-- 바벨 런지 끝-->
+							<% } %>							
 							<!-- 운동 사진 끝 -->
 						</div>
 					</div>

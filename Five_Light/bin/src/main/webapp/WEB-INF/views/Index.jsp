@@ -19,29 +19,26 @@
 	<link rel="stylesheet" href="css/ionicons.min.css">
 	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
 	<link rel="stylesheet" href="css/jquery.timepicker.css">
-	<link rel="stylesheet" href="css/flaticon.css">
 	<link rel="stylesheet" href="css/icomoon.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/font.css">
 </head>
 
 <body>
 	<!-- 인덱스 페이지  -->
-	<!-- <div id="colorlib-main"> -->	
-	<div class="hero-wrap js-fullheight" style="background-image: url(images/운동_배경.jpg);" data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-		<div class="js-fullheight d-flex justify-content-center align-items-center">
-			<div class="col-md-8 text text-center">
-				<span class="desc">Challenge,</span><br> 
-				<span class="desc">VersusMe,</span><br>
-				<span class="desc">Training!</span>
-				
+	<div class="js-fullheight d-flex justify-content-center align-items-center">
+		<div class="col-8 text text-center">
+			<span class="desc">Challenge,</span><br> 
+			<span class="desc">Versus Me,</span><br>
+			<span class="desc">Training!</span>
+			<div class="kakaoLogin">	
 				<p>
 					<a href="https://kauth.kakao.com/oauth/authorize?client_id=536db342453fd097b152b710e7334733&redirect_uri=http://localhost:8085/auth/kakao/callback&response_type=code">
 						<img src="images\kakao_login.png" class="kakaoLogin" style="max-width: 100%">
 					</a>
 				</p>
 			</div>
-		</div>
+		</div>	
 	</div>
 
 	<!-- loader -->
