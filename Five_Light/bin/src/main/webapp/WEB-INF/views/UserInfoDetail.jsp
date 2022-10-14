@@ -292,10 +292,7 @@
 		   	   int feedCount = (int)session.getAttribute("feedchart" + i);
 		   	   
 		   	   feedCntList.add(feedCount);
-		   }
-		   
-		   System.out.println(feedCntList);
-		   System.out.println(exerciseList.size());		   
+		   }	   
 		%>
 		
 		// 도넛형 차트

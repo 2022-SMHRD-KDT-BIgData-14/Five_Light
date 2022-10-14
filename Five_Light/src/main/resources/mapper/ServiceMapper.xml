@@ -20,8 +20,7 @@
 		<!-- 운동별(개인) 피드백 보여주기-->
 	<select id="FeedbackDetail" parameterType="com.fivelight.domain.Feedback" resultType="com.fivelight.domain.Feedback">
 		 select * from feedback where feed_num &lt;= #{feed_num} order by feed_num desc
-	</select>
-	
+	</select>	
 
 	<!-- 몸무게 변경 -->
 	<update id="weight" parameterType="com.fivelight.domain.User">
@@ -50,7 +49,7 @@
 	
 	<!-- 개인 챌린지 그래프 -->
 	<select id="rankgraph" parameterType="com.fivelight.domain.Ranking" resultType="com.fivelight.domain.Ranking">
-		select * from ranking where ex_name = #{ex_name} and nickname = #{nickname} order by rank_date asc
+		select * from ranking where ex_name = #{ex_name} and nickname = #{nickname} order by rank_date asc limit 7
 	</select>
 	
 	<!-- 유저 삭제 -->

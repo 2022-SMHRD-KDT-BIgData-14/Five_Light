@@ -56,10 +56,6 @@
             			<div id="nickname_1" class="col-8 userName" value="<%= info.getNickname() %>">
                 			<p id="user_nickname"><%= info.getName() %></p>
                 		</div>
-                			
-                		<div class="col-4 nickCorr">
-					        <img type="button" class="nickCorrBtn" src="images/nickCorr1.png">
-					    </div>
               		</div>
 					<!-- 좌측 로고 밑 닉네임 끝 -->
 

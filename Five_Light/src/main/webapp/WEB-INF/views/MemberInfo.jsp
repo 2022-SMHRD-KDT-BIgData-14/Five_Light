@@ -481,7 +481,6 @@
 				</section>
 			</div>
 		</div>
-		<!-- END COLORLIB-PAGE -->
 	</div>
 	
 	<!-- loader -->

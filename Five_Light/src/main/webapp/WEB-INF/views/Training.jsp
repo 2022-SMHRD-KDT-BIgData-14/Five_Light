@@ -79,7 +79,7 @@
 						<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
 					</div>
 				</div>
-			<!--좌측 목록 끝  -->
+				<!--좌측 목록 끝  -->
 			</div>
 		</aside>
 	</div>	
@@ -87,8 +87,7 @@
 
 	<!-- 로그인 상태 라인  -->
 	<div id="colorlib-main">
-		<div class="hero-wrap" style="background-image: url(images/bg_1.jpg);"
-			data-stellar-background-ratio="0.5">
+		<div class="hero-wrap" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
 			<!--herp-wrap에서 이거 뺌 js-fullheight -->
 			<div class="overlay"></div>
 			<section class="ftco-section">
@@ -99,74 +98,73 @@
 							<h1>이건 나와의 약속이자 싸움이야!</h1>
 						</div>
 						<!-- versus me  문구 끝-->
+						
 						<!-- 운동 사진 -->
 						<!-- 랫풀 다운-->
 						<div class="col-md-4">
-							<a href="http://127.0.0.1:5002/lat_TR?nickname=${info.nickname}"
-								class="photography-entry img d-flex justify-content-center align-items-center"
-								style="background-image: url(images/latpull.jpg);">
+							<a href="http://127.0.0.1:5002/lat_TR?nickname=${info.nickname}" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/latpull.jpg);">
 								<div class="overlay"></div>
+								
 								<div class="text text-center">
 									<h3>랫풀 다운</h3>
 								</div>
 							</a>
 						</div>
 						<!-- 랫풀 다운 끝 -->
+						
 						<!-- 바벨 데드리프트 -->
 						<div class="col-md-4">
-							<a href="VideoRecord.html"
-								class="photography-entry img d-flex justify-content-center align-items-center"
-								style="background-image: url(images/deadlift.png);">
+							<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/deadlift.png);">
 								<div class="overlay"></div>
+								
 								<div class="text text-center">
 									<h3>바벨 데드리프트</h3>
 								</div>
 							</a>
 						</div>
 						<!-- 바벨 데드리프트 끝-->
+						
 						<!-- 바벨 런지 -->
 						<div class="col-md-4">
-							<a href="VideoRecord.html"
-								class="photography-entry img d-flex justify-content-center align-items-center"
-								style="background-image: url(images/lunge.jpg);">
+							<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/lunge.jpg);">
 								<div class="overlay"></div>
+								
 								<div class="text text-center">
 									<h3>바벨 런지</h3>
 								</div>
 							</a>
 						</div>
 						<!-- 바벨 런지 끝-->
+						
 						<!-- 바벨 로우 -->
 						<div class="col-md-4">
-							<a href="VideoRecord.html"
-								class="photography-entry img d-flex justify-content-center align-items-center"
-								style="background-image: url(images/babellow.png);">
+							<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/babellow.png);">
 								<div class="overlay"></div>
+								
 								<div class="text text-center">
 									<h3>바벨 로우</h3>
 								</div>
 							</a>
 						</div>
 						<!-- 바벨 로우 끝 -->
+						
 						<!-- 바벨 스쿼트 -->
 						<div class="col-md-4">
-							<a
-								href="http://127.0.0.1:5002/squat_TR?nickname=${info.nickname}"
-								class="photography-entry img d-flex justify-content-center align-items-center"
-								style="background-image: url(images/squat.jpg);">
+							<a href="http://127.0.0.1:5002/squat_TR?nickname=${info.nickname}" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/squat.jpg);">
 								<div class="overlay"></div>
+								
 								<div class="text text-center">
 									<h3>바벨 스쿼트</h3>
 								</div>
 							</a>
 						</div>
 						<!-- 바벨 스쿼트  끝-->
+						
 						<!-- 바벨 컬-->
 						<div class="col-md-4">
-							<a href="VideoRecord.html"
-								class="photography-entry img d-flex justify-content-center align-items-center"
-								style="background-image: url(images/babelcurl.jpg);">
+							<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/babelcurl.jpg);">
 								<div class="overlay"></div>
+								
 								<div class="text text-center">
 									<h3>바벨 컬</h3>
 								</div>
@@ -174,12 +172,10 @@
 						</div>
 						<!-- 바벨 컬 끝 -->
 						<!-- 운동 사진 끝 -->
-
 					</div>
 				</div>
 			</section>
 		</div>
-	</div>
 	</div>
 	
 	<!-- loader -->

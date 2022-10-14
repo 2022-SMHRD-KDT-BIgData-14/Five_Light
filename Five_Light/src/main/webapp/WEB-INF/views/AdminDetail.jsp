@@ -73,17 +73,19 @@
 			<!-- 좌측 목록 -->
 			<nav id="colorlib-main-menu" role="navigation" list-style=snone>
 				<ul class="main-menu">
-					<li class="colorlib-active"><a href="userInfo.do">User Info</a></li>
+					<li class="colorlib-active"><a href="userInfo.do">UserInfo</a></li>
 					<li><a href="rank.do">Ranking</a></li>
 				</ul>
 			</nav>
 
 			<div class="infoLogout">
-				<a href="infoLogout.do">LOGOUT</a>
+				<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
 			</div>
-
-			<div class="infoDelete">
-				<a href="infoDelete.do">회원 탈퇴</a>
+			
+			<div class="fiveLight">
+				<div>
+					<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+				</div>
 			</div>
 			<!--좌측 목록 끝  -->
 		</aside>
@@ -99,7 +101,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-12">
-								<h1>FeedBack 내용</h1>
+								<h1>FeedBack</h1>
 							</div>
 
 							<!-- 피드백 리스트 -->
@@ -109,34 +111,34 @@
 									<% List<Feedback>feedbackList = (List<Feedback>)session.getAttribute("feedbackList"); %>
 										<tbody>
 											<tr>
-												<th>날짜</th>
-												<td><%=feedbackList.get(0).getFeed_date() %></td>
+												<th>Date</th>
+												<td><%= feedbackList.get(0).getFeed_date() %></td>
 											</tr>
 											<tr>
 												<th>운동종류</th>
-												<td><%=feedbackList.get(0).getEx_name() %></td>
+												<td><%= feedbackList.get(0).getEx_name() %></td>
 											</tr>
 											<tr>
 												<th colspan="2">피드백 내용</th>
 											</tr>
-											<%for(int i=0; i<5; i++){%>
 											<tr>
-												<td colspan="2" class=""><%=feedbackList.get(i).getFeed_con() %></td>
+												<td colspan="2" class="">
+													<% for(int i = 0; i < 5; i++) { %>
+													<%= feedbackList.get(i).getFeed_con() %><br>
+													<% } %>
+												</td>
 											</tr>
-											<%} %>
 											<tr>
-												<td colspan="2">
-												
-												   <a href="userInfoDetail.do?nickname=${userInfo.nickname}"><button>뒤로가기</button></a>
-												
+												<td colspan="2">												
+												   <a href="userInfoDetail.do?nickname=${userInfo.nickname}&nick=${userInfo.nickname}"><button>뒤로가기</button></a>												
 												</td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
+							<!-- 피드백 리스트 끝 -->
 						</div>
-						<!-- 랭킹리스트 끝 -->
 					</div>
 				</section>
 			</div>

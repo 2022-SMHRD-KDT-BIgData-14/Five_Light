@@ -53,12 +53,8 @@
 						<!-- 좌측 로고 밑 닉네임 -->
 						<% User info = (User) session.getAttribute("info"); %>
 						<div class="row col-12 nickCategory">
-							<div id="nickname_1" class="col-8 userName" value="<%=info.getNickname()%>">
-								<h2 id="user_nickname"><%=info.getName()%></h2>
-							</div>
-							
-							<div class="col-4 nickCorr">
-								<img type="button" class="nickCorrBtn" src="images/nickCorr.png">
+							<div id="nickname_1" class="col-8 userName" value="<%= info.getNickname() %>">
+								<h2 id="user_nickname"><%= info.getName() %></h2>
 							</div>
 						</div>
 						<!-- 좌측 로고 밑 닉네임 끝 -->
@@ -123,7 +119,7 @@
 						<% List<Ranking> rankingList = (List<Ranking>)session.getAttribute("ranking" + i + "List"); %>
 				        <div class="col-12 rank">
 				            <div class="rankingList">
-				              	<div class="rankListTitle">
+				              	<div id="exerciseName<%= i %>" class="rankListTitle">
 									<p><%= exerciseList.get(i).getEx_name() %></p>
 								</div>
 				              		

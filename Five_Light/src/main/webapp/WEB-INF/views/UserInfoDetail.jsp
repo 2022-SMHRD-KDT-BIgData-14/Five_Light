@@ -59,12 +59,8 @@
 						<!-- 좌측 로고 밑 닉네임 -->
 						<% User info = (User)session.getAttribute("info"); %>
 						<div class="row col-12 nickCategory">
-							<div id="nickname_1" class="col-8 userName" value="<%=info.getNickname()%>">
-								<p id="user_nickname"><%=info.getName()%></p>
-							</div>
-
-							<div class="col-4 nickCorr">
-								<img type="button" class="nickCorrBtn" src="images/nickCorr.png">
+							<div id="nickname_1" class="col-8 userName" value="<%= info.getNickname() %>">
+								<p id="user_nickname"><%= info.getName() %></p>
 							</div>
 						</div>
 						<!-- 좌측 로고 밑 닉네임 끝 -->
@@ -74,7 +70,7 @@
 							<div class="main-menu">
 								<nav id="colorlib-main-menu" role="navigation" list-style=snone>
 									<ul class="main-menu">
-										<li class="colorlib-active"><a href="userInfo.do">Userinfo</a></li>
+										<li class="colorlib-active"><a href="userInfo.do">UserInfo</a></li>
 										<li><a href="rank.do">Ranking</a></li>
 									</ul>
 								</nav>
@@ -104,7 +100,7 @@
 			<div class="col-12">
 				<!-- 회원목록 -->
 				<div class="userTotal">
-					<span>회원수: ${userList.size()}</span>
+					<span>회원수 : ${userList.size()}명</span>
 				</div>
 				
 				<div class="userTranScoll type1">
@@ -117,7 +113,7 @@
 										<tr>
 											<td class="userTableNo">${i}.</td>
 											<td class="userTableName">
-												<a class="userTableNameA" href="/userInfoDetail.do?nickname=${userList.nickname}">${userList.name}</a>
+												<a class="userTableNameA" href="/userInfoDetail.do?nickname=${userList.nickname}&nick=${userList.nickname}">${userList.name}</a>
 											</td>
 											<td class="userTableDel">
 												<button class="delLogo"	onclick="return confirm('정말 삭제하시겠습니까??');">
@@ -138,7 +134,7 @@
 				<div class="col-8">
 					<canvas id="myChart2"></canvas>
 					<div class="card card-body text-center bg-primary">
-						<h3>${userInfo.name}님의선호운동</h3>
+						<h3>[${userInfo.name}]님의 선호 운동</h3>
 					</div>
 				</div>
 				<!-- 파이차트 끝-->	
@@ -148,22 +144,31 @@
 					<div class="col-12">
 						<div class="card flex-fill">
 							<div class="card-header">
-								<h5 class="card-title mb-0">${userInfo.name}님의 도전<button id="weight_corr">수정</button>	</h5>
+								<h5 class="card-title mb-0">[${userInfo.name}]님의 도전<button id="weight_corr">수정하기</button></h5>
 							</div>
 
 							<table class="table table-hover my-0">
 								<tbody>
 									<tr>
 										<th>시작 몸무게</th>
-										<td><span id="weight_start">${userInfo.weight_start} Kg</span></td>
+										<td>
+											<span id="weight_start">${userInfo.weight_start}</span>
+											<span>Kg</span>
+										</td>
 									</tr>
 									<tr>
 										<th>현재 몸무게</th>
-										<td><span id="weight_now">${userInfo.weight_now} Kg</span></td>
+										<td>
+											<span id="weight_now">${userInfo.weight_now}</span>
+											<span>Kg</span>
+										</td>
 									</tr>
 									<tr>
 										<th>목표 몸무게</th>
-										<td><span id="weight_target">${userInfo.weight_target} Kg</span></td>
+										<td>
+											<span id="weight_target">${userInfo.weight_target}</span>
+											<span>Kg</span>
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -175,28 +180,42 @@
 					<div class="col-12">
 						<div class="card flex-fill">
 							<div class="card-header">
-								<h5 class="card-title mb-0">피드백</h5>
-							</div>
-
-							<table class="table table-hover my-0">
-								<thead>
-									<tr>
-										<th>날짜</th>
-										<th class="d-none d-xl-table-cell">FeedBack</th>
-									</tr>
-								</thead>
-
-								<tbody>
-									<c:forEach var="feedbackList" items="${feedbackList}">
+								<h5 class="card-title mb-0">피드백 내역</h5>
+							</div>							
+							
+							<div class="container">
+							    <div class="panel">
+							        <div class="body">
+							            <div class="input-group">         
+							                <input type="hidden" id="searchBox" placeholder="Filtrar...">
+							            </div>
+							        </div>
+							    </div>
+							    
+							    <% List<Feedback>feedbackList = (List<Feedback>)session.getAttribute("feedbackList"); %>
+    							<table class="myTable table hover">
+	        						<thead>
 										<tr>
-											<td>${feedbackList.feed_date}</td>
+											<th>날짜</th>
+											<th class="d-none d-xl-table-cell">FeedBack</th>
+										</tr>
+									</thead>
+								
+									<tbody>
+										<% for(int i = 0; i < feedbackList.size(); i += 5) { %>
+										<tr>
+											<td>
+												<%=feedbackList.get(i).getFeed_date()%>
+											</td>
 											<td class="d-none d-xl-table-cell">
-												<a href="feedDetail.do?nickname=${feedbackList.nickname}">	${feedbackList.ex_name}</a>
+												<span><%= feedbackList.get(i).getEx_name() %></span>
+												<a href="adminDetail.do?feed_number=<%= feedbackList.get(i).getFeed_num() %>">[내용보기]</a>
 											</td>
 										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+										<% } %>
+									</tbody>
+    							</table>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -292,10 +311,7 @@
 		   	   int feedCount = (int)session.getAttribute("feedchart" + i);
 		   	   
 		   	   feedCntList.add(feedCount);
-		   }
-		   
-		   System.out.println(feedCntList);
-		   System.out.println(exerciseList.size());		   
+		   }   
 		%>
 		
 		// 도넛형 차트
@@ -327,22 +343,320 @@
 		var ctx2 = document.getElementById('myChart2')
 		
 		var myPieChart = new Chart(ctx2, {
-			type: 'pie',
+			type: 'doughnut',
 			data: {
 				labels: exName_List(),
 				datasets: [
 					{
 						label: exName_List(),
-						backgroundColor: ['red', 'yellow', 'blue', 'green', 'pupple', 'black'],
+						backgroundColor: ['#FFA9B0', '#FDFA87', '#CCD1FF', '#A8C8F9', '#FFDDA6', '#B8F3B8'],
 						data: <%= feedCntList %>
 					}
 				],
 			},
 			
-			options: {}
+			options: {
+				scales: {		        	
+				},
+				
+				legend: { // 범례
+		        	position: 'bottom',
+		            labels: {
+		            	display: true,
+		            	boxWidth: 22,
+		            	fontSize: 17,
+		            	fontFamily: 'the',							            	
+		            	fontColor: 'black',
+		                usePointStyle: false // 지정된 포인트 모양에 따라 범례 아이콘 생성							                
+		            }
+		        }
+			}
 		})
 		<!-- 도넛 차트 스크립트 끝 -->
 	</script>	
+	<script type="text/javascript">
+	(function(window){
+	    'use strict';
+
+	    // This function will contain all our code
+	    function lignePaginate(){
+	        var _lignePaginate = {};
+
+	        _lignePaginate.init = function(el, options = {numberPerPage: 10,goBar:false,pageCounter:true},filter = [{el: null}]
+	        ){
+	            setTableEl(el);
+	            initTable(_lignePaginate.getEl());
+	            checkIsTableNull();
+	            setOptions(options);
+	            setConstNumberPerPage(options.numberPerPage);
+	            setFilterOptions(filter);
+	            launchPaginate();
+	        }
+	        
+	        var settings = {
+	            el:null,
+	            table:null,
+	            numberPerPage:10,
+	            constNumberPerPage:10,
+	            numberOfPages:0,
+	            goBar:false,
+	            pageCounter:true,
+	            hasPagination:true,
+	        };
+
+	        var filterSettings = {
+	            el:null,
+	            filterBox:null,
+	            trs:null,
+	        }
+
+	        /**
+	         * Setters private
+	         **/
+
+	        var setConstNumberPerPage = function(number){
+	            settings.constNumberPerPage = number;
+	        }
+	        var setNumberPerPage = function(number){
+	            settings.numberPerPage = number;
+	        }
+
+	        var initTable = function(el){
+	            if(el.indexOf('#') > -1 ){
+	                settings.table = document.getElementById(el.replace('#','').trim());
+	            }else if(el.indexOf('.') > -1  ){
+	                settings.table = document.querySelector(el);
+	            }
+	        }
+
+	        var iniFilter = function(el){
+	            if(el.indexOf('#') > -1 ){
+	                filterSettings.filterBox = document.getElementById(el.replace('#','').trim());
+	            }else if(el.indexOf('.') > -1  ){
+	                filterSettings.filterBox = document.querySelector(el);
+	            }
+	        }
+
+	        var setTableEl = function(el){
+	            settings.el = el;
+	        }
+
+	        var setFilterOptions = function (filterOptions) {
+	            if(filterOptions.el != null){
+	                setFilterEl(filterOptions.el);
+	                iniFilter(filterSettings.el);
+	                checkIsFilterBoxNull();
+	                setFunctionInFilterBox();
+	            }
+	        }
+
+	        var setFilterEl = function(el){
+	            filterSettings.el = el;
+	        }
+
+	        var setFunctionInFilterBox = function(){
+	            filterSettings.filterBox.setAttribute('onkeyup','paginate.filter()')
+	        }
+
+	        var setGoBar = function(value){
+	            settings.goBar = value;
+	        }
+
+	        var setPageCounter = function(value){
+	            settings.pageCounter = value;
+	        }
+
+	        _lignePaginate.getEl = function(){
+	            return settings.el;
+	        }
+	        _lignePaginate.getTable = function(){
+	            return settings.table;
+	        }
+	        _lignePaginate.getNumberPerPage = function(){
+	            return settings.numberPerPage;
+	        }
+
+	        _lignePaginate.getConstNumberPerPage = function(){
+	            return settings.constNumberPerPage;
+	        }
+
+	        var table,tr = [],pageCount,numberPerPage,th;
+
+	        var setOptions = function(options){
+	            if(options.numberPerPage != settings.numberPerPage){
+	                setNumberPerPage(options.numberPerPage);
+	            }
+
+	            if(typeof options.goBar === 'boolean')
+	                setGoBar(options.goBar);
+
+	            if(typeof options.pageCounter === 'boolean')
+	                setPageCounter(options.pageCounter);
+	        }
+
+	        var checkIsTableNull = function(){
+	            if(settings.table == null){
+	                throw new Error('Element ' + _lignePaginate.getEl() + ' no exits');
+	            }
+	        }
+
+	        var checkIsFilterBoxNull = function(){
+	            if(filterSettings.filterBox == null){
+	                throw new Error('Element ' + _lignePaginate.getEl() + ' no exits');
+	            }
+	        }
+
+	        var paginateAlreadyExists = function() {
+	            let paginate = document.querySelector('div.paginate');
+	            if(paginate != null)
+	                removePaginate(paginate);
+	        }
+
+	        var removePaginate = function(element){
+	            element.parentNode.removeChild(element);
+	        }
+
+	        var hiddenPaginateControls = function(){
+	            document.querySelector('.paginate_controls').style.visibility = 'hidden';
+	        }
+
+	        var showPaginatecontrols = function(){
+	            document.querySelector('.paginate_controls').style.visibility = 'unset';
+	        }
+
+	        // (numberOfPage): número de páginas, (currentPage): página actual, la página seleccionada ..
+	        var pageButtons = function(numberOfPage,currentPage) {
+	            
+	            let	prevDisabled = (currentPage == 1)?"disabled":"";
+	            let nextDisabled = (currentPage == numberOfPage)?"disabled":"";
+
+	            let buttons = "<input type='button' value='← prev' class='paginate_control_prev' onclick='paginate.sort("+(currentPage - 1)+")' "+prevDisabled+">";
+	            let buttonNumberOfPage = "<input type='button' value='" + currentPage + ' - ' + numberOfPage + "' disabled>";
+
+	            for (let $i=1; $i<=numberOfPage;$i++){
+	                if(numberOfPage > 10){
+	                    buttons += paginationMoreThatTenPage($i,numberOfPage);
+	                }else{
+	                    buttons += "<input type='button' id='id"+$i+"'value='"+$i+"' onclick='paginate.sort("+$i+")'>";
+	                }
+	            }
+
+	            let nextButton = "<input type='button' value='next →' class='paginate_control_next' onclick='paginate.sort("+(currentPage + 1)+")' "+nextDisabled+">";
+	            buttons +=  nextButton;
+
+	            if(settings.pageCounter)
+	                buttons += buttonNumberOfPage;
+
+	            if(settings.goBar)
+	                buttons += addGoToPage();
+
+	            return buttons;
+	        }
+	        
+	        var paginationMoreThatTenPage = function(iterator,numberOfPage){
+
+	            let referenceForTheLast = numberOfPage - 1;
+	            let middleValue = '...';
+
+	            if(iterator > referenceForTheLast || iterator <5){
+	                return "<input type='button' id='id"+iterator+"'value='"+iterator+"' onclick='paginate.sort("+iterator+")'>";
+	            }else if((iterator + 1) == numberOfPage) {
+	                return middleValue + "<input type='button' id='id"+iterator+"'value='"+iterator+"' style='display: none' onclick='paginate.sort("+iterator+")'>";
+	            }else {
+	                return "<input type='button' id='id"+iterator+"'value='"+iterator+"' style='display: none' onclick='paginate.sort("+iterator+")'>";
+	            }
+	        }
+
+	        var addGoToPage = function(){
+	            let inputBox = "<input type='number' id='paginate_page_to_go' value='1' min='1' max='"+ settings.numberOfPages +"'>";
+	            let goButton = "<input type='button' id='paginate-go-button' value='Go' onclick='paginate.goToPage()'>  ";
+	            return inputBox + goButton;
+	        }
+
+	        _lignePaginate.goToPage = function(){
+	            let page = document.getElementById("paginate_page_to_go").value;
+	            _lignePaginate.sort(page);
+	        }
+
+	        var launchPaginate = function(){
+	            paginateAlreadyExists();
+	            table = settings.table;
+	            numberPerPage = settings.numberPerPage;
+	            let rowCount = table.rows.length;
+	            // obtener el nombre de la etiqueta de la primera celda (en la primera fila)
+	            let firstRow = table.rows[0].firstElementChild.tagName;
+	            // Verificando si la tabla tiene encaebzado
+	            let hasHead = (firstRow === "TH");
+	            // contadores de bucles, para comenzar a contar desde las filas [1] (2da fila) si la primera fila tiene una etiqueta de encabezado
+	            let $i,$ii,$j = (hasHead)?1:0;
+	            // contiene la primera fila si tiene un (<th>) y nada si (<td>)
+	            th = (hasHead?table.rows[(0)].outerHTML:"");
+	            pageCount = Math.ceil(rowCount / numberPerPage);
+	            settings.numberOfPages = pageCount;
+
+	            if (pageCount > 1) {
+	                settings.hasPagination = true;
+	                for ($i = $j,$ii = 0; $i < rowCount; $i++, $ii++)
+	                    tr[$ii] = table.rows[$i].outerHTML;
+	                // Contenedor de los botones "paginate_controls"
+	                table.insertAdjacentHTML("afterend","<div id='buttons' class='paginate paginate_controls'></div");
+	                // Inicializando la tabla en la pagina 1
+	                _lignePaginate.sort(1);
+	            }else{
+	                settings.hasPagination = false;
+	            }
+	        };
+
+	        _lignePaginate.sort = function(selectedPageNumber) {
+	            let rows = th,startPoint = ((settings.numberPerPage * selectedPageNumber)-settings.numberPerPage);
+	            for (let $i = startPoint; $i < (startPoint+settings.numberPerPage) && $i < tr.length; $i++)
+	                rows += tr[$i];
+
+	            table.innerHTML = rows;
+	            document.getElementById("buttons").innerHTML = pageButtons(pageCount,selectedPageNumber);
+	            document.getElementById("id"+selectedPageNumber).classList.add('active');
+	         
+	            document.getElementById("id"+selectedPageNumber).style.display = 'unset';
+	        }
+
+	        _lignePaginate.filter = function() {
+	            if(settings.hasPagination){
+	                setNumberPerPage(9999);
+	                _lignePaginate.sort(1);
+	                hiddenPaginateControls();
+	            }
+	            const filter = document.querySelector(filterSettings.el).value.toUpperCase();
+	            const trs = document.querySelectorAll( settings.el + ' tr:not(.header)');
+	            trs.forEach(tr => tr.style.display = [...tr.children].find(td => td.innerHTML.toUpperCase().includes(filter)) ? '' : 'none');
+
+	            if(filter.length == 0 && settings.hasPagination){
+	                setNumberPerPage(_lignePaginate.getConstNumberPerPage());
+	                _lignePaginate.sort(1);
+	                showPaginatecontrols();
+	            }
+
+	        }
+
+	        return _lignePaginate;
+	    }
+
+	    if(typeof(window.paginate) === 'undefined'){
+	        window.paginate = lignePaginate();
+	    }
+	})(window);
+</script>
+<script>
+    let options = {
+        numberPerPage:5, //Cantidad de datos por pagina
+        goBar:true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
+        pageCounter:true, //Contador de paginas, en cual estas, de cuantas paginas
+    };
+    let filterOptions = {
+        el:'#searchBox' //Caja de texto para filtrar, puede ser una clase o un ID
+    };
+    paginate.init('.myTable',options,filterOptions);
+</script>
+	
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
