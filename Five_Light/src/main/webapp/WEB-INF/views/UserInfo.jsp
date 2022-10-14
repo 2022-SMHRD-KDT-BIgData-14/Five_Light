@@ -29,64 +29,65 @@
 	
 	<!-- 차트 링크 아래 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-		
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!-- 차트 링크 끝 -->
 </head>
 
 <body>
-	<!-- 사용자 로그인 이후 -->
+	<!-- 관리자 로그인 -->
 
 	<!-- 좌측 카테고리 -->
 	<div id="colorlib-page">
-		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"></a>
-		
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+
 		<aside id="colorlib-aside" role="complementary" class="boxShadow js-fullheight text-center">
 			<div class="cotainer">
 				<!-- 좌측 목록 페이지 로고 -->
 				<div class="row">
-					<div class="col-12 logo">
-						<a href="UserInfo.jso"><img src="images/logo.png"></a>
-					</div>
-						
-					<!-- 좌측 로고 밑 닉네임 -->
-					<% User info = (User)session.getAttribute("info"); %>
-            		<div class="row col-12 nickCategory">
-            			<div id="nickname_1" class="col-8 userName" value="<%= info.getNickname() %>">
-                			<p id="user_nickname"><%= info.getName() %></p>
-                		</div>
-              		</div>
-					<!-- 좌측 로고 밑 닉네임 끝 -->
-
-					<!-- 좌측 목록 -->
 					<div class="col-12">
-						<div class="main-menu">							
-							<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-								<ul class="main-menu">
-									<li><a href="userInfo.do">UserInfo</a></li>
-									<li><a href="rank.do">Ranking</a></li>
-								</ul>
-							</nav>
+						<div class="col-12 logo">
+							<a href="UserInfo.jso"><img src="images/logo.png"></a>
 						</div>
-			
-						<div class="infoLogout">
-							<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
+
+						<!-- 좌측 로고 밑 닉네임 -->
+						<% User info = (User) session.getAttribute("info"); %>
+						<div id="nickCategory" class="row col-12">
+							<div id="nickname_1" class="col-12 userName" value="<%=info.getNickname()%>">
+								<h3 id="user_nickname"><%=info.getName()%></h3>
+							</div>
 						</div>
-							
-						<div class="fiveLight">
-				        	<div>
-				                <p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
-				            </div>
-				        </div>
-			        </div>
-		        </div>
-	        </div>
-	        <!--좌측 목록 끝  -->		
+						<!-- 좌측 로고 밑 닉네임 끝 -->
+
+						<!-- 좌측 목록 -->
+						<div class="col-12">
+							<div class="main-menu">
+								<nav id="colorlib-main-menu" role="navigation" list-style=snone>
+									<ul class="main-menu">
+										<li><a href="userInfo.do">UserInfo</a></li>
+										<li><a href="rank.do">Ranking</a></li>
+									</ul>
+								</nav>
+							</div>
+
+							<div class="infoLogout">
+								<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
+							</div>
+
+							<div class="fiveLight">
+								<div>
+									<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+								</div>
+							</div>
+						</div>
+						<!--좌측 목록 끝  -->
+					</div>
+				</div>
+			</div>
 		</aside>
 	</div>
-	<!-- 좌측 카테고리 끝 -->	
-		
+	<!-- 좌측 카테고리 끝 -->
+
 	<!-- 우측 뷰  -->
 	<div id="colorlib-main">
 		<div class="container userTable">
@@ -101,7 +102,7 @@
 	        			<c:forEach var="userList" items="${userList}">
 						<c:set var="i" value="${i + 1}" />
 							<li class="userlistItem">
-								<div class="userTableDiv">
+								<div class="userbtn rounded userTableDiv">
 									<table class="userTableDetail">
 										<tr>
 						                  	<td class="userTableNo">${i}.</td>
@@ -117,7 +118,7 @@
             </div>
 		                
 			<!-- 인덱스 페이지 -->
-			<div class="js-fullheight d-flex justify-content-center align-items-center">
+			<div class="js-fullheight justify-content-center align-items-center">
 				<div class="col-11 text text-center">
 					<span class="desc">Challenge,</span><br>	
 					<span class="desc">Versus Me,</span><br>
@@ -139,6 +140,11 @@
       		<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
     	</svg>
 	</div>
+	<script type="text/javascript">
+	  $('userbtn').click(function(event){
+		    event.preventDefault(); 
+		  });
+	</script>
 	
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>

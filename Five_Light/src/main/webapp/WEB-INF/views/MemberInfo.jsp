@@ -191,8 +191,8 @@
 							$(document).on('click', '#user_nickname', ()=> {
 								// input 창에서 마우스 클릭 시, placeholder 없어지는 코드 : onfocus="this.placeholder=&apos;&apos;"
 								$('#user_nickname').contents().unwrap().wrap('<input id="user_nick_corr" type="text" placeholder="${info.nickname}" size=27 style="height: 40px !important;"/>')
-								$('#user_nick_corr').after('<button id="nick_correct">변경하기</button>')
-								$('#nick_correct').after('<button id="nick_correct_cancel">변경취소</button>')
+								$('#user_nick_corr').after('<button id="nick_correct">변경</button>')
+								$('#nick_correct').after('<button id="nick_correct_cancel">취소</button>')
 							})
 							
 							$(document).on('click', '#nick_correct_cancel', ()=> {
@@ -249,8 +249,8 @@
 								var weight_now = $('#weight_now').text()
 								var weight_target = $('#weight_target').text()
 								
-								$('#weight_corr').text('수정완료')
-								$('#weight_corr').after('<button id="weight_corr_cancel">취소</button>')
+								$('#weight_corr').text('완료')
+								$('#weight_corr').after('<button id="weight_corr_cancel" class="userbtn rounded">취소</button>')
 								$('#weight_corr').attr('id', 'weight_corr_fix')
 								
 								$('#weight_start').contents().unwrap().wrap('<span id="weight_start"><input id="weight_start_corr" class="weight_corr_input" type="text" value="' + weight_start + '" size=15 style="height: 30px !important;"/></span>')

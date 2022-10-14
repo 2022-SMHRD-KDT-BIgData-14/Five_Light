@@ -11,6 +11,16 @@
 	<select id="feedback" parameterType="com.fivelight.domain.User" resultType="com.fivelight.domain.Feedback">
 		select * from feedback where nickname = #{nickname} order by feed_num desc
 	</select>
+	
+	<!-- 운동별(플라스크) 피드백 보여주기-->
+	<select id="flaskFeedback" parameterType="com.fivelight.domain.Feedback" resultType="com.fivelight.domain.Feedback">
+		select feed_num, nickname, ex_name, accuracy, feed_date, feed_con from feedback where nickname = #{nickname} and ex_name=#{ex_name} and DATE_FORMAT(feed_date, '%Y-%m-%d') = DATE_FORMAT(now(), '%Y-%m-%d') order by feed_date desc
+	</select>
+	
+		<!-- 운동별(개인) 피드백 보여주기-->
+	<select id="FeedbackDetail" parameterType="com.fivelight.domain.Feedback" resultType="com.fivelight.domain.Feedback">
+		 select * from feedback where feed_num &lt;= #{feed_num} order by feed_num desc
+	</select>	
 
 	<!-- 몸무게 변경 -->
 	<update id="weight" parameterType="com.fivelight.domain.User">
@@ -39,7 +49,7 @@
 	
 	<!-- 개인 챌린지 그래프 -->
 	<select id="rankgraph" parameterType="com.fivelight.domain.Ranking" resultType="com.fivelight.domain.Ranking">
-		select * from ranking where ex_name = #{ex_name} and nickname = #{nickname} order by rank_date asc
+		select * from ranking where ex_name = #{ex_name} and nickname = #{nickname} order by rank_date asc limit 7
 	</select>
 	
 	<!-- 유저 삭제 -->

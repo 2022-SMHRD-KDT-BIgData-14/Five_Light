@@ -4,9 +4,10 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
- *
- { 
+ *{
+ 
     font-family: 'the';
+
  }
 
 :root {
@@ -8880,9 +8881,6 @@ background: aliceblue;
   padding-left: 0.5em;
   padding-top: 0.5em;
 }
-.pieChar{
-  
-}
 .weightTable{
   max-height: 14em;
 }
@@ -8925,35 +8923,3 @@ background: aliceblue;
 .myinfoDownDiv{
 	display: contents;
 }
-/*------------------------- 테이블페이징때문에 가져온 CSS -------------------------*/
-form {
-	
-}
-table {
-	border-collapse:collapse;
-	margin-bottom: 10px;
-}
-th, td {
-	padding: 3px 10px;
-}
-.off-screen {
-	display: none;
-}
-#nav {
-	width: 500px;
-	text-align: center;
-}
-#nav a {
-	display: inline-block;
-	padding: 3px 5px;
-	margin-right: 10px;
-	font-family:Tahoma;
-	background: #ccc;
-	color: #000;
-	text-decoration: none;
-}
-#nav a.active {
-	background: #333;
-	color: #fff;
-}
-/*------------------------- 테이블페이징때문에 가져온 CSS -------------------------*/

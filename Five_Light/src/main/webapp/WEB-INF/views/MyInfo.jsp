@@ -143,7 +143,7 @@
 									    <table class="myTable table hover">
 									    	<thead>
 												<tr>
-													<th>날짜</th>
+													<th>Date</th>
 													<th class="d-none d-xl-table-cell">Feedback</th>
 												</tr>
 											</thead>
@@ -224,8 +224,8 @@
 			// input 창에서 마우스 클릭 시, placeholder 없어지는 코드 : onfocus="this.placeholder=&apos;&apos;"
 			$('#nick_corrBtn').remove()
 			$('#user_nickname').contents().unwrap().wrap('<input id="user_nick_corr" type="text" placeholder="${info.nickname}" size=27 style="height: 40px !important;"/>')
-			$('#user_nick_corr').after('<button id="nick_correct">변경하기</button>')
-			$('#nick_correct').after('<button id="nick_correct_cancel">변경취소</button>')
+			$('#user_nick_corr').after('<button id="nick_correct">변경</button>')
+			$('#nick_correct').after('<button id="nick_correct_cancel">취소</button>')
 		})
 		
 		$(document).on('click', '#nick_correct_cancel', ()=> {

@@ -208,7 +208,8 @@ button {
 
 button:focus {
   outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color; }
+  outline: 5px auto -webkit-focus-ring-color;
+  }
 
 input,
 button,
@@ -8661,10 +8662,7 @@ textarea.form-control {
   align-content: center;
   margin-top: 5vh;
 }
-.userName{
-  font-size: 1.5em;
-  margin-bottom: 20%;
-}
+
 .userSticky{
   position: sticky;
   height: 100%;
@@ -8764,10 +8762,12 @@ background: aliceblue;
   width: auto;
   position: absolute;
   display: block;
+  font-size: 1.5em;
+  margin-bottom: 20%;
 }
 .userName p{
   font-size: 1em;
-  text-align: right;
+  text-align: center;
   margin-bottom: 0%;
 }
 .nickCorr{
@@ -8789,7 +8789,78 @@ background: aliceblue;
 	font-size: 20px;
 }
 .feedbackTable{
-  text-align: center;;
+  text-align: center;
+  border: groove 2px;
+}
+#nickCategory{
+	margin: 20px auto;
+}
+#trainingLike{
+	max-height: 100%;
+	margin-top: 15px;
+	border: groove;
+	display: block;
+}
+#trainingLike h3{
+	margin-top: 0.5rem;
+}
+
+/* 버튼 스타일----------------------------------------------------- */
+.userbtn{
+  color: white;
+  margin: 5px; 
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.21);
+  border-bottom-color: rgba(0,0,0,0.34);
+  text-shadow:0 1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 
+              0 2px 0 -1px rgba(0,0,0,0.13), 
+              0 3px 0 -1px rgba(0,0,0,0.08), 
+              0 3px 13px -1px rgba(0,0,0,0.21);
+}
+.userbtn:active {
+  top: 1px;
+  border-color: rgba(0,0,0,0.34) rgba(0,0,0,0.21) rgba(0,0,0,0.21);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.89),0 1px rgba(0,0,0,0.05) inset;
+  position: relative;
+}
+#weight_corr{
+  display: table-caption;
+  background: dimgray;
+  outline: none;
+}
+#weight_corr_fix{
+  background: dimgray;
+  outline: none;
+}
+#weight_corr_cancel{
+  background: dimgray;
+  outline: none;
+}
+.weight_corr_input{
+  height: auto;
+  width: 70px;
+  text-align: center;
+  background: aliceblue;
+}
+/* 몸무게------------- */
+.weightHead{
+  background: cadetblue;
+}
+.weightHead h5{
+  color: white;
+  margin-top: 8px;
+}
+.table11{
+  margin-bottom: 20px;
+}
+.table22{
+  margin-top: 20px;
+}
+.feedbackTitle{
+  height: 64px;
+  display: flex;
+  align-items: center;
 }
 /* 회원목록------------------------------------------ */
 .delLogo{
@@ -8882,7 +8953,7 @@ background: aliceblue;
   padding-top: 0.5em;
 }
 .weightTable{
-  max-height: 14em;
+ border: groove 2px;
 }
 .infoLogout a, .infoDelete a{
   color: steelblue;

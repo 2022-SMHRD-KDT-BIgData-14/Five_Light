@@ -52,9 +52,9 @@
 			
 						<!-- 좌측 로고 밑 닉네임 -->
 						<% User info = (User) session.getAttribute("info"); %>
-						<div class="row col-12 nickCategory">
-							<div id="nickname_1" class="col-8 userName" value="<%= info.getNickname() %>">
-								<h2 id="user_nickname"><%= info.getName() %></h2>
+						<div id="nickCategory" class="row col-12">
+							<div id="nickname_1" class="col-12 userName" value="<%= info.getNickname() %>">
+								<h3 id="user_nickname"><%= info.getName() %></h3>
 							</div>
 						</div>
 						<!-- 좌측 로고 밑 닉네임 끝 -->

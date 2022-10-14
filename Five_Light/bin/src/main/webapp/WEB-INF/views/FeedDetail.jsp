@@ -1,3 +1,5 @@
+<%@page import="com.fivelight.domain.Feedback"%>
+<%@page import="java.util.List"%>
 <%@ page import="com.fivelight.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -89,6 +91,10 @@
 							</ul>
 						</nav>
 					</div>
+					
+					<div class="fiveLight">
+						<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+					</div>
 				</div>
 				<!--좌측 목록 끝  -->
 			</div>
@@ -96,53 +102,57 @@
 	</div>
 	<!-- 좌측 카테고리 끝 -->
 
-	<!-- 로그인 상태 라인 -->
+	<!-- 로그인 상태 라인  -->
 	<div id="colorlib-main">
-		<section class="ftco-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<h1>FeedBack 내용</h1>
-					</div>
+		<div class="hero-wrap " style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
+			<!--herp-wrap에서 이거 뺌 js-fullheight -->
+			<div class="overlay"></div>
 
-					<!-- 피드백 리스트 -->
-					<div class="col-12">
-						<div class="feedDetail">
-							<table class="feedTable">
-								<tbody>
-									<tr>
-										<th>날짜</th>
-										<td>날짜보여줘</td>
-									</tr>
-									<tr>
-										<th>운동종류</th>
-										<td>운동종류 보여줘</td>
-									</tr>
-									<tr>
-										<th colspan="2">피드백 내용</th>
-									</tr>
-									<tr>
-										<td colspan="2" class="">여기에 피드백 내용 보여줫</td>
-									</tr>
-									<tr>
-										<td colspan="2">
-											<% if (info.getAccess() == null) { %> 
-											<a href="myInfo.do?nickname=${info.nickname}"><button>뒤로가기</button></a>
-											<% } else if (info.getAccess().equals("C")) { %>
-											<a href="memberInfo.do?nickname=${info.nickname}"><button>뒤로가기</button></a>
-											<% } else { %>
-											<a href="userInfoDetail.do?nickname=${userInfo.nickname}"><button>뒤로가기</button></a>
-											<% } %>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+			<section class="ftco-section">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1>FeedBack</h1>
 						</div>
+
+						<!-- 피드백 리스트 -->
+						<div class="col-md-12">
+							<div class="feedDetail">
+								<table class="feedTable">
+								<% List<Feedback>feedbackList = (List<Feedback>)session.getAttribute("feedbackList"); %>
+									<tbody>
+										<tr>
+											<th>Date</th>
+											<td><%= feedbackList.get(0).getFeed_date() %></td>
+										</tr>
+										<tr>
+											<th>운동종류</th>
+											<td><%= feedbackList.get(0).getEx_name() %></td>
+										</tr>
+										<tr>
+											<th colspan="2">피드백 내용</th>
+										</tr>
+										<tr>
+											<td colspan="2" class="">
+												<% for(int i = 0; i < 5; i++) { %>
+												<%= feedbackList.get(i).getFeed_con() %><br>
+												<% } %>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2">												
+											   <a href="myInfo.do?nickname=${info.nickname}&nick=${info.nickname}"><button>뒤로가기</button></a>												
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- 피드백 리스트 끝 -->
 					</div>
-					<!-- 피드백 리스트 끝 -->
-				</div>						
-			</div>
-		</section>			
+				</div>
+			</section>
+		</div>
 	</div>
 	<!-- 로그인 상태 라인 -->
 	
