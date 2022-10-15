@@ -42,7 +42,7 @@
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 
 		<aside id="colorlib-aside" role="complementary" class="boxShadow js-fullheight text-center">
-			<div class="cotainer">
+			<div class="container">
 				<!-- 좌측 목록 페이지 로고 -->
 				<div class="row">
 					<div class="col-12">
@@ -51,8 +51,10 @@
 						</div>
 
 						<!-- 로고 밑 닉네임 -->
-						<div id="nickname_1" class="col-12 userName" value="${info.nickname}">
-							<h3 id="user_nickname">${info.nickname}</h3>
+						<div id="nickCategory" class="row">
+							<div id="nickname_1" class="col-12 userName" value="${info.nickname}">
+								<h3 id="user_nickname">${info.nickname}</h3>
+							</div>
 						</div>
 						<!-- 로고 밑 닉네임 끝 -->
 					</div>
@@ -60,14 +62,10 @@
 					<!-- 좌측 목록 -->
 					<% User info = (User) session.getAttribute("info"); %>
 					<div class="col-12">
-						<div class="main-menu1">
+						<div class="main-menu">
 							<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-								<ul class="main-menu1">
-									<% if (info.getAccess() == null) { %>
+								<ul class="main-menu">
 									<li><a href="myInfo.do">My Info</a></li>
-									<% } else { %>
-									<li><a href="memberInfo.do">My Info</a></li>
-									<% } %>
 									<li><a href="challenge.do">Challenge</a></li>
 									<li><a href="ranking.do">Ranking</a></li>
 									<li><a href="training.do">Training</a></li>

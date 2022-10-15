@@ -90,83 +90,85 @@
 
 	<!-- 로그인 상태 라인  -->
 	<div id="colorlib-main">
-		<section class="ftco-section">
-			<div class="container">
-				<div class="row rankTitleBtn">
-					<div class="col-12">
-						<div class="cateTitle">
-							<h1>Ranking</h1>
+		<div class="hero-wrap hero-wrap-2 js-fullheight">
+			<div class="js-fullheight justify-content-center align-items-center">
+				<div class="container">
+					<div class="row rankTitleBtn">
+						<div class="col-12">
+							<div class="cateTitle">
+								<h1>Ranking</h1>
+							</div>
+						</div>
+						
+						<!-- 운동 셀렉트 -->
+						<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
+						<div class="col-12 moveList">
+							<% for(int i = 0; i < exerciseList.size(); i++) { %>
+							<div class="col-2">
+								<a href="#exerciseName<%= i %>" class="justify-content-center align-items-center">
+									<div class="text-center move">
+										<p><%= exerciseList.get(i).getEx_name() %></p>
+									</div>
+								</a>
+							</div>
+							<% } %>							
+						</div>
+							<!-- 운동 셀렉트 끝 -->
+								
+							<!-- 랭킹리스트 -->													
+							<% for(int i = 0; i < exerciseList.size(); i++) { %>
+							<% List<Ranking> rankingList = (List<Ranking>)session.getAttribute("ranking" + i + "List"); %>
+					        <div class="col-12 rank">
+					            <div class="rankingList">
+					              	<div id="exerciseName<%= i %>" class="rankListTitle">
+										<p><%= exerciseList.get(i).getEx_name() %></p>
+									</div>
+					              		
+					              	<div class="tranScoll type1">
+					                	<ul>
+					                		<% if(rankingList.size() > 10) { %>
+					                		<% for(int j = 0; j < 10; j++) { %>
+					                  		<li class="listItem">
+					                    		<div class="rankScore">
+					                      			<table class="rankTable">
+				                        				<tr class="rankTableListName">
+				                          					<th class="rankTableNo"><%= j + 1 %></th>
+				                          					<td class="rankTableName"><%= rankingList.get(j).getNickname() %></td>
+				                        				</tr>
+				                        				<tr>
+				                          					<td class="scoreSize" colspan="2"><%= rankingList.get(j).getRank_acc() %></td>
+				                        				</tr>
+					                      			</table>
+							                 	</div>
+							                 </li>
+							                 <% } %>
+							                 <% } else { %>						                  	
+							                 <% for(int j = 0; j < rankingList.size(); j++) { %>
+					                  	  	 <li class="listItem">
+					                    		<div class="rankScore">
+					                      			<table class="rankTable">
+				                        				<tr class="rankTableListName">
+				                          					<th class="rankTableNo"><%= j + 1 %></th>
+				                          					<td class="rankTableName"><%= rankingList.get(j).getNickname() %></td>
+				                        				</tr>
+				                        				<tr>
+				                          					<td class="scoreSize" colspan="2"><%= rankingList.get(j).getRank_acc() %></td>
+				                        				</tr>
+				                      				</table>
+						                    	</div>
+						                     </li>
+							                 <% } %>
+							                 <% } %>						                  	
+						              	 </ul>
+						            </div>
+						        </div>
+						    </div>
+						    <% } %>					    
+							<!-- 랭킹리스트 끝 -->
 						</div>
 					</div>
-					
-					<!-- 운동 셀렉트 -->
-					<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
-					<div class="col-12 moveList">
-						<% for(int i = 0; i < exerciseList.size(); i++) { %>
-						<div class="col-2">
-							<a href="#exerciseName<%= i %>" class="justify-content-center align-items-center">
-								<div class="text-center move">
-									<p><%= exerciseList.get(i).getEx_name() %></p>
-								</div>
-							</a>
-						</div>
-						<% } %>							
-					</div>
-						<!-- 운동 셀렉트 끝 -->
-							
-						<!-- 랭킹리스트 -->													
-						<% for(int i = 0; i < exerciseList.size(); i++) { %>
-						<% List<Ranking> rankingList = (List<Ranking>)session.getAttribute("ranking" + i + "List"); %>
-				        <div class="col-12 rank">
-				            <div class="rankingList">
-				              	<div id="exerciseName<%= i %>" class="rankListTitle">
-									<p><%= exerciseList.get(i).getEx_name() %></p>
-								</div>
-				              		
-				              	<div class="tranScoll type1">
-				                	<ul>
-				                		<% if(rankingList.size() > 10) { %>
-				                		<% for(int j = 0; j < 10; j++) { %>
-				                  		<li class="listItem">
-				                    		<div class="rankScore">
-				                      			<table class="rankTable">
-			                        				<tr class="rankTableListName">
-			                          					<th class="rankTableNo"><%= j + 1 %></th>
-			                          					<td class="rankTableName"><%= rankingList.get(j).getNickname() %></td>
-			                        				</tr>
-			                        				<tr>
-			                          					<td class="scoreSize" colspan="2"><%= rankingList.get(j).getRank_acc() %></td>
-			                        				</tr>
-				                      			</table>
-						                 	</div>
-						                 </li>
-						                 <% } %>
-						                 <% } else { %>						                  	
-						                 <% for(int j = 0; j < rankingList.size(); j++) { %>
-				                  	  	 <li class="listItem">
-				                    		<div class="rankScore">
-				                      			<table class="rankTable">
-			                        				<tr class="rankTableListName">
-			                          					<th class="rankTableNo"><%= j + 1 %></th>
-			                          					<td class="rankTableName"><%= rankingList.get(j).getNickname() %></td>
-			                        				</tr>
-			                        				<tr>
-			                          					<td class="scoreSize" colspan="2"><%= rankingList.get(j).getRank_acc() %></td>
-			                        				</tr>
-			                      				</table>
-					                    	</div>
-					                     </li>
-						                 <% } %>
-						                 <% } %>						                  	
-					              	 </ul>
-					            </div>
-					        </div>
-					    </div>
-					    <% } %>					    
-						<!-- 랭킹리스트 끝 -->
-					</div>
-				</div>
-		</section>
+			</div>
+		</div>
 	</div>
 	
 	<!-- loader -->

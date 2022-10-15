@@ -331,7 +331,7 @@
 		
 						<!-- 좌측 로고 밑 닉네임 -->
 						<% User info = (User)session.getAttribute("info"); %>
-						<div id="nickCategory" class="row col-12">
+						<div id="nickCategory" class="row">
 							<div id="nickname_1" class="col-12 userName" value="<%= info.getNickname() %>">
 								<h3 id="user_nickname"><%= info.getName() %></h3>
 							</div>
@@ -369,120 +369,121 @@
 
 	<!-- 우측뷰   -->
 	<div id="colorlib-main">
-		<div class="container userTable">
-			<div class="col-12">
-				<!-- 회원목록 -->
-					<div class="userTotal">
-						<p>Total : ${userList.size()}명</p>
-					</div>
-
-				<div class="userTranScoll type1">
-					<ul>
-						<c:forEach var="userList" items="${userList}">
-							<c:set var="i" value="${i + 1}" />
-							<li class="userlistItem">
-								<div class="userbtn rounded userTableDiv">
-									<table class="userTableDetail">
-										<tr>
-											<td class="userTableNo">${i}.</td>
-											<td class="userTableName"><a class="userTableNameA"
-												href="/userInfoDetail.do?nickname=${userList.nickname}&nick=${userList.nickname}">${userList.name}</a></td>
-											<td class="userTableDel"><button class="delLogo"
-													onclick="return confirm('정말 삭제하시겠습니까??');">
-													<img src="\images\userDel.png" alt="">
-												</button></td>
-										</tr>
-									</table>
-								</div>
-							</li>
-						</c:forEach>
-					</ul>
-				</div>
-			</div>
-			<!-- 회원목록 끝 -->
-
-			<div class="js-fullheight justify-content-center align-items-center">
-				<div class="row">
-					<!-- 파이차트 -->
-					<div class="col-8 text text-center piemargin">
-						<canvas id="myChart2"></canvas>
-						<div id="trainingLike" class="card text-center ">
-							<h3>${userInfo.name}님의 운동 선호도</h3>
-						</div>
-					</div>
-					<!-- 파이차트 끝-->
-
-					<!-- 몸무게 -->
-					<div class="col-4">
-						<div class="col-12">
-							<div class="card flex-fill table11">
-								<%-- <div class="card-header">
-								<h5 class="card-title mb-0">[${userInfo.name}]님의 도전<button id="weight_corr" class="userbtn rounded">수정</button></h5>
-							</div> --%>
-
-								<table class="table table-hover my-0 weightTable">
-									<thead class="weightHead">
-										<tr>
-											<th><h5>[${userInfo.name}]님의 도전</h5></th>
-											<th><button id="weight_corr" class="userbtn rounded">수정</button></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<th>시작 몸무게</th>
-											<td><span id="weight_start">${userInfo.weight_start}</span>
-												<span>Kg</span></td>
-										</tr>
-										<tr>
-											<th>현재 몸무게</th>
-											<td><span id="weight_now">${userInfo.weight_now}</span>
-												<span>Kg</span></td>
-										</tr>
-										<tr>
-											<th>목표 몸무게</th>
-											<td><span id="weight_target">${userInfo.weight_target}</span>
-												<span>Kg</span></td>
-										</tr>
-									</tbody>
-								</table>
+	<div class="hero-wrap hero-wrap-2 js-fullheight">
+		<div class="js-fullheight justify-content-center align-items-center">
+				<div class="container userTable">
+					<div class="col-12">
+						<!-- 회원목록 -->
+							<div class="userTotal">
+								<p>Total : ${userList.size()}명</p>
 							</div>
-						</div>
-						<!-- 몸무게 끝 -->
-
-						<!-- 피드백 -->
-						<div class="col-12">
-							<div class="card flex-fill table22">
-								<!-- <div class="container"> -->
-								<div class="panel">
-									<div class="body">
-										<div class="input-group">
-											<input type="hidden" id="searchBox" placeholder="Filtrar...">
+		
+						<div class="userTranScoll type1">
+							<ul>
+								<c:forEach var="userList" items="${userList}">
+									<c:set var="i" value="${i + 1}" />
+									<li class="userlistItem">
+										<div class="userbtn rounded userTableDiv">
+											<table class="userTableDetail">
+												<tr>
+													<td class="userTableNo">${i}.</td>
+													<td class="userTableName"><a class="userTableNameA"
+														href="/userInfoDetail.do?nickname=${userList.nickname}&nick=${userList.nickname}">${userList.name}</a></td>
+													<td class="userTableDel"><button class="delLogo"
+															onclick="return confirm('정말 삭제하시겠습니까??');">
+															<img src="\images\userDel.png" alt="">
+														</button></td>
+												</tr>
+											</table>
 										</div>
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
+					</div>
+					<!-- 회원목록 끝 -->
+		
+					<div class="js-fullheight justify-content-center align-items-center">
+						<div class="row">
+							<!-- 파이차트 -->
+							<div class="col-8 text text-center piemargin">
+								<canvas id="myChart2"></canvas>
+								<div id="trainingLike" class="card text-center ">
+									<h3>${userInfo.name}님의 운동 선호도</h3>
+								</div>
+							</div>
+							<!-- 파이차트 끝-->
+		
+							<!-- 몸무게 -->
+							<div class="col-4">
+								<div class="col-12">
+									<div class="card flex-fill table11">
+		
+										<table class="table table-hover my-0 weightTable">
+											<thead class="weightHead">
+												<tr>
+													<th><h5>[${userInfo.name}]님의 목표</h5></th>
+													<th><button id="weight_corr" class="userbtn rounded">수정</button></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th>시작 몸무게</th>
+													<td><span id="weight_start">${userInfo.weight_start}</span>
+														<span>Kg</span></td>
+												</tr>
+												<tr>
+													<th>현재 몸무게</th>
+													<td><span id="weight_now">${userInfo.weight_now}</span>
+														<span>Kg</span></td>
+												</tr>
+												<tr>
+													<th>목표 몸무게</th>
+													<td><span id="weight_target">${userInfo.weight_target}</span>
+														<span>Kg</span></td>
+												</tr>
+											</tbody>
+										</table>
 									</div>
 								</div>
-
-								<%
-								List<Feedback> feedbackList = (List<Feedback>) session.getAttribute("feedbackList");
-								%>
-								<table id="feedbacktable" class="table table-hover my-0 myTable">
-									<tbody>
-										<tr>
-											<th colspan="2" class="weightHead"><h5>Feedback History</h5></th>
-										</tr>
-										<tr>
-											<th>Date</th>
-											<th>FeedBack</th>
-										</tr>
-
-										<% for (int i = 0; i < feedbackList.size(); i += 5) { %>
-										<tr>
-											<td><%=feedbackList.get(i).getFeed_date()%></td>
-											<td class="d-none d-xl-table-cell"><span><a href="adminDetail.do?feed_number=<%=feedbackList.get(i).getFeed_num()%>">
-												<%=feedbackList.get(i).getEx_name()%></a> </span></td>
-										</tr>
-										<% } %>
-									</tbody>
-								</table>
+								<!-- 몸무게 끝 -->
+		
+								<!-- 피드백 -->
+								<div class="col-12">
+									<div class="card flex-fill table22">
+										<!-- <div class="container"> -->
+										<div class="panel">
+											<div class="body">
+												<div class="input-group">
+													<input type="hidden" id="searchBox" placeholder="Filtrar...">
+												</div>
+											</div>
+										</div>
+		
+										<% List<Feedback> feedbackList = (List<Feedback>) session.getAttribute("feedbackList"); %>
+										<table id="feedbacktable" class="table table-hover my-0 myTable">
+											<tbody>
+												<tr>
+													<th colspan="2" class="weightHead"><h5>Feedback History</h5></th>
+												</tr>
+												<tr>
+													<th>Date</th>
+													<th>FeedBack</th>
+												</tr>
+		
+												<% for (int i = 0; i < feedbackList.size(); i += 5) { %>
+												<tr>
+													<td><%=feedbackList.get(i).getFeed_date()%></td>
+													<td class="d-none d-xl-table-cell">
+														<span><a href="adminDetail.do?feed_number=<%=feedbackList.get(i).getFeed_num()%>">
+														<%=feedbackList.get(i).getEx_name()%></a> </span>
+													</td>
+												</tr>
+												<% } %>
+											</tbody>
+										</table>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -490,7 +491,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">
 		<svg class="circular" width="48px" height="48px">		

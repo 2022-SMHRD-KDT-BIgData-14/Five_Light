@@ -104,58 +104,53 @@
 
 	<!-- 로그인 상태 라인  -->
 	<div id="colorlib-main">
-		<div class="hero-wrap " style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
-			<!--herp-wrap에서 이거 뺌 js-fullheight -->
-			<div class="overlay"></div>
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<h1>FeedBack</h1>
+					</div>
 
-			<section class="ftco-section">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<h1>FeedBack</h1>
-						</div>
-
-						<!-- 피드백 리스트 -->
-						<div class="col-md-12">
-							<div class="feedDetail">
-								<table class="feedTable">
-								<% List<Feedback>feedbackList = (List<Feedback>)session.getAttribute("feedbackList"); %>
-									<tbody>
-										<tr>
-											<th>Date</th>
-											<td><%= feedbackList.get(0).getFeed_date() %></td>
-										</tr>
-										<tr>
-											<th>운동종류</th>
-											<td><%= feedbackList.get(0).getEx_name() %></td>
-										</tr>
-										<tr>
-											<th colspan="2">피드백 내용</th>
-										</tr>
-										<tr>
-											<td colspan="2" class="">
-												<% for(int i = 0; i < 5; i++) { %>
-												<%= feedbackList.get(i).getFeed_con() %><br>
-												<% } %>
-											</td>
-										</tr>
-										<tr>
-											<td colspan="2">												
-											   <a href="myInfo.do?nickname=${info.nickname}&nick=${info.nickname}"><button>뒤로가기</button></a>												
-											</td>
-										</tr>
-									</tbody>
-								</table>
+					<!-- 피드백 리스트 -->
+					<div class="col-12">
+						<div class="feedDetail">
+							<table class="feedTable">
+								<% List<Feedback> feedbackList = (List<Feedback>) session.getAttribute("feedbackList"); %>
+								<tbody>
+									<tr>
+										<th>Date</th>
+										<th>P.T</th>
+									</tr>
+									<tr>
+										<th><%=feedbackList.get(0).getFeed_date()%></th>
+										<td><%=feedbackList.get(0).getEx_name()%></td>
+									</tr>
+									<tr>
+										<th colspan="2">Content</th>
+									</tr>
+									<tr>
+										<td colspan="2" id="feedbackCont">
+											<% for (int i = 0; i < 5; i++) { %>
+											<%=feedbackList.get(i).getFeed_con()%><br>
+											<% } %>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="feedBackBack">
+								<div class="feedBackCenter">
+									<a href="myInfo.do?nickname=${info.nickname}&nick=${info.nickname}"><button>뒤로가기</button></a>
+								</div>
 							</div>
 						</div>
-						<!-- 피드백 리스트 끝 -->
 					</div>
+					<!-- 피드백 리스트 끝 -->
 				</div>
-			</section>
-		</div>
+			</div>
+		</section>
 	</div>
 	<!-- 로그인 상태 라인 -->
-	
+
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">
 		<svg class="circular" width="48px" height="48px">

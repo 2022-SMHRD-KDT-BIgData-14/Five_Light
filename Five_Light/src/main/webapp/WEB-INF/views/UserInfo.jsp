@@ -90,47 +90,51 @@
 
 	<!-- 우측 뷰  -->
 	<div id="colorlib-main">
-		<div class="container userTable">
-			<div class="col-12">
-				<!-- 회원목록 -->
-        		<div class="userTotal">
-        			<p>회원수 : ${userList.size()}명</p>
-        		</div>
-        		
-        		<div class="userTranScoll type1">
-        			<ul>
-	        			<c:forEach var="userList" items="${userList}">
-						<c:set var="i" value="${i + 1}" />
-							<li class="userlistItem">
-								<div class="userbtn rounded userTableDiv">
-									<table class="userTableDetail">
-										<tr>
-						                  	<td class="userTableNo">${i}.</td>
-						                  	<td class="userTableName"><a class="userTableNameA" href="/userInfoDetail.do?nickname=${userList.nickname}&nick=${userList.nickname}">${userList.name}</a></td>
-						                  	<td class="userTableDel"><button class="delLogo" onclick="return confirm('정말 삭제하시겠습니까??');"><img src="\images\userDel.png" alt=""></button></td>
-						                </tr>
-					            	</table>                
-				                </div>
-			                </li>
-			            </c:forEach>
-	                </ul>
-	            </div>
-            </div>
-		                
-			<!-- 인덱스 페이지 -->
+		<div class="hero-wrap hero-wrap-2 js-fullheight">
 			<div class="js-fullheight justify-content-center align-items-center">
-				<div class="col-11 text text-center">
-					<span class="desc">Challenge,</span><br>	
-					<span class="desc">Versus Me,</span><br>
-					<span class="desc">Training!</span>
-					
-					<div class="kakaoLogin">
-			        	<img src="\images\logo.png" href="#" style="max-width: 100%">
-			        </div>
-		    	</div>							
+				<div class="container">
+					<div class="col-12">
+						<!-- 회원목록 -->
+		        		<div class="userTotal">
+		        			<p>회원수 : ${userList.size()}명</p>
+		        		</div>
+		        		
+		        		<div class="userTranScoll type1">
+		        			<ul>
+			        			<c:forEach var="userList" items="${userList}">
+								<c:set var="i" value="${i + 1}" />
+									<li class="userlistItem">
+										<div class="userbtn rounded userTableDiv">
+											<table class="userTableDetail">
+												<tr>
+								                  	<td class="userTableNo">${i}.</td>
+								                  	<td class="userTableName"><a class="userTableNameA" href="/userInfoDetail.do?nickname=${userList.nickname}&nick=${userList.nickname}">${userList.name}</a></td>
+								                  	<td class="userTableDel"><button class="delLogo" onclick="return confirm('정말 삭제하시겠습니까??');"><img src="\images\userDel.png" alt=""></button></td>
+								                </tr>
+							            	</table>                
+						                </div>
+					                </li>
+					            </c:forEach>
+			                </ul>
+			            </div>
+		            </div>
+				                
+					<!-- 인덱스 페이지 -->
+					<div class="js-fullheight justify-content-center align-items-center">
+						<div class="col-11 text text-center">
+							<span class="desc">Challenge,</span><br>	
+							<span class="desc">Versus Me,</span><br>
+							<span class="desc">Training!</span>
+							
+							<div class="kakaoLogin">
+					        	<img src="\images\logo.png" href="#" style="max-width: 100%">
+					        </div>
+				    	</div>							
+					</div>
+					<!-- 인덱스 페이지 끝 -->
+				</div>
 			</div>
-			<!-- 인덱스 페이지 끝 -->
-		</div>		
+		</div>
 	</div>
 	
 	<!-- loader -->
