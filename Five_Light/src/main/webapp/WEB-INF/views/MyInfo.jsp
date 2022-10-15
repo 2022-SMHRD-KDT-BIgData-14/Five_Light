@@ -43,52 +43,61 @@
 	<!-- 좌측 카테고리 -->
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-		
+
 		<aside id="colorlib-aside" role="complementary" class="boxShadow js-fullheight text-center">
 			<div class="cotainer">
+			<!-- 좌측 목록 페이지 로고 -->
 				<div class="row">
-					<div class="col-12 logo">
-						<a href="MyInfo.jsp"><img src="images/logo.png"></a>
-					</div>
-					
-					<!-- 로고 밑 닉네임 -->
-					<div id="nickname_1" class="col-8 userName" value="${info.nickname}">
-						<h2 id="user_nickname">${info.nickname}</h2>
-					</div>
-					
-					<div id="nick_corrBtn" class="col-4 nickCorr">
-						<img type="button" class="nickCorrBtn" src="images/nickCorr.png">
-					</div>
-					<!-- 로고 밑 닉네임 끝 -->
-				</div>
-					
-				<!-- 좌측 목록 -->
-				<div class="col-12">
-					<div class="main-menu">
-						<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-							<ul class="main-menu">
-								<li><a href="myInfo.do">My Info</a></li>
-								<li><a href="challenge.do">Challenge</a></li>
-								<li><a href="ranking.do">Ranking</a></li>
-								<li><a href="training.do">Training</a></li>
-							</ul>
-						</nav>
-					</div>
-					
-					<div class="row">
-						<div class="col-6 infoLogout">
-							<a href="logout.do"	onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
+					<div class="col-12">
+						<div class="col-12 logo">
+							<a href="MyInfo.jsp"><img src="images/logo.png"></a>
 						</div>
-						<div class="col-6 infoDelete">
-							<a href="infoDelete.do?email=${info.email}"	onclick="return confirm('정말 회원탈퇴 하시겠습니까??');">회원탈퇴</a>
+						<!-- 로고 밑 닉네임 -->
+						<div class="row">
+							<div class="col-4 brbrbr">
+							</div>
+							
+							<div id="nickname_1" class="col-4 userName" value="${info.nickname}">
+								<h3 id="user_nickname">${info.nickname}
+									
+								</h3>
+							</div>
+							
+							<div id="nick_corrBtn" class="col-4 nickCorr">
+								<img type="button" class="nickCorrBtn" src="images/nickCorr.png">
+							</div>
+							<!-- 로고 밑 닉네임 끝 -->
 						</div>
 					</div>
-					
-					<div class="fiveLight">
-						<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+
+					<!-- 좌측 목록 -->
+					<div class="col-12">
+						<div class="main-menu1">
+							<nav id="colorlib-main-menu" role="navigation" list-style=snone>
+								<ul class="main-menu1">
+									<li><a href="myInfo.do">My Info</a></li>
+									<li><a href="challenge.do">Challenge</a></li>
+									<li><a href="ranking.do">Ranking</a></li>
+									<li><a href="training.do">Training</a></li>
+								</ul>
+							</nav>
+						</div>
+
+						<div class="row">
+							<div class="col-6 infoLogout">
+								<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
+							</div>
+							<div class="col-6 infoDelete">
+								<a href="infoDelete.do?email=${info.email}" onclick="return confirm('정말 회원탈퇴 하시겠습니까??');">회원탈퇴</a>
+							</div>
+						</div>
+
+						<div class="fiveLight">
+							<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+						</div>
 					</div>
+					<!-- 좌측 목록 끝 -->
 				</div>
-				<!-- 좌측 목록 끝 -->
 			</div>
 		</aside>
 	</div>
@@ -223,9 +232,9 @@
 		$(document).on('click', '#nick_corrBtn', ()=> {
 			// input 창에서 마우스 클릭 시, placeholder 없어지는 코드 : onfocus="this.placeholder=&apos;&apos;"
 			$('#nick_corrBtn').remove()
-			$('#user_nickname').contents().unwrap().wrap('<input id="user_nick_corr" type="text" placeholder="${info.nickname}" size=27 style="height: 40px !important;"/>')
-			$('#user_nick_corr').after('<button id="nick_correct">변경</button>')
-			$('#nick_correct').after('<button id="nick_correct_cancel">취소</button>')
+			$('#user_nickname').contents().unwrap().wrap('<input id="user_nick_corr" type="text" placeholder="${info.nickname}"/>')
+			$('#user_nick_corr').after('<button id="nick_correct" class="userbtn rounded">변경</button>')
+			$('#nick_correct').after('<button id="nick_correct_cancel" class="userbtn rounded">취소</button>')
 		})
 		
 		$(document).on('click', '#nick_correct_cancel', ()=> {
@@ -234,7 +243,7 @@
 			$('#user_nick_corr').remove()
 			$('#nick_correct').remove()
 			$('#nick_correct_cancel').remove()								
-			$('#nickname_1').append('<h2 id="user_nickname">' + nickname + '</h2>')
+			$('#nickname_1').append('<h3 id="user_nickname">' + nickname + '</h3>')
 			$('#nickname_1').after('<div id="nick_corrBtn" class="col-4 nickCorr"><img type="button" class="nickCorrBtn" src="images/nickCorr.png"></div>')
 		})
 		
@@ -261,7 +270,7 @@
 					$('#user_nick_corr').remove()
 					$('#nick_correct').remove()
 					$('#nick_correct_cancel').remove()
-					$('#nickname_1').append('<h2 id="user_nickname">' + nickname + '</span>')
+					$('#nickname_1').append('<h3 id="user_nickname">' + nickname + '</h3>')
 					$('#nickname_1').attr('value', nickname)
 					$('#nickname_1').after('<div id="nick_corrBtn" class="col-4 nickCorr"><img type="button" class="nickCorrBtn" src="images/nickCorr.png"></div>')
 				},

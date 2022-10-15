@@ -372,9 +372,9 @@
 		<div class="container userTable">
 			<div class="col-12">
 				<!-- 회원목록 -->
-				<div class="userTotal">
-					<p>회원수 : ${userList.size()}명</p>
-				</div>
+					<div class="userTotal">
+						<p>Total : ${userList.size()}명</p>
+					</div>
 
 				<div class="userTranScoll type1">
 					<ul>
@@ -404,10 +404,10 @@
 			<div class="js-fullheight justify-content-center align-items-center">
 				<div class="row">
 					<!-- 파이차트 -->
-					<div class="col-8 text text-center">
+					<div class="col-8 text text-center piemargin">
 						<canvas id="myChart2"></canvas>
 						<div id="trainingLike" class="card text-center ">
-							<h3>${userInfo.name}님의운동 선호도</h3>
+							<h3>${userInfo.name}님의 운동 선호도</h3>
 						</div>
 					</div>
 					<!-- 파이차트 끝-->
@@ -556,7 +556,7 @@
 				dataType: "text",
 				
 				success: function(res) {
-					$('#weight_corr_fix').text('수정하기')
+					$('#weight_corr_fix').text('수정')
 					$('#weight_corr_fix').attr('id', 'weight_corr')
 					
 					$('#weight_corr_cancel').remove()
@@ -645,7 +645,7 @@
 
 <script>
     let options = {
-        numberPerPage:5, //Cantidad de datos por pagina
+        numberPerPage:6, //Cantidad de datos por pagina
         goBar:true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
         pageCounter:true, //Contador de paginas, en cual estas, de cuantas paginas
     };

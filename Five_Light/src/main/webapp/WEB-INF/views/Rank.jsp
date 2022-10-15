@@ -39,7 +39,7 @@
 <body>
 	<!-- 좌측 카테고리 -->
 	<div id="colorlib-page">
-		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"></a>
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		
 		<aside id="colorlib-aside" role="complementary" class="boxShadow js-fullheight text-center">
 			<div class="cotainer">
@@ -47,7 +47,7 @@
 				<div class="row">
 					<div class="col-12">
 						<div class="col-12 logo">
-							<a href="UserInfo.jso"><img src="images/logo.png"></a>
+							<a href="UserInfo.js"><img src="images/logo.png"></a>
 						</div>
 			
 						<!-- 좌측 로고 밑 닉네임 -->

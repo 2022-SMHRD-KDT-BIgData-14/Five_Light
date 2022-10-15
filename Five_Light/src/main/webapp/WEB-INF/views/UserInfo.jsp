@@ -47,7 +47,7 @@
 				<div class="row">
 					<div class="col-12">
 						<div class="col-12 logo">
-							<a href="UserInfo.jso"><img src="images/logo.png"></a>
+							<a href="UserInfo.jsp"><img src="images/logo.png"></a>
 						</div>
 
 						<!-- 좌측 로고 밑 닉네임 -->

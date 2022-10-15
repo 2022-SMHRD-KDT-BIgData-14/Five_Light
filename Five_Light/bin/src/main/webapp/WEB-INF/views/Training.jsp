@@ -95,7 +95,9 @@
 					<div class="row">
 						<!-- versus me  문구 -->
 						<div class="col-12">
-							<h1>이건 나와의 약속이자 싸움이야!</h1>
+							<div class="trainingTitle">
+								<h1>Training</h1>
+							</div>
 						</div>
 						<!-- versus me  문구 끝-->
 						

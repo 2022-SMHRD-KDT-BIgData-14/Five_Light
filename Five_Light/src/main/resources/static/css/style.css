@@ -8608,6 +8608,28 @@ textarea.form-control {
   height: auto;
   transition-duration: 0.5s;
 }
+.main-menu1 {
+  width: 100%;
+  overflow: hidden;
+  margin: auto;
+  margin-top: 8vh;
+  margin-bottom: 27vh;
+  }
+.main-menu1 > li {
+  width: 100%; /*20*5=100%*/
+  text-align: center;
+  line-height: 40px;
+}
+.main-menu1 a {
+  color: (0,0,0);
+}
+.main-menu1 > li:hover {
+  transition-duration: 0.5s;
+}
+.main-menu1 > li:hover .sub-menu {
+  height: auto;
+  transition-duration: 0.5s;
+}
 .sub-menu li a{
   margin: 0;
   padding: 0;
@@ -8739,7 +8761,6 @@ background: aliceblue;
     margin: 10px 0px 5px;
     border-left-width: 5px;
     border-left-style: solid;
-    border-left-color: rgb(216, 60, 60);
     border-bottom-color: rgb(211, 211, 211);
     border-bottom-style: solid;
     width: 200px;	
@@ -8763,12 +8784,14 @@ background: aliceblue;
   position: absolute;
   display: block;
   font-size: 1.5em;
-  margin-bottom: 20%;
 }
 .userName p{
   font-size: 1em;
   text-align: center;
   margin-bottom: 0%;
+}
+#delout{
+	display: none;
 }
 .nickCorr{
   margin-bottom: 0px;
@@ -8776,6 +8799,7 @@ background: aliceblue;
   padding: 0px;
   text-align: left;
   vertical-align: middle;
+  display: block;
 }
 .nickCorrBtn{
   background-color: transparent;
@@ -8788,7 +8812,7 @@ background: aliceblue;
 .rankgraphBtn p{
 	font-size: 20px;
 }
-.feedbackTable{
+#feedbacktable{
   text-align: center;
   border: groove 2px;
 }
@@ -8837,6 +8861,18 @@ background: aliceblue;
   background: dimgray;
   outline: none;
 }
+#nick_correct{
+  display: table-caption;
+  background: dimgray;
+  outline: none;
+  font-size: 16px
+}
+#nick_correct_cancel{
+   display: table-caption;
+  background: dimgray;
+  outline: none;
+  font-size: 16px
+}
 .weight_corr_input{
   height: auto;
   width: 70px;
@@ -8846,6 +8882,7 @@ background: aliceblue;
 /* 몸무게------------- */
 .weightHead{
   background: cadetblue;
+  text-align: left;
 }
 .weightHead h5{
   color: white;
@@ -8862,6 +8899,31 @@ background: aliceblue;
   display: flex;
   align-items: center;
 }
+#buttons{
+  border: groove;
+  text-align: center;
+}
+#exerciseName0{
+  border-left-color: #FFA9B0;
+}
+#exerciseName1{
+  border-left-color: #FDFA87;
+}
+#exerciseName2{
+  border-left-color: #CCD1FF;
+}
+#exerciseName3{
+  border-left-color: #A8C8F9;
+}
+#exerciseName4{
+  border-left-color: #FFDDA6;
+}
+#exerciseName5{
+  border-left-color: #B8F3B8;
+}
+.piemargin{
+	margin-top: 7rem;
+}
 /* 회원목록------------------------------------------ */
 .delLogo{
   padding: 0%;
@@ -8873,6 +8935,9 @@ background: aliceblue;
 .userTotal{
   margin-top: 5vh;
   font-size: 1.8em;
+}
+.userTotal p{
+	color: slategrey;
 }
 .userTranScoll{
   overflow-x: scroll;
@@ -8942,7 +9007,12 @@ background: aliceblue;
   min-width: 40px;
   text-align: left;
 }
-
+#paginate-go-button{
+	display: none;
+}
+#paginate_page_to_go{
+	display: none;
+}
 /* 회원목록 끝 --------------------------------------------*/
 .infoTitle{
   display: block;
@@ -8962,6 +9032,27 @@ background: aliceblue;
 }
 .cateTitle{
  box-shadow: inset 0 -4px 0 indianred;
+ max-width: 190px;
+ text-align: center;
+ margin-bottom: 1vh;
+}
+.trainingTitle{
+ box-shadow: inset 0 -4px 0 darkgoldenrod;
+ max-width: 190px;
+ text-align: center;
+ margin-bottom: 1vh;
+}
+.challengeTitle{
+ box-shadow: inset 0 -4px 0 orangered;
+ max-width: 220px;
+ text-align: center;
+ margin-bottom: 1vh;
+}
+.imgdivdiv{
+	margin-top: 5rem;
+}
+.userTotal{
+ box-shadow: inset 0 -4px 0 slategrey;
  max-width: 190px;
  text-align: center;
  margin-bottom: 1vh;
