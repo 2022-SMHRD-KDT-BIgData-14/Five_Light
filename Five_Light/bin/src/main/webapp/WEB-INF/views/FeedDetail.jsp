@@ -38,18 +38,32 @@
 	<style>
 		.feedTable th {
 			width: 200px;
-			height: 40px;
+			height: 50px;
 			text-align: center;
 			align-items: center;
-			border: solid 1px;
+			border: #000000 solid 1px;
+			font-size: 26px;
+			background: slategray;
+			color: white;
+			font-weight: 200;
 		}
-	
 		.feedTable td {
-			width: 200px;
-			height: 40px;
+			width: 15em;
 			text-align: center;
 			align-items: center;
-			border: solid 1px;
+			border: #000000 solid 1px;
+			font-size: 20px;
+		}
+		.feedBackBack{
+			border: #ffffff;
+			padding-top: 20px;
+			text-align: center;
+		}
+		.feedBackCenter{
+			text-align: center;
+		}
+		#feedbackCont{
+			height: 200px;
 		}
 	</style>
 </head>
@@ -60,43 +74,43 @@
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 
 		<aside id="colorlib-aside" role="complementary" class="boxShadow js-fullheight text-center">
-			<div class="cotainer">
-			<!-- 좌측 목록 페이지 로고 -->
+			<div class="container">
+				<!-- 좌측 목록 페이지 로고 -->
 				<div class="row">
-					<div class="col-12 logo">
-						<a href="MyInfo.jsp"><img src="images/logo.png"></a>
-					</div>
-					
-					<!-- 로고 밑 닉네임 -->
-					<div id="nickname_1" class="col-8 userName"	value="${info.nickname}">
-						<p id="user_nickname">${info.nickname}</p>
-					</div>
-					<!-- 로고 밑 닉네임 끝 -->
-				</div>
+					<div class="col-12">
+						<div class="col-12 logo">
+							<a href="MyInfo.jsp"><img src="images/logo.png"></a>
+						</div>
 
-				<!-- 좌측 목록 -->
-				<% User info = (User)session.getAttribute("info"); %>
-				<div class="col-12">
-					<div class="main-menu">
-						<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-							<ul class="main-menu">					
-								<% if (info.getAccess() == null) { %>
-								<li><a href="myInfo.do">My Info</a></li>
-								<% } else { %>
-								<li><a href="memberInfo.do">My Info</a></li>
-								<% } %>
-								<li><a href="challenge.do">Challenge</a></li>
-								<li><a href="ranking.do">Ranking</a></li>
-								<li><a href="training.do">Training</a></li>
-							</ul>
-						</nav>
+						<!-- 로고 밑 닉네임 -->
+						<div id="nickCategory" class="row">
+							<div id="nickname_1" class="col-12 userName" value="${info.nickname}">
+								<h3 id="user_nickname">${info.nickname}</h3>
+							</div>
+						</div>
+						<!-- 로고 밑 닉네임 끝 -->
 					</div>
-					
-					<div class="fiveLight">
-						<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+
+					<!-- 좌측 목록 -->
+					<% User info = (User) session.getAttribute("info"); %>
+					<div class="col-12">
+						<div class="main-menu">
+							<nav id="colorlib-main-menu" role="navigation" list-style=snone>
+								<ul class="main-menu">
+									<li><a href="myInfo.do">My Info</a></li>
+									<li><a href="challenge.do">Challenge</a></li>
+									<li><a href="ranking.do">Ranking</a></li>
+									<li><a href="training.do">Training</a></li>
+								</ul>
+							</nav>
+						</div>
+
+						<div class="fiveLight">
+							<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+						</div>
 					</div>
+					<!--좌측 목록 끝  -->
 				</div>
-				<!--좌측 목록 끝  -->
 			</div>
 		</aside>
 	</div>
@@ -104,50 +118,51 @@
 
 	<!-- 로그인 상태 라인  -->
 	<div id="colorlib-main">
-		<section class="ftco-section">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<h1>FeedBack</h1>
-					</div>
-
-					<!-- 피드백 리스트 -->
-					<div class="col-12">
-						<div class="feedDetail">
-							<table class="feedTable">
-								<% List<Feedback> feedbackList = (List<Feedback>) session.getAttribute("feedbackList"); %>
-								<tbody>
-									<tr>
-										<th>Date</th>
-										<th>P.T</th>
-									</tr>
-									<tr>
-										<th><%=feedbackList.get(0).getFeed_date()%></th>
-										<td><%=feedbackList.get(0).getEx_name()%></td>
-									</tr>
-									<tr>
-										<th colspan="2">Content</th>
-									</tr>
-									<tr>
-										<td colspan="2" id="feedbackCont">
-											<% for (int i = 0; i < 5; i++) { %>
-											<%=feedbackList.get(i).getFeed_con()%><br>
-											<% } %>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="feedBackBack">
-								<div class="feedBackCenter">
-									<a href="myInfo.do?nickname=${info.nickname}&nick=${info.nickname}"><button>뒤로가기</button></a>
+		<div class="hero-wrap hero-wrap-2 js-fullheight">
+			<div class="js-fullheight d-flex justify-content-center align-items-center">
+				<section class="ftco-section">
+					<div class="container">
+						<div class="row">
+							<!-- 피드백 리스트 -->
+							<div class="col-12">
+								<div class="feedDetail">
+									<div class="feedbacktiti">
+										<h1>Feedback</h1>
+									</div>
+									<table class="feedTable">
+										<% List<Feedback> feedbackList = (List<Feedback>) session.getAttribute("feedbackList"); %>
+										<tbody>
+											<tr>
+												<th>Date</th>
+												<th>P.T</th>
+											</tr>
+											<tr>
+												<td><%=feedbackList.get(0).getFeed_date()%></td>
+												<td><%=feedbackList.get(0).getEx_name()%></td>
+											</tr>
+											<tr>
+												<th colspan="2">Content</th>
+											</tr>
+											<tr>
+												<td colspan="2" id="feedbackCont">
+													<% for (int i = 0; i < 5; i++) { %>
+													<%=feedbackList.get(i).getFeed_con()%> <br> 
+													<% } %>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="feedBackBack">
+										<a href="myInfo.do?nickname=${info.nickname}&nick=${info.nickname}"><button>뒤로가기</button></a>
+									</div>
 								</div>
 							</div>
+							<!-- 피드백 리스트 끝 -->
 						</div>
 					</div>
-					<!-- 피드백 리스트 끝 -->
-				</div>
+				</section>
 			</div>
-		</section>
+		</div>
 	</div>
 	<!-- 로그인 상태 라인 -->
 

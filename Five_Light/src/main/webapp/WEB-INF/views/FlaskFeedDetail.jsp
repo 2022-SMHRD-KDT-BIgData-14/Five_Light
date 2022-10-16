@@ -1,8 +1,7 @@
-<%@page import="java.util.List"%>
 <%@page import="com.fivelight.domain.Feedback"%>
+<%@page import="java.util.List"%>
 <%@ page import="com.fivelight.domain.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,18 +38,32 @@
 	<style>
 		.feedTable th {
 			width: 200px;
-			height: 40px;
+			height: 50px;
 			text-align: center;
 			align-items: center;
-			border: solid 1px;
+			border: #000000 solid 1px;
+			font-size: 26px;
+			background: slategray;
+			color: white;
+			font-weight: 200;
 		}
-	
 		.feedTable td {
-			width: 200px;
-			height: 40px;
+			width: 15em;
 			text-align: center;
 			align-items: center;
-			border: solid 1px;
+			border: #000000 solid 1px;
+			font-size: 20px;
+		}
+		.feedBackBack{
+			border: #ffffff;
+			padding-top: 20px;
+			text-align: center;
+		}
+		.feedBackCenter{
+			text-align: center;
+		}
+		#feedbackCont{
+			height: 200px;
 		}
 	</style>
 </head>
@@ -60,110 +73,105 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 
-		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<!-- 좌측 목록 페이지 로고 -->
-			<h1 id="colorlib-logo">
-				<a href="index.html">당.근 P.T</a>
-			</h1>
+		<aside id="colorlib-aside" role="complementary" class="boxShadow js-fullheight text-center">
+			<div class="container">
+				<!-- 좌측 목록 페이지 로고 -->
+				<div class="row">
+					<div class="col-12">
+						<div class="col-12 logo">
+							<a href="MyInfo.jsp"><img src="images/logo.png"></a>
+						</div>
 
-			<!-- 좌측 로고 밑 사진 -->
-			<div class="userImg mb-4" style="background-image: url(images/당근5.jfif);"></div>
+						<!-- 로고 밑 닉네임 -->
+						<div id="nickCategory" class="row">
+							<div id="nickname_1" class="col-12 userName" value="${info.nickname}">
+								<h3 id="user_nickname">${info.nickname}</h3>
+							</div>
+						</div>
+						<!-- 로고 밑 닉네임 끝 -->
+					</div>
 
-			<div class="userName">당근</div>
+					<!-- 좌측 목록 -->
+					<% User info = (User) session.getAttribute("info"); %>
+					<div class="col-12">
+						<div class="main-menu">
+							<nav id="colorlib-main-menu" role="navigation" list-style=snone>
+								<ul class="main-menu">
+									<li><a href="myInfo.do">My Info</a></li>
+									<li><a href="challenge.do">Challenge</a></li>
+									<li><a href="ranking.do">Ranking</a></li>
+									<li><a href="training.do">Training</a></li>
+								</ul>
+							</nav>
+						</div>
 
-			<!-- 좌측 목록 -->
-			<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-				<ul class="main-menu">
-					<% User info = (User)session.getAttribute("info"); %>
-					<% if (info.getAccess() == null) { %>
-						<li class="colorlib-active"><a href="myInfo.do">My Info</a></li>
-					<% } 
-					   else { %>
-						<li class="colorlib-active"><a href="memberInfo.do">My Info</a></li>
-					<% } %>
-					<li><a href="challenge.do">Challenge</a></li>
-					<li><a href="ranking.do">Ranking</a></li>
-					<li><a href="training.do">Training</a></li>
-				</ul>
-			</nav>
-
-			<div class="infoLogout">
-				<a href="infoLogout.do">LOGOUT</a>
+						<div class="fiveLight">
+							<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+						</div>
+					</div>
+					<!--좌측 목록 끝  -->
+				</div>
 			</div>
-
-			<div class="infoDelete">
-				<a href="infoDelete.do">회원 탈퇴</a>
-			</div>
-			<!--좌측 목록 끝  -->
 		</aside>
-		<!-- 좌측 카테고리 끝 -->
+	</div>
+	<!-- 좌측 카테고리 끝 -->
 
-		<!-- 로그인 상태 라인  -->
-		<div id="colorlib-main">
-			<div class="hero-wrap " style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
-				<!--herp-wrap에서 이거 뺌 js-fullheight -->
-				<div class="overlay"></div>
-
+	<!-- 로그인 상태 라인  -->
+	<div id="colorlib-main">
+		<div class="hero-wrap hero-wrap-2 js-fullheight">
+			<div class="js-fullheight d-flex justify-content-center align-items-center">
 				<section class="ftco-section">
 					<div class="container">
 						<div class="row">
-							<div class="col-md-12">
-								<h1>FeedBack 내용</h1>
-							</div>
-
 							<!-- 피드백 리스트 -->
-							<div class="col-md-12">
+							<div class="col-12">
 								<div class="feedDetail">
+									<div class="feedbacktiti">
+										<h1>Feedback</h1>
+									</div>
 									<table class="feedTable">
-									<% List<Feedback> flaskfeedback  = (List<Feedback>)session.getAttribute("flaskfeedback"); %>
+										<% List<Feedback> flaskfeedback  = (List<Feedback>)session.getAttribute("flaskfeedback"); %>
 										<tbody>
 											<tr>
-												<th>날짜</th>
-												<td><%=flaskfeedback.get(0).getFeed_date() %></td>
+												<th>Date</th>
+												<th>P.T</th>
 											</tr>
 											<tr>
-												<th>운동종류</th>
+												<td><%=flaskfeedback.get(0).getFeed_date() %></td>
 												<td><%=flaskfeedback.get(0).getEx_name() %></td>
 											</tr>
 											<tr>
-												<th colspan="2">피드백 내용</th>
+												<th colspan="2">Content</th>
 											</tr>
-											<%for(int i=0; i<5; i++){%>
 											<tr>
-												<td colspan="2" class=""><%=flaskfeedback.get(i).getFeed_con() %></td>
-											</tr>
-											<%} %>
-											<tr>
-												<td colspan="2">
-												<% if (info.getAccess() == null) { %> 
-													<a href="myInfo.do?nickname=${info.nickname}"><button>뒤로가기</button></a>
-												<% }
-												   else if (info.getAccess().equals("C")) { %>
-												    <a href="memberInfo.do?nickname=${info.nickname}"><button>뒤로가기</button></a>
-												<% } 
-												   else { %>
-												   <a href="userInfoDetail.do?nickname=${userInfo.nickname}"><button>뒤로가기</button></a>
-												<% } %>
+												<td colspan="2" id="feedbackCont">
+													<%for(int i=0; i<5; i++){%>
+													<%=flaskfeedback.get(i).getFeed_con() %><br> 
+													<% } %>
 												</td>
 											</tr>
 										</tbody>
 									</table>
+									<div class="feedBackBack">
+										<a href="myInfo.do?nickname=${info.nickname}&nick=${info.nickname}"><button>뒤로가기</button></a>
+									</div>
 								</div>
 							</div>
+							<!-- 피드백 리스트 끝 -->
 						</div>
-						<!-- 랭킹리스트 끝 -->
 					</div>
 				</section>
 			</div>
 		</div>
+	</div>
+	<!-- 로그인 상태 라인 -->
 
-		<!-- loader -->
-		<div id="ftco-loader" class="show fullscreen">
-			<svg class="circular" width="48px" height="48px">
-			    <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-			    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
-	  		</svg>
-		</div>
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px">
+		    <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+		    <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+  		</svg>
 	</div>
 	
 	<script src="js/jquery.min.js"></script>

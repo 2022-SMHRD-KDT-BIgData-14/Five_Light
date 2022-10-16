@@ -158,7 +158,7 @@
 
 						<!-- 바벨 컬-->
 						<div class="col-4">
-							<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/babelcurl.jpg);">
+							<a href="http://127.0.0.1:5002/cal_TR?nickname=${info.nickname}" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/babelcurl.jpg);">
 								<div class="overlay"></div>
 								<div class="text text-center">
 									<h3>바벨 컬</h3>

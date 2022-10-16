@@ -41,132 +41,125 @@
 	<!-- 좌측 카테고리 -->
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-		
-		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+
+		<aside id="colorlib-aside" role="complementary" class="boxShadow js-fullheight text-center">
 			<div class="cotainer">
 				<!-- 좌측 목록 페이지 로고 -->
 				<div class="row">
-					<div class="col-12 logo">
-						<a href="MyInfo.jsp"><img src="images/logo.png"></a>
-					</div>
-					
-					<!-- 로고 밑 닉네임 -->
-					<div id="nickname_1" class="col-8 userName" value="${info.nickname}">
-						<h2 id="user_nickname">${info.nickname}</h2>
-					</div>
-					<!-- 로고 밑 닉네임 끝 -->
-				</div>
+					<div class="col-12">
+						<div class="col-12 logo">
+							<a href="MyInfo.jsp"><img src="images/logo.png"></a>
+						</div>
 
-				<!-- 좌측 목록 -->
-				<% User info = (User)session.getAttribute("info"); %>
-				<div class="col-12">
-					<div class="main-menu">
-						<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-							<ul class="main-menu">
-								<% if (info.getAccess() == null) { %>
-								<li><a href="myInfo.do">My Info</a></li>
-								<% } else { %>
-								<li><a href="memberInfo.do">My Info</a></li>
-								<% } %>
-								<li><a href="challenge.do">Challenge</a></li>
-								<li><a href="ranking.do">Ranking</a></li>
-								<li><a href="training.do">Training</a></li>
-							</ul>
-						</nav>
+						<!-- 로고 밑 닉네임 -->
+						<div id="nickCategory">
+							<div id="nickname_1" class="col-12 userName" value="${info.nickname}">
+								<h3 id="user_nickname">${info.nickname}</h3>
+							</div>
+						</div>
+						<!-- 로고 밑 닉네임 끝 -->
 					</div>
-					
-					<div class="fiveLight">
-						<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+
+					<!-- 좌측 목록 -->
+					<% User info = (User) session.getAttribute("info"); %>
+					<div class="col-12">
+						<div class="main-menu">
+							<nav id="colorlib-main-menu" role="navigation" list-style=snone>
+								<ul class="main-menu">
+									
+									<li><a href="myInfo.do">My Info</a></li>
+									<li><a href="challenge.do">Challenge</a></li>
+									<li><a href="ranking.do">Ranking</a></li>
+									<li><a href="training.do">Training</a></li>
+								</ul>
+							</nav>
+						</div>
+
+						<div class="fiveLight">
+							<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+						</div>
 					</div>
+					<!--좌측 목록 끝  -->
 				</div>
-				<!--좌측 목록 끝  -->
 			</div>
 		</aside>
-	</div>	
+	</div>
 	<!-- 좌측 카테고리 끝 -->
 
 	<!-- 로그인 상태 라인  -->
 	<div id="colorlib-main">
-		<div class="hero-wrap" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
-			<!--herp-wrap에서 이거 뺌 js-fullheight -->
-			<div class="overlay"></div>
-			<section class="ftco-section">
-				<div class="container">
-					<div class="row">
-						<!-- versus me  문구 -->
-						<div class="col-12">
-							<div class="trainingTitle">
-								<h1>Training</h1>
-							</div>
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row">
+					<!-- versus me  문구 -->
+					<div class="col-12">
+						<div class="trainingTitle">
+							<h1>Training</h1>
 						</div>
-						<!-- versus me  문구 끝-->
-						
-						<!-- 운동 사진 -->
-						<!-- 랫풀 다운-->
-						<div class="col-md-4">
+					</div>
+					<!-- versus me  문구 끝-->
+
+					<!-- 운동 사진 -->
+					<!-- 랫풀 다운-->
+					<div class="row col-12 imgdivdiv">
+						<div class="col-4">
 							<a href="http://127.0.0.1:5002/lat_TR?nickname=${info.nickname}" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/latpull.jpg);">
 								<div class="overlay"></div>
-								
 								<div class="text text-center">
 									<h3>랫풀 다운</h3>
 								</div>
 							</a>
 						</div>
 						<!-- 랫풀 다운 끝 -->
-						
+
 						<!-- 바벨 데드리프트 -->
-						<div class="col-md-4">
+						<div class="col-4">
 							<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/deadlift.png);">
 								<div class="overlay"></div>
-								
 								<div class="text text-center">
 									<h3>바벨 데드리프트</h3>
 								</div>
 							</a>
 						</div>
 						<!-- 바벨 데드리프트 끝-->
-						
+
 						<!-- 바벨 런지 -->
-						<div class="col-md-4">
+						<div class="col-4">
 							<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/lunge.jpg);">
 								<div class="overlay"></div>
-								
 								<div class="text text-center">
 									<h3>바벨 런지</h3>
 								</div>
 							</a>
 						</div>
 						<!-- 바벨 런지 끝-->
-						
+
 						<!-- 바벨 로우 -->
-						<div class="col-md-4">
+						<div class="col-4">
 							<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/babellow.png);">
 								<div class="overlay"></div>
-								
 								<div class="text text-center">
 									<h3>바벨 로우</h3>
 								</div>
 							</a>
 						</div>
 						<!-- 바벨 로우 끝 -->
-						
+
 						<!-- 바벨 스쿼트 -->
-						<div class="col-md-4">
+						<div class="col-4">
 							<a href="http://127.0.0.1:5002/squat_TR?nickname=${info.nickname}" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/squat.jpg);">
 								<div class="overlay"></div>
-								
 								<div class="text text-center">
 									<h3>바벨 스쿼트</h3>
 								</div>
 							</a>
 						</div>
 						<!-- 바벨 스쿼트  끝-->
-						
+
 						<!-- 바벨 컬-->
-						<div class="col-md-4">
+						<div class="col-4">
 							<a href="VideoRecord.html" class="photography-entry img d-flex justify-content-center align-items-center" style="background-image: url(images/babelcurl.jpg);">
 								<div class="overlay"></div>
-								
 								<div class="text text-center">
 									<h3>바벨 컬</h3>
 								</div>
@@ -176,10 +169,10 @@
 						<!-- 운동 사진 끝 -->
 					</div>
 				</div>
-			</section>
-		</div>
+			</div>
+		</section>
 	</div>
-	
+
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">
 		<svg class="circular" width="48px" height="48px">

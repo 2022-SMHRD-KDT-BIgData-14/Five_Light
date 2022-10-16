@@ -34,348 +34,12 @@
 
 	<!-- 차트 링크 아래 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
 	<!-- 차트 링크 끝 -->
-</head>
-
-<body>
-	<!-- 사용자 로그인 이후 -->
-
-	<!-- 좌측 카테고리 -->
-	<div id="colorlib-page">
-		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-		
-		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<div class="cotainer">
-				<!-- 좌측 목록 페이지 로고 -->
-				<div class="row">
-					<div class="col-12">
-						<div class="col-12 logo">
-							<a href="UserInfo.jsp"><img src="images/logo.png"></a>
-						</div>
-		
-						<!-- 좌측 로고 밑 닉네임 -->
-						<% User info = (User)session.getAttribute("info"); %>
-						<div class="row col-12 nickCategory">
-							<div id="nickname_1" class="col-8 userName" value="<%= info.getNickname() %>">
-								<p id="user_nickname"><%= info.getName() %></p>
-							</div>
-						</div>
-						<!-- 좌측 로고 밑 닉네임 끝 -->
-
-						<!-- 좌측 목록 -->
-						<div class="col-12">
-							<div class="main-menu">
-								<nav id="colorlib-main-menu" role="navigation" list-style=snone>
-									<ul class="main-menu">
-										<li class="colorlib-active"><a href="userInfo.do">UserInfo</a></li>
-										<li><a href="rank.do">Ranking</a></li>
-									</ul>
-								</nav>
-							</div>
-		
-							<div class="infoLogout">
-								<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
-							</div>
-							
-							<div class="fiveLight">
-								<div>
-									<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
-								</div>
-							</div>							
-						</div>
-						<!--좌측 목록 끝  -->
-					</div>
-				</div>
-			</div>
-		</aside>
-	</div>		
-	<!-- 좌측 카테고리 끝 -->
-
-	<!-- 로그인 상태 라인  -->
-	<div id="colorlib-main">
-		<div class="container userTable">
-			<div class="col-12">
-				<!-- 회원목록 -->
-				<div class="userTotal">
-					<span>회원수 : ${userList.size()}명</span>
-				</div>
-				
-				<div class="userTranScoll type1">
-					<ul>
-						<c:forEach var="userList" items="${userList}">
-							<c:set var="i" value="${i + 1}" />
-							<li class="userlistItem">
-								<div class="userTableDiv">
-									<table class="userTableDetail">
-										<tr>
-											<td class="userTableNo">${i}.</td>
-											<td class="userTableName">
-												<a class="userTableNameA" href="/userInfoDetail.do?nickname=${userList.nickname}&nick=${userList.nickname}">${userList.name}</a>
-											</td>
-											<td class="userTableDel">
-												<button class="delLogo"	onclick="return confirm('정말 삭제하시겠습니까??');">
-													<img src="\images\userDel.png" alt="">
-												</button>
-											</td>
-										</tr>
-									</table>
-								</div>
-							</li>
-						</c:forEach>
-					</ul>
-				</div>
-			</div>
-
-			<div class="row">
-				<!-- 파이차트 -->
-				<div class="col-8">
-					<canvas id="myChart2"></canvas>
-					<div class="card card-body text-center bg-primary">
-						<h3>[${userInfo.name}]님의 선호 운동</h3>
-					</div>
-				</div>
-				<!-- 파이차트 끝-->	
-						
-				<!-- 몸무게 -->
-				<div class="col-4">
-					<div class="col-12">
-						<div class="card flex-fill">
-							<div class="card-header">
-								<h5 class="card-title mb-0">[${userInfo.name}]님의 도전<button id="weight_corr">수정하기</button></h5>
-							</div>
-
-							<table class="table table-hover my-0">
-								<tbody>
-									<tr>
-										<th>시작 몸무게</th>
-										<td>
-											<span id="weight_start">${userInfo.weight_start}</span>
-											<span>Kg</span>
-										</td>
-									</tr>
-									<tr>
-										<th>현재 몸무게</th>
-										<td>
-											<span id="weight_now">${userInfo.weight_now}</span>
-											<span>Kg</span>
-										</td>
-									</tr>
-									<tr>
-										<th>목표 몸무게</th>
-										<td>
-											<span id="weight_target">${userInfo.weight_target}</span>
-											<span>Kg</span>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<!-- 몸무게 끝 -->
-					
-					<!-- 피드백 -->
-					<div class="col-12">
-						<div class="card flex-fill">
-							<div class="card-header">
-								<h5 class="card-title mb-0">피드백 내역</h5>
-							</div>							
-							
-							<div class="container">
-							    <div class="panel">
-							        <div class="body">
-							            <div class="input-group">         
-							                <input type="hidden" id="searchBox" placeholder="Filtrar...">
-							            </div>
-							        </div>
-							    </div>
-							    
-							    <% List<Feedback>feedbackList = (List<Feedback>)session.getAttribute("feedbackList"); %>
-    							<table class="myTable table hover">
-	        						<thead>
-										<tr>
-											<th>날짜</th>
-											<th class="d-none d-xl-table-cell">FeedBack</th>
-										</tr>
-									</thead>
-								
-									<tbody>
-										<% for(int i = 0; i < feedbackList.size(); i += 5) { %>
-										<tr>
-											<td>
-												<%=feedbackList.get(i).getFeed_date()%>
-											</td>
-											<td class="d-none d-xl-table-cell">
-												<span><%= feedbackList.get(i).getEx_name() %></span>
-												<a href="adminDetail.do?feed_number=<%= feedbackList.get(i).getFeed_num() %>">[내용보기]</a>
-											</td>
-										</tr>
-										<% } %>
-									</tbody>
-    							</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- loader -->
-	<div id="ftco-loader" class="show fullscreen">
-		<svg class="circular" width="48px" height="48px">		
-      		<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-      		<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
-    	</svg>
-	</div>
-	
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-			
+	<!-- 페이징 스크립트 -->
 	<script type="text/javascript">
-		<!-- 몸무게 스크립 시작 -->
-		var weight_start = $('#weight_start').text()
-		var weight_now = $('#weight_now').text()
-		var weight_target = $('#weight_target').text()
-		
-		$(document).on('click', '#weight_corr', ()=> {
-			var weight_start = $('#weight_start').text()
-			var weight_now = $('#weight_now').text()
-			var weight_target = $('#weight_target').text()
-			
-			$('#weight_corr').text('수정완료')
-			$('#weight_corr').after('<button id="weight_corr_cancel">취소</button>')
-			$('#weight_corr').attr('id', 'weight_corr_fix')
-			
-			$('#weight_start').contents().unwrap().wrap('<span id="weight_start"><input id="weight_start_corr" class="weight_corr_input" type="text" value="' + weight_start + '" size=15 style="height: 30px !important;"/></span>')
-			$('#weight_now').contents().unwrap().wrap('<span id="weight_now"><input id="weight_now_corr" class="weight_corr_input" type="text" value="' + weight_now + '" size=15 style="height: 30px !important;"/></span>')
-			$('#weight_target').contents().unwrap().wrap('<span id="weight_target"><input id="weight_target_corr" class="weight_corr_input" type="text" value="' + weight_target + '" size=15 style="height: 30px !important;"/></span>')
-		})
-		
-		$(document).on('click', '#weight_corr_cancel', ()=> {
-			var weight_start = $('#weight_start').text()
-			var weight_now = $('#weight_now').text()
-			var weight_target = $('#weight_target').text()
-			
-			$('#weight_corr_cancel').remove()
-			$('#weight_corr_fix').text('수정하기')
-			$('#weight_corr_fix').attr('id', 'weight_corr')								
-			
-			$('.weight_corr_input').remove()
-			$('#weight_start').append('<span id="weight_start">' + weight_start + '</span>')
-			$('#weight_now').append('<span id="weight_now">' + weight_now + '</span>')
-			$('#weight_target').append('<span id="weight_target">' + weight_target + '</span>')
-		})
-		
-		$(document).on('click', '#weight_corr_fix', ()=> {
-			var weight_start = $('#weight_start_corr').val()
-			var weight_now = $('#weight_now_corr').val()
-			var weight_target = $('#weight_target_corr').val()
-			
-			$.ajax({
-				url: 'weight.do',
-				data: {
-					weight_start : weight_start,
-					weight_now : weight_now,
-					weight_target : weight_target,
-					nickname : `${userInfo.nickname}`,
-					name : `${userInfo.name}`,										
-					access : `${userInfo.access}`
-				},
-				dataType: "text",
-				
-				success: function(res) {
-					$('#weight_corr_fix').text('수정하기')
-					$('#weight_corr_fix').attr('id', 'weight_corr')
-					
-					$('#weight_corr_cancel').remove()
-					$('.weight_corr_input').remove()
-					
-					$('#weight_start').append('<span id="weight_start">' + weight_start + '</span>')
-					$('#weight_now').append('<span id="weight_now">' + weight_now + '</span>')
-					$('#weight_target').append('<span id="weight_target">' + weight_target + '</span>')
-				}
-			})
-		})
-		<!-- 몸무게 스크립 끝 -->
-		
-		<!-- 도넛 차트 스크립트 시작 -->
-		<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
-		<% 
-		   List<Integer> feedCntList = new ArrayList<>();
-		
-		   for(int i = 0; i < exerciseList.size(); i++){
-		   	   int feedCount = (int)session.getAttribute("feedchart" + i);
-		   	   
-		   	   feedCntList.add(feedCount);
-		   }   
-		%>
-		
-		// 도넛형 차트
-		var exerciseList = '<%= exerciseList %>'		
-		
-		var exName_Split = exerciseList.split(', ')
-		
-		var exName_List = function() {
-			var ex_List = []
-        	
-        	for(let i = 0; i < exName_Split.length; i++) {
-        		if(i == 0) {
-        			var exerciseName = exName_Split[i].substring(18, exName_Split[i].length - 1)
-        			ex_List.push(exerciseName)
-        		}
-        		else if(i == exName_Split.length - 1) {
-        			var exerciseName = exName_Split[i].substring(17, exName_Split[i].length - 2)
-        			ex_List.push(exerciseName)
-        		}
-        		else {
-        			var exerciseName = exName_Split[i].substring(17, exName_Split[i].length - 1)
-        			ex_List.push(exerciseName)
-        		}        		
-        	}
-        	
-          	return ex_List
-       	}
-		
-		var ctx2 = document.getElementById('myChart2')
-		
-		var myPieChart = new Chart(ctx2, {
-			type: 'doughnut',
-			data: {
-				labels: exName_List(),
-				datasets: [
-					{
-						label: exName_List(),
-						backgroundColor: ['#FFA9B0', '#FDFA87', '#CCD1FF', '#A8C8F9', '#FFDDA6', '#B8F3B8'],
-						data: <%= feedCntList %>
-					}
-				],
-			},
-			
-			options: {
-				scales: {		        	
-				},
-				
-				legend: { // 범례
-		        	position: 'bottom',
-		            labels: {
-		            	display: true,
-		            	boxWidth: 22,
-		            	fontSize: 17,
-		            	fontFamily: 'the',							            	
-		            	fontColor: 'black',
-		                usePointStyle: false // 지정된 포인트 모양에 따라 범례 아이콘 생성							                
-		            }
-		        }
-			}
-		})
-		<!-- 도넛 차트 스크립트 끝 -->
-	</script>	
-	<script type="text/javascript">
-	(function(window){
+		(function(window){
 	    'use strict';
 
 	    // This function will contain all our code
@@ -530,18 +194,18 @@
 	            let	prevDisabled = (currentPage == 1)?"disabled":"";
 	            let nextDisabled = (currentPage == numberOfPage)?"disabled":"";
 
-	            let buttons = "<input type='button' value='← prev' class='paginate_control_prev' onclick='paginate.sort("+(currentPage - 1)+")' "+prevDisabled+">";
+	            let buttons = "<input type='button' value='<<' class='paginate_control_prev' onclick='paginate.sort("+(currentPage - 1)+")' "+prevDisabled+">";
 	            let buttonNumberOfPage = "<input type='button' value='" + currentPage + ' - ' + numberOfPage + "' disabled>";
 
 	            for (let $i=1; $i<=numberOfPage;$i++){
-	                if(numberOfPage > 10){
+	                if(numberOfPage > 5){
 	                    buttons += paginationMoreThatTenPage($i,numberOfPage);
 	                }else{
 	                    buttons += "<input type='button' id='id"+$i+"'value='"+$i+"' onclick='paginate.sort("+$i+")'>";
 	                }
 	            }
 
-	            let nextButton = "<input type='button' value='next →' class='paginate_control_next' onclick='paginate.sort("+(currentPage + 1)+")' "+nextDisabled+">";
+	            let nextButton = "<input type='button' value='>>' class='paginate_control_next' onclick='paginate.sort("+(currentPage + 1)+")' "+nextDisabled+">";
 	            buttons +=  nextButton;
 
 	            if(settings.pageCounter)
@@ -640,14 +304,348 @@
 	        return _lignePaginate;
 	    }
 
-	    if(typeof(window.paginate) === 'undefined'){
-	        window.paginate = lignePaginate();
-	    }
-	})(window);
-</script>
+		    if(typeof(window.paginate) === 'undefined'){
+		        window.paginate = lignePaginate();
+		    }
+		})(window);
+	</script>
+	<!-- 페이징 스크립트 -->
+	
+</head>
+
+<body>
+	<!-- 관리자 로그인 -->
+
+	<!-- 좌측 카테고리 -->
+	<div id="colorlib-page">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+		
+		<aside id="colorlib-aside" role="complementary" class="boxShadow js-fullheight text-center">
+			<div class="cotainer">
+				<!-- 좌측 목록 페이지 로고 -->
+				<div class="row">
+					<div class="col-12">
+						<div class="col-12 logo">
+							<a href="UserInfo.jsp"><img src="images/logo.png"></a>
+						</div>
+		
+						<!-- 좌측 로고 밑 닉네임 -->
+						<% User info = (User)session.getAttribute("info"); %>
+						<div id="nickCategory" class="row">
+							<div id="nickname_1" class="col-12 userName" value="<%= info.getNickname() %>">
+								<h3 id="user_nickname"><%= info.getName() %></h3>
+							</div>
+						</div>
+						<!-- 좌측 로고 밑 닉네임 끝 -->
+
+						<!-- 좌측 목록 -->
+						<div class="col-12">
+							<div class="main-menu">
+								<nav id="colorlib-main-menu" role="navigation" list-style=snone>
+									<ul class="main-menu">
+										<li><a href="userInfo.do">UserInfo</a></li>
+										<li><a href="rank.do">Ranking</a></li>
+									</ul>
+								</nav>
+							</div>
+		
+							<div class="infoLogout">
+								<a href="logout.do" onclick="return confirm('정말 로그아웃 하시겠습니까??');">로그아웃</a>
+							</div>
+							
+							<div class="fiveLight">
+								<div>
+									<p>Five_Light ㅣ 오경락 백성연 공석준 기아성 최지훈</p>
+								</div>
+							</div>							
+						</div>
+						<!--좌측 목록 끝  -->
+					</div>
+				</div>
+			</div>
+		</aside>
+	</div>		
+	<!-- 좌측 카테고리 끝 -->
+
+	<!-- 우측뷰   -->
+	<div id="colorlib-main">
+	<div class="hero-wrap hero-wrap-2 js-fullheight">
+		<div class="js-fullheight justify-content-center align-items-center">
+				<div class="container userTable">
+					<div class="col-12">
+						<!-- 회원목록 -->
+							<div class="userTotal">
+								<p>Total : ${userList.size()}명</p>
+							</div>
+		
+						<div class="userTranScoll type1">
+							<ul>
+								<c:forEach var="userList" items="${userList}">
+									<c:set var="i" value="${i + 1}" />
+									<li class="userlistItem">
+										<div class="userbtn rounded userTableDiv">
+											<table class="userTableDetail">
+												<tr>
+													<td class="userTableNo">${i}.</td>
+													<td class="userTableName"><a class="userTableNameA"
+														href="/userInfoDetail.do?nickname=${userList.nickname}&nick=${userList.nickname}">${userList.name}</a></td>
+													<td class="userTableDel"><button class="delLogo"
+															onclick="return confirm('정말 삭제하시겠습니까??');">
+															<img src="\images\userDel.png" alt="">
+														</button></td>
+												</tr>
+											</table>
+										</div>
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
+					</div>
+					<!-- 회원목록 끝 -->
+		
+					<div class="js-fullheight justify-content-center align-items-center">
+						<div class="row">
+							<!-- 파이차트 -->
+							<div class="col-8 text text-center piemargin">
+								<canvas id="myChart2"></canvas>
+								<div id="trainingLike" class="card text-center ">
+									<h3>${userInfo.name}님의 운동 선호도</h3>
+								</div>
+							</div>
+							<!-- 파이차트 끝-->
+		
+							<!-- 몸무게 -->
+							<div class="col-4">
+								<div class="col-12">
+									<div class="card flex-fill table11">
+		
+										<table class="table table-hover my-0 weightTable">
+											<thead class="weightHead">
+												<tr>
+													<th><h5>[${userInfo.name}]님의 목표</h5></th>
+													<th><button id="weight_corr" class="userbtn rounded">수정</button></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th>시작 몸무게</th>
+													<td><span id="weight_start">${userInfo.weight_start}</span>
+														<span>Kg</span></td>
+												</tr>
+												<tr>
+													<th>현재 몸무게</th>
+													<td><span id="weight_now">${userInfo.weight_now}</span>
+														<span>Kg</span></td>
+												</tr>
+												<tr>
+													<th>목표 몸무게</th>
+													<td><span id="weight_target">${userInfo.weight_target}</span>
+														<span>Kg</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<!-- 몸무게 끝 -->
+		
+								<!-- 피드백 -->
+								<div class="col-12">
+									<div class="card flex-fill table22">
+										<!-- <div class="container"> -->
+										<div class="panel">
+											<div class="body">
+												<div class="input-group">
+													<input type="hidden" id="searchBox" placeholder="Filtrar...">
+												</div>
+											</div>
+										</div>
+		
+										<% List<Feedback> feedbackList = (List<Feedback>) session.getAttribute("feedbackList"); %>
+										<table id="feedbacktable" class="table table-hover my-0 myTable">
+											<tbody>
+												<tr>
+													<th colspan="2" class="weightHead"><h5>Feedback History</h5></th>
+												</tr>
+												<tr>
+													<th>Date</th>
+													<th>FeedBack</th>
+												</tr>
+		
+												<% for (int i = 0; i < feedbackList.size(); i += 5) { %>
+												<tr>
+													<td><%=feedbackList.get(i).getFeed_date()%></td>
+													<td class="d-none d-xl-table-cell">
+														<span><a href="adminDetail.do?feed_number=<%=feedbackList.get(i).getFeed_num()%>">
+														<%=feedbackList.get(i).getEx_name()%></a> </span>
+													</td>
+												</tr>
+												<% } %>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" width="48px" height="48px">		
+      		<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+      		<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" />
+    	</svg>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+			
+	<script type="text/javascript">
+		<!-- 몸무게 스크립 시작 -->
+		var weight_start = $('#weight_start').text()
+		var weight_now = $('#weight_now').text()
+		var weight_target = $('#weight_target').text()
+		
+		$(document).on('click', '#weight_corr', ()=> {
+			var weight_start = $('#weight_start').text()
+			var weight_now = $('#weight_now').text()
+			var weight_target = $('#weight_target').text()
+			
+			$('#weight_corr').text('완료')
+			$('#weight_corr').after('<button id="weight_corr_cancel" class="userbtn rounded">취소</button>')
+			$('#weight_corr').attr('id', 'weight_corr_fix')
+			
+			$('#weight_start').contents().unwrap().wrap('<span id="weight_start"><input id="weight_start_corr" class="weight_corr_input" type="text" value="' + weight_start + '" size=15 style="height: 30px !important;"/></span>')
+			$('#weight_now').contents().unwrap().wrap('<span id="weight_now"><input id="weight_now_corr" class="weight_corr_input" type="text" value="' + weight_now + '" size=15 style="height: 30px !important;"/></span>')
+			$('#weight_target').contents().unwrap().wrap('<span id="weight_target"><input id="weight_target_corr" class="weight_corr_input" type="text" value="' + weight_target + '" size=15 style="height: 30px !important;"/></span>')
+		})
+		
+		$(document).on('click', '#weight_corr_cancel', ()=> {
+			var weight_start = $('#weight_start').text()
+			var weight_now = $('#weight_now').text()
+			var weight_target = $('#weight_target').text()
+			
+			$('#weight_corr_cancel').remove()
+			$('#weight_corr_fix').text('수정')
+			$('#weight_corr_fix').attr('id', 'weight_corr')								
+			
+			$('.weight_corr_input').remove()
+			$('#weight_start').append('<span id="weight_start">' + weight_start + '</span>')
+			$('#weight_now').append('<span id="weight_now">' + weight_now + '</span>')
+			$('#weight_target').append('<span id="weight_target">' + weight_target + '</span>')
+		})
+		
+		$(document).on('click', '#weight_corr_fix', ()=> {
+			var weight_start = $('#weight_start_corr').val()
+			var weight_now = $('#weight_now_corr').val()
+			var weight_target = $('#weight_target_corr').val()
+			
+			$.ajax({
+				url: 'weight.do',
+				data: {
+					weight_start : weight_start,
+					weight_now : weight_now,
+					weight_target : weight_target,
+					nickname : `${userInfo.nickname}`,
+					name : `${userInfo.name}`,										
+					access : `${userInfo.access}`
+				},
+				dataType: "text",
+				
+				success: function(res) {
+					$('#weight_corr_fix').text('수정')
+					$('#weight_corr_fix').attr('id', 'weight_corr')
+					
+					$('#weight_corr_cancel').remove()
+					$('.weight_corr_input').remove()
+					
+					$('#weight_start').append('<span id="weight_start">' + weight_start + '</span>')
+					$('#weight_now').append('<span id="weight_now">' + weight_now + '</span>')
+					$('#weight_target').append('<span id="weight_target">' + weight_target + '</span>')
+				}
+			})
+		})
+		<!-- 몸무게 스크립 끝 -->
+		
+		<!-- 도넛 차트 스크립트 시작 -->
+		<% List<Exercise> exerciseList = (List<Exercise>)session.getAttribute("exerciseList"); %>
+		<% 
+		   List<Integer> feedCntList = new ArrayList<>();
+		
+		   for(int i = 0; i < exerciseList.size(); i++){
+		   	   int feedCount = (int)session.getAttribute("feedchart" + i);
+		   	   
+		   	   feedCntList.add(feedCount);
+		   }   
+		%>
+		
+		// 도넛형 차트
+		var exerciseList = '<%= exerciseList %>'		
+		
+		var exName_Split = exerciseList.split(', ')
+		
+		var exName_List = function() {
+			var ex_List = []
+        	
+        	for(let i = 0; i < exName_Split.length; i++) {
+        		if(i == 0) {
+        			var exerciseName = exName_Split[i].substring(18, exName_Split[i].length - 1)
+        			ex_List.push(exerciseName)
+        		}
+        		else if(i == exName_Split.length - 1) {
+        			var exerciseName = exName_Split[i].substring(17, exName_Split[i].length - 2)
+        			ex_List.push(exerciseName)
+        		}
+        		else {
+        			var exerciseName = exName_Split[i].substring(17, exName_Split[i].length - 1)
+        			ex_List.push(exerciseName)
+        		}        		
+        	}
+        	
+          	return ex_List
+       	}
+		
+		var ctx2 = document.getElementById('myChart2')
+		
+		var myPieChart = new Chart(ctx2, {
+			type: 'doughnut',
+			data: {
+				labels: exName_List(),
+				datasets: [
+					{
+						label: exName_List(),
+						backgroundColor: ['#FFA9B0', '#FDFA87', '#CCD1FF', '#A8C8F9', '#FFDDA6', '#B8F3B8'],
+						data: <%= feedCntList %>
+					}
+				],
+			},
+			
+			options: {
+				scales: {		        	
+				},
+				
+				legend: { // 범례
+		        	position: 'bottom',
+		            labels: {
+		            	display: true,
+		            	boxWidth: 22,
+		            	fontSize: 17,
+		            	fontFamily: 'the',							            	
+		            	fontColor: 'black',
+		                usePointStyle: false // 지정된 포인트 모양에 따라 범례 아이콘 생성							                
+		            }
+		        }
+			}
+		})
+		<!-- 도넛 차트 스크립트 끝 -->
+	</script>	
+
 <script>
     let options = {
-        numberPerPage:5, //Cantidad de datos por pagina
+        numberPerPage:6, //Cantidad de datos por pagina
         goBar:true, //Barra donde puedes digitar el numero de la pagina al que quiere ir
         pageCounter:true, //Contador de paginas, en cual estas, de cuantas paginas
     };
